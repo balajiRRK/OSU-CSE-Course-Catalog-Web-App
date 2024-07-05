@@ -1,0 +1,67 @@
+<%= form_with(model: course) do |form| %>
+  <% if course.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+        <% course.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :courseId, style: "display: block" %>
+    <%= form.number_field :courseId %>
+  </div>
+
+  <div>
+    <%= form.label :catalog_number, style: "display: block" %>
+    <%= form.text_field :catalog_number %>
+  </div>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :short_description, style: "display: block" %>
+    <%= form.text_field :short_description %>
+  </div>
+
+  <div>
+    <%= form.label :component, style: "display: block" %>
+    <%= form.text_field :component %>
+  </div>
+
+  <div>
+    <%= form.label :term, style: "display: block" %>
+    <%= form.text_field :term %>
+  </div>
+
+  <div>
+    <%= form.label :campus, style: "display: block" %>
+    <%= form.text_field :campus %>
+  </div>
+
+  <div>
+    <%= form.label :subject, style: "display: block" %>
+    <%= form.text_field :subject %>
+  </div>
+
+  <div>
+    <%= form.label :catalog_level, style: "display: block" %>
+    <%= form.text_field :catalog_level %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
