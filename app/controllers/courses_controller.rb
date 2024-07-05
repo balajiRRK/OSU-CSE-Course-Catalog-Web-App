@@ -4,7 +4,8 @@ before_action :authenticate_user!
 before_action :authenticate_admin!, only: [:destroy, :update]
   # this method is getting all the courses from database
   def index
-    @courses = Course.all
+    # @courses = Course.all
+    @pagy, @courses = pagy(Course.all)
   end
 
   # this method will show the details of single course
@@ -28,16 +29,26 @@ before_action :authenticate_admin!, only: [:destroy, :update]
   # this method searches the courses based on the params passed and then sorts them based on the type of sorting selected by the user
   def index
     if params[:course] && params[:course][:search].present?
-      @courses = Course.where("id LIKE ? OR title LIKE ? OR catalog_number LIKE ? OR catalog_level LIKE ? OR subject LIKE ?", 
-                              "%#{params[:course][:search]}%", 
-                              "%#{params[:course][:search]}%", 
-                              "%#{params[:course][:search]}%", 
-                              "%#{params[:course][:search]}%", 
-                              "%#{params[:course][:search]}%")
+      @pagy, @courses = pagy(Course.where("id LIKE ? OR title LIKE ? OR catalog_number LIKE ? OR catalog_level LIKE ? OR subject LIKE ?", 
+      "%#{params[:course][:search]}%", 
+      "%#{params[:course][:search]}%", 
+      "%#{params[:course][:search]}%", 
+      "%#{params[:course][:search]}%", 
+      "%#{params[:course][:search]}%"))
+
+    # if params[:course] && params[:course][:search].present?
+    #   @courses = Course.where("id LIKE ? OR title LIKE ? OR catalog_number LIKE ? OR catalog_level LIKE ? OR subject LIKE ?", 
+    #                           "%#{params[:course][:search]}%", 
+    #                           "%#{params[:course][:search]}%", 
+    #                           "%#{params[:course][:search]}%", 
+    #                           "%#{params[:course][:search]}%", 
+    #                           "%#{params[:course][:search]}%")
     else
-      @courses = Course.all
+      @pagy, @courses = pagy(Course.all)
+      # @courses = Course.all
     end
-    @courses = @courses.order(params[:order]) if params[:order].present?
+    @pagy, @courses = pagy(@courses.order(params[:order]) ) if params[:order].present?
+    # @courses = @courses.order(params[:order]) if params[:order].present?
   end
 
   # this method is creating new course in the database
