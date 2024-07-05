@@ -112,6 +112,10 @@ Solution: run `bin/rails destroy model table_name`
 
 ***FOR ADMINS***
 
+Default admin account: 
+   - username: admin@osu.edu
+   - password: team3pass
+
 *Approve instructor and admin account requests*
 
 *Create new course*
@@ -139,6 +143,10 @@ Ivy -- designed architecture of app, created issues, assigned issues, supervised
 ***
 
 ## Citations/Sources
+
+Architecture design inspirations:
+- https://github.com/aiftikhar19/RateMyPeers/blob/master/project6/README.md
+- https://github.com/Poitrin/university-management-system/blob/master/README.md
 
 Sources to help learn Ruby on Rails 
 https://guides.rubyonrails.org/getting_started.html
