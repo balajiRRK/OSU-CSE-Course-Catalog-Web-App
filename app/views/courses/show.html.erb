@@ -1,0 +1,13 @@
+<!-- this is the message to show if the course is created/deleted, notice will have that message -->
+<p style="color: green"><%= notice %></p>
+
+<!-- this is showing the data of course  -->
+<h1 style="padding-left: 20px;">CSE <%= @course.catalog_number %> <%= @course.title %></h1>
+
+<p style="padding-left: 20px;"><%= @course.description %></p>
+<p><%= render(@course.sections) %></p>
+
+<div style="margin-bottom: 20px; margin-left: 20px;">
+  <!-- this is link to all courses, clicking on this link will take to the courses page  -->
+  <%= link_to "Back to courses", courses_path %> 
+</div>

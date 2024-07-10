@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> OSU CSE Course Catalog </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+
+    <%# Line below caused an error %>
+    <%= stylesheet_link_tag "application.css" %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+  
+    <link rel="apple-touch-icon" href="/icon.png">
+
+  </head>
+
+  <body style="margin: 0px">
+   <%# help with correct routing from devise  https://github.com/RailsApps/rails-devise/blob/master/app/views/layouts/_nav_links_for_auth.html.erb %>
+  <div class="navbar">
+    <ul> 
+        <li> <%= link_to "Courses", courses_path, class: "btn btn-victory" %> </li>
+
+        <% if user_signed_in? %>
+          <li> <%= link_to 'Edit account', edit_user_registration_path %> </li>
+          <li> <%= link_to 'Sign out', destroy_user_session_path, method: :delete %> </li>
+          <% if current_user&.admin? %>
+        <li> <%= link_to 'Admin Dashboard', admin_dashboard_path %> </li>
+          <% end %>
+        <% else %>
+          <li> <%= link_to "Login", new_user_session_path, class: "btn btn-victory" %> </li>
+          <li> <%= link_to "Register", new_user_registration_path, class: "btn btn-victory" %> </li>
+        <% end %>        
+    </ul>
+  </div>
+  
+  <%= yield %>
+    
+  </body>
+</html>

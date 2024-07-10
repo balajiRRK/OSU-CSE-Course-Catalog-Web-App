@@ -1,0 +1,117 @@
+<%= form_with(model: section) do |form| %>
+  <% if section.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(section.errors.count, "error") %> prohibited this section from being saved:</h2>
+
+      <ul>
+        <% section.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :catalog_number, style: "display: block" %>
+    <%= form.number_field :catalog_number %>
+  </div>
+
+  <div>
+    <%= form.label :class_Number, style: "display: block" %>
+    <%= form.number_field :class_Number %>
+  </div>
+
+  <div>
+    <%= form.label :component, style: "display: block" %>
+    <%= form.text_field :component %>
+  </div>
+
+  <div>
+    <%= form.label :instruction_mode, style: "display: block" %>
+    <%= form.text_field :instruction_mode %>
+  </div>
+
+  <div>
+    <%= form.label :facility_description, style: "display: block" %>
+    <%= form.text_field :facility_description %>
+  </div>
+
+  <div>
+    <%= form.label :room, style: "display: block" %>
+    <%= form.text_field :room %>
+  </div>
+
+  <div>
+    <%= form.label :start_time, style: "display: block" %>
+    <%= form.text_field :start_time %>
+  </div>
+
+  <div>
+    <%= form.label :end_time, style: "display: block" %>
+    <%= form.text_field :end_time %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.text_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, style: "display: block" %>
+    <%= form.text_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.label :monday, style: "display: block" %>
+    <%= form.check_box :monday %>
+  </div>
+
+  <div>
+    <%= form.label :tuesday, style: "display: block" %>
+    <%= form.check_box :tuesday %>
+  </div>
+
+  <div>
+    <%= form.label :wednesday, style: "display: block" %>
+    <%= form.check_box :wednesday %>
+  </div>
+
+  <div>
+    <%= form.label :thursday, style: "display: block" %>
+    <%= form.check_box :thursday %>
+  </div>
+
+  <div>
+    <%= form.label :friday, style: "display: block" %>
+    <%= form.check_box :friday %>
+  </div>
+
+  <div>
+    <%= form.label :saturday, style: "display: block" %>
+    <%= form.check_box :saturday %>
+  </div>
+
+  <div>
+    <%= form.label :sunday, style: "display: block" %>
+    <%= form.check_box :sunday %>
+  </div>
+
+  <div>
+    <%= form.label :instructor, style: "display: block" %>
+    <%= form.text_field :instructor %>
+  </div>
+
+  <div>
+    <%= form.label :course_id, style: "display: block" %>
+    <%= form.text_field :course_id %>
+  </div>
+
+  <div>
+    <%= form.label :term, style: "display: block" %>
+    <%= form.text_field :term %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

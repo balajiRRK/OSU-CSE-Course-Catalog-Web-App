@@ -1,0 +1,71 @@
+<!-- this is the message to show if the course is created/deleted, notice will have that message -->
+<div class="content-wrapper">
+  <p style="color: green; padding: 20px; margin-bottom: 20px;"><%= notice %></p>
+
+  <!-- this will set the title of tab to Courses  -->
+  <% content_for :title, "Courses" %>
+
+  <h1 style="margin-bottom: 30px;">Courses</h1>
+
+  <!-- this is the search form -->
+  <%= form_for :course, method: :get do |f| %>
+    <div class="row mb-4">
+      <div class="col-6 offset-3">
+          <!-- this is the search field, user can type in this field to search in courses -->
+          <%= f.text_field :search, class: "form-control", placeholder: "Search Course" %>
+          <!-- this is the submit button, clicking on this button send the data to controller and returns the search results -->
+          <%= f.submit "Submit", class: "btn btn-primary mt-3" %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- this is the table to list/show the courses for the search result -->
+  <div class="container mt-5">
+    <table class="table table-bordered mt-5">
+      <thead>
+        <tr class="table-dark">
+          <th style="padding: 15px;">Course Number</th>
+          <th style="padding: 15px;">Title</th>
+          <th style="padding: 15px;">Description</th>
+          <th style="padding: 15px;">Component</th>
+          <th style="padding: 15px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- here we are looping through all the courses that we get from the search result to show their data -->
+        <% @courses.each do |course| %>
+          <tr>
+            <!-- this is showing course number -->
+            <td style="padding: 15px;"><%= course.catalog_number %></td>
+            <!-- this is showing course title -->
+            <td style="padding: 15px;"><%= course.title %></td>
+            <!-- this is showing course description -->
+            <td style="padding: 15px;"><%= course.description %></td>
+            <!-- this is showing course component -->
+            <td style="padding: 15px;"><%= course.component %></td>
+            <!-- this is showing actions (edit, show, destroy) -->
+            <td style="padding: 15px;">
+              <!-- this is the link to show course, clicking on this link will show the details of the single course  -->
+              <%= link_to "Show", course, class: "btn btn-info" %> 
+              <!-- this is the link to edit course, clicking on this link will open the edit form  -->
+              <% if current_user&.admin? %>
+                <%= link_to "Edit", edit_course_path(course), class: "btn btn-success" %>
+              <% end %>
+              <!-- this is delete link, click on the this link will send the delete request to controller and delete the course  -->
+              <% if current_user&.admin? %>
+                <%= button_to "Destroy", course, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<style>
+  .content-wrapper {
+    padding: 30px; /* Adjust this value to move content away from the borders */
+  }
+</style>
+<%== pagy_nav(@pagy) %>

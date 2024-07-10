@@ -1,0 +1,72 @@
+<div class="content-wrapper">
+  <div id="<%= dom_id section %>">
+    <style>
+      .content-wrapper {
+        padding: 30px; /* Adjust this value to move content away from the borders */
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      td {
+        padding: 8px;
+        border: 1px solid #dddddd;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        padding: 8px;
+        border: 1px solid #dddddd;
+        text-align: left;
+        background-color: #f2f2f2;
+      }
+      .table-container {
+        overflow-x: auto;
+      }
+    </style>
+    <div class="table-container">
+      <table>
+        <!-- First row for labels -->
+        <tr>
+          <th>Class number:</th>
+          <th>Instructor:</th>
+          <th>Component:</th>
+          <th>Instruction mode:</th>
+          <th>Facility description:</th>
+          <th>Room:</th>
+          <th>Start time:</th>
+          <th>End time:</th>
+          <th>Start date:</th>
+          <th>End date:</th>
+          <th>M:</th>
+          <th>T:</th>
+          <th>W:</th>
+          <th>Th:</th>
+          <th>F:</th>
+          <th>CourseID:</th>
+          <th>Term:</th>
+        </tr>
+        <!-- Second row for values -->
+        <tr>
+          <td><%= section.class_number %></td>
+          <td><%= section.instructor %></td>
+          <td><%= section.component %></td>
+          <td><%= section.instruction_mode %></td>
+          <td><%= section.facility_description %></td>
+          <td><%= section.room %></td>
+          <td><%= section.start_time %></td>
+          <td><%= section.end_time %></td>
+          <td><%= section.start_date %></td>
+          <td><%= section.end_date %></td>
+          <td><%= section.monday %></td>
+          <td><%= section.tuesday %></td>
+          <td><%= section.wednesday %></td>
+          <td><%= section.thursday %></td>
+          <td><%= section.friday %></td>
+          <td><%= section.course_id %></td>
+          <td><%= section.term %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
