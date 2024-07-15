@@ -13,7 +13,9 @@ before_action :authenticate_admin!, only: [:destroy, :update]
     # puts 'super'
     # puts params[:course]
     # puts params[:courseName]
+    
     @course = Course.find(params[:id])
+   
   end
 
   # this method initializes new course and pass the object to form

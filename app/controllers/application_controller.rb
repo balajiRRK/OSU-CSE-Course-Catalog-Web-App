@@ -1,9 +1,14 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
     before_action :configure_permitted_parameters, if: :devise_controller?
-
+  
+      rescue_from ActiveRecord::RecordNotFound, with: :page_not_found 
+      
+        # render 'errors/404'
   protected
-
+  def page_not_found 
+    render 'errors/404'
+  end
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
     devise_parameter_sanitizer.permit(:account_update, keys: [:role])
