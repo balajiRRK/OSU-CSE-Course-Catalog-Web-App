@@ -1,6 +1,7 @@
 desc "Creates an admin user and adds him to the database"
 task :add_admin => [ :environment ] do
-     admin = User.create!(:email => "admin@osu.edu", :password => "team3pass", :password_confirmation => "team3pass", role: "admin")
+     # added the status into admin
+     admin = User.create!(:email => "admin@osu.edu", :password => "team3pass", :password_confirmation => "team3pass", role: "admin", status: :allowed)
      admin.save
      
 end

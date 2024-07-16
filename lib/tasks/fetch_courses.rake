@@ -4,10 +4,9 @@ task :fetch_courses => [ :environment ] do
 
 puts Rainbow('Adding courses').yellow
 
-response = '?q=&subject=cse&academiccareer=Undergraduate&campus=col' #&term=1248&campus=col&catalog-number=2xxx&p=2'
+response = '?q=&subject=cse&academiccareer=ugrd&campus=col' #&term=1248&campus=col&catalog-number=2xxx&p=2'
 osu = OsuApiService::OsuAPI.new response
 
-# 
 pages = osu.fetch_data_info_From_Query['totalPages']
 courses = osu.fetch_From_Query
 

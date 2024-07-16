@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: { student: 'student', instructor: 'instructor', admin: 'admin' }
+  enum status: {pending: 'pending', allowed: 'allowed', denied: 'denied'}
 
 
   validate :email_domain_check

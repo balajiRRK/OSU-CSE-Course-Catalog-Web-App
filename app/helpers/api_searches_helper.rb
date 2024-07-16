@@ -1,0 +1,2 @@
+module ApiSearchesHelper
+end

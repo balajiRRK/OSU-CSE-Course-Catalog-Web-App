@@ -1,58 +1,17 @@
-<!--
-# The sources used for this file vary, including ChatGPT and Carmen resources:
-# https://www.youtube.com/playlist?list=PLlxmoA0rQ-Lx45j3D6da7-Iqvo5wtjKBm
-# https://www.youtube.com/playlist?list=PLS1QulWo1RIbNBXZAeVbkkHEj9zsEbXQK
-# https://www.railstutorial.org/book
-# https://www.youtube.com/watch?v=GY7Ps8fqGdc
-# https://chatgpt.com/
--->
+<%# This is a rewrite of the admin dashboard code from lab2%>
 
 <!-- Admin dashboard overview page -->
 <h1>Admin Dashboard</h1>
+<h2> hello, <%= current_user.email%></h2>
 
 <div>
   <h2>Courses</h2>
   <p>Total Courses: <%= Course.all.length %></p>
-  <%= link_to 'Browse Courses', admin_dashboard_path %><br>
-  <%# <%= link_to 'Reload Catalog', admin_reload_courses <br> %>
+  <%= link_to 'Browse Courses', courses_path %><br>
+  <%= link_to 'Load Courses', new_api_search_path %> <br>
   <%= link_to 'Add New Course', '#', id: 'add-course-link' %>
 </div>
 
-<div id="add-course-form" style="display: none;">
-  <h2>Add New Course</h2>
-  <%= form_with model: @course, url: admin_dashboard_path, local: true do |form| %>
-    <div>
-      <%= form.label :name, 'Course Name' %>
-      <%= form.text_field :name %>
-    </div>
-
-    <div>
-      <%= form.label :description, 'Course Description' %>
-      <%= form.text_area :description %>
-    </div>
-
-    <div>
-      <%= form.label :credits, 'Credits' %>
-      <%= form.number_field :credits %>
-    </div>
-
-    <div>
-      <%= form.label :instructor, 'Instructor' %>
-      <%= form.text_field :instructor %>
-    </div>
-
-    <div>
-      <%= form.submit 'Add Course' %>
-    </div>
-  <% end %>
-</div>
-
-<div>
-  <h2>Users Pending Approval</h2>
-  <p>Total Pending Users: <%= User.count %></p>
-  <%#  commented out for now %>
-  <%# <%= link_to 'Approve Users', admin_users_approval_path  %>
-</div>
 
 <% @courses.each do |course| %>
   <div>
@@ -73,14 +32,4 @@
   
 <% end %>
 <%== pagy_nav(@pagy) %>
-<script>
-  document.getElementById('add-course-link').addEventListener('click', function() {
-    document.getElementById('add-course-form').style.display = 'block';
-  });
 
-  document.querySelectorAll('.edit-course-link').forEach(function(link) {
-    link.addEventListener('click', function() {
-      document.getElementById('edit-course-form-' + this.dataset.id).style.display = 'block';
-    });
-  });
-</script>

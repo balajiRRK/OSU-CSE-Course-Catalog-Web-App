@@ -1,0 +1,32 @@
+<%= form_with(model: grader) do |form| %>
+  <% if grader.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(grader.errors.count, "error") %> prohibited this grader from being saved:</h2>
+
+      <ul>
+        <% grader.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :lname, style: "display: block" %>
+    <%= form.text_field :lname %>
+  </div>
+
+  <div>
+    <%= form.label :fname, style: "display: block" %>
+    <%= form.text_field :fname %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

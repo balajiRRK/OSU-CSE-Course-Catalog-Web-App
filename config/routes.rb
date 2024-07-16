@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
   root "home#index"
   devise_for :users
-
-  resources :sections
   resources :courses
+  resources :sections
+  resources :instructors
+  resources :graders
+  resources :api_searches do
+    collection do 
+      get :fetch_courses
+    end
+  end
+
   namespace :admin do
     # Admin dashboard route
     get 'dashboard', to: 'dashboard#index', as: 'dashboard'
@@ -16,8 +23,12 @@ Rails.application.routes.draw do
       end
     end
 
-    post 'courses/reload', to: 'courses#reload', as: 'reload_courses'
+    # get 'courses/reload', to: 'courses#reload', as: 'reload_courses'
+    #new for loading the courses
+    # post 'courses/load', to: 'courses#load', as: 'load_courses'
   end
+
+
 
   devise_scope :user do
     get 'users/sign_out' => "devise/sessions#destroy"

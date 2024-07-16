@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Api searches</h1>
+
+<div id="api_searches">
+  <% @api_searches.each do |api_search| %>
+    <%= render api_search %>
+    <p>
+      <%= link_to "Show this api search", api_search %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New api search", new_api_search_path %>
