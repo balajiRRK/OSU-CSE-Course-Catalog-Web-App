@@ -3,7 +3,12 @@
 <!-- Admin dashboard overview page -->
 <h1>Admin Dashboard</h1>
 <h2> hello, <%= current_user.email%></h2>
-
+<h2> Pending users </h2>
+<% User.where(status: "pending").each do |user|%>
+  <div>
+    <h3><%= user.email %></h3>
+    
+    <%end%>
 <div>
   <h2>Courses</h2>
   <p>Total Courses: <%= Course.all.length %></p>

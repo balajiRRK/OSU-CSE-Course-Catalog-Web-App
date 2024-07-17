@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   resources :instructors
   resources :graders
   resources :api_searches do
-    collection do 
-      get :fetch_courses
+    member do 
+      match :download, via: :all
+    
     end
   end
 

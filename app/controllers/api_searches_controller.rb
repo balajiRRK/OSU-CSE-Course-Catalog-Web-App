@@ -8,9 +8,10 @@ class ApiSearchesController < ApplicationController
 
   # GET /api_searches/1 or /api_searches/1.json
   def show
-    response = to_str
-    puts response
-    fetch_courses response
+    # response = to_response
+    # puts response
+    # download
+   
   end
 
   # GET /api_searches/new
@@ -22,14 +23,7 @@ class ApiSearchesController < ApplicationController
   def edit
   end
 
-  def download 
-    puts 'download'
-    
-    # this will look very similart to fetch courses and fetch sections
-    #  response = to_str
-    #  fetch_courses response
-
-  end
+  
 
   def fetch_courses response
 
@@ -61,21 +55,23 @@ class ApiSearchesController < ApplicationController
     puts Rainbow('Course fetch complete!').green
   end
   
-  def to_str 
+  def to_response 
+    @api_search = ApiSearch.find(params[:id])
     response = '?q='
     # :search, :term, :campus, :academic_career, :catalog_number, :catalog_level, :component, :subject, :instruction_mode, :evening, :course_id)
     # Single line ifs to make the code cleaner
-    # puts @api_search.to_a
-    @api_search.search.empty? ? response : response = response + @api_search.search
-    @api_search.term.empty? ? response : response = response + "&term=" + @api_search.term 
-    @api_search.campus.empty? ? response : response = response + "&campus=" + @api_search.campus 
-    @api_search.academic_career.empty? ? response : response = response + "&academic-career=" + @api_search.academic_career
-    @api_search.catalog_number.empty? ? response : response = response + "&catalogNumber=" + @api_search.catalog_number 
-    @api_search.catalog_level.empty? ? response : response = response + "&catalogLevel=" + @api_search.catalog_level 
-    @api_search.component.empty? ? response : response = response + "&component=" + @api_search.component 
-    @api_search.subject.empty? ? response : response = response + "&subject=" + @api_search.subject 
-    @api_search.instruction_mode.empty? ? response : response = response + "&instruction-mode=" + @api_search.instruction_mode
-    @api_search.evening.empty? ? response : response = response + "&evening=" + @api_search.evening 
+    puts @api_search.class
+    
+    @api_search.search.blank? ? response : response = response + @api_search.search
+    @api_search.term.blank? ? response : response = response + "&term=" + @api_search.term 
+    @api_search.campus.blank? ? response : response = response + "&campus=" + @api_search.campus 
+    @api_search.academic_career.blank? ? response : response = response + "&academic-career=" + @api_search.academic_career
+    @api_search.catalog_number.blank? ? response : response = response + "&catalogNumber=" + @api_search.catalog_number 
+    @api_search.catalog_level.blank? ? response : response = response + "&catalogLevel=" + @api_search.catalog_level 
+    @api_search.component.blank? ? response : response = response + "&component=" + @api_search.component 
+    @api_search.subject.blank? ? response : response = response + "&subject=" + @api_search.subject 
+    @api_search.instruction_mode.blank? ? response : response = response + "&instruction-mode=" + @api_search.instruction_mode
+    @api_search.evening.blank? ? response : response = response + "&evening=" + @api_search.evening 
     @api_search.course_id.nil? ?  response : response = response + "&courseId=" + @api_search.course_id.to_s 
        
   end 
@@ -108,13 +104,15 @@ class ApiSearchesController < ApplicationController
     end
   end
 
-  def download
-    response=  @api_search.to_str
+  def download 
+   puts ApiSearch.find(params[:id]).methods
+    response = to_response
+    # puts response
     fetch_courses response
-    # respond_to do |format|
-    #   format.html { redirect_to api_searches_url, notice: "Data from the api was successfully downloaded." }
-    #   format.json { head :no_content }
-    # end
+    respond_to do |format|
+      format.html { redirect_to api_searches_url, notice: "Data from the api was successfully downloaded." }
+      format.json { head :no_content }
+    end
   end
   # DELETE /api_searches/1 or /api_searches/1.json
   def destroy

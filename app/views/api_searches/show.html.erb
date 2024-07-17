@@ -3,8 +3,11 @@
 <%= render @api_search %>
 
 <div>
-  <%= link_to "Edit this api search", edit_api_search_path(@api_search) %> |
+  <%= link_to "Edit this api search", edit_api_search_path(@api_search) %> 
   <%= link_to "Back to api searches", api_searches_path %>
-  <%= link_to "Download to database", download_courses_path(@api_search) %>
+ 
+  <%= button_to :download, action: :download %>
+  
+  
   <%= button_to "Destroy this api search", @api_search, method: :delete %>
 </div>
