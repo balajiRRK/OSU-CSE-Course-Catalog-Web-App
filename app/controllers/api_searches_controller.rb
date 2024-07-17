@@ -24,21 +24,22 @@ class ApiSearchesController < ApplicationController
   end
 
   
-
+ # straight from our previously made rake task fetch_courses
+ # Downloads the courses according to the api parameters
   def fetch_courses response
 
     puts Rainbow('Adding courses').yellow
     
     
     osu = OsuApiService::OsuAPI.new response
-    
+    # the pages variable is needed to know how many pages a search has so that all courses are downloaded from the search
     pages =  osu.fetch_data_info_From_Query['totalPages']
     courses = osu.fetch_From_Query
     
     (1..pages).each do |i|
         
     courses.each do |course_data| 
-        
+        # creates a course then save it to the courses table
        course_class = Course.new(title: course_data['course']['title'], courseId: course_data['course']['courseId'],
          description: course_data['course']['description'], catalog_number: course_data['course']['catalogNumber'], 
          component: course_data['course']['component'], term: course_data['course']['term'], campus: course_data['course']['campus'],
@@ -46,6 +47,7 @@ class ApiSearchesController < ApplicationController
          
          course_class.save
     end
+    # Changes to the next page
     paged_response = response+ "&p="+ i.to_s
     
     
@@ -55,13 +57,13 @@ class ApiSearchesController < ApplicationController
     puts Rainbow('Course fetch complete!').green
   end
   
+  # Converts the keys from the selected api_search to a response that will be in the api format 
   def to_response 
     @api_search = ApiSearch.find(params[:id])
     response = '?q='
     # :search, :term, :campus, :academic_career, :catalog_number, :catalog_level, :component, :subject, :instruction_mode, :evening, :course_id)
-    # Single line ifs to make the code cleaner
-    puts @api_search.class
-    
+    # Single line ifs to make the code easier to read
+    # checks if there if there is a value in the key and if not, the format will not be added, but if it is the proper formatting will be included
     @api_search.search.blank? ? response : response = response + @api_search.search
     @api_search.term.blank? ? response : response = response + "&term=" + @api_search.term 
     @api_search.campus.blank? ? response : response = response + "&campus=" + @api_search.campus 
@@ -103,11 +105,10 @@ class ApiSearchesController < ApplicationController
       end
     end
   end
-
+# This will download the courses specified from the selected api_search
   def download 
    puts ApiSearch.find(params[:id]).methods
     response = to_response
-    # puts response
     fetch_courses response
     respond_to do |format|
       format.html { redirect_to api_searches_url, notice: "Data from the api was successfully downloaded." }

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :graders
   resources :api_searches do
     member do 
-      match :download, via: :all
+      # This is for the method download in the api_searches controller.
+      # Will look into just using get instead of match because I think it will not be required for our use.
+      get :download
     
     end
   end

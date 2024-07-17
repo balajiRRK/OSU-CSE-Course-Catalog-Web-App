@@ -6,7 +6,7 @@
   <%= link_to "Edit this api search", edit_api_search_path(@api_search) %> 
   <%= link_to "Back to api searches", api_searches_path %>
  
-  <%= button_to :download, action: :download %>
+  <%= link_to "download this api search", download_api_search_path(@api_search)  %>
   
   
   <%= button_to "Destroy this api search", @api_search, method: :delete %>
