@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   def email_domain_check
     unless email =~ /\A[a-zA-Z]+\.[0-9]+@osu\.edu\z/i
-      errors.add(:email, 'should be an @osu.edu email address')
+      errors.add(:email, 'should be a [lastname].[number]@osu.edu email address')
     end
   end
 end
