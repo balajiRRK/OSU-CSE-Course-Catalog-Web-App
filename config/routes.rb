@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root "home#index"
   devise_for :users
-  resources :courses
+  resources :users , :path_prefix => 'admin'
+  resources :courses do
+    collection do
+    post :wipe
+    end
+  end
   resources :sections
   resources :instructors
   resources :graders
@@ -21,8 +26,8 @@ Rails.application.routes.draw do
     # Routes for user approvals
     resources :users, only: [:index] do
       member do
-        post 'approve'
-        delete 'decline'
+        get 'user_actions'
+        get 'user_review'
       end
     end
 

@@ -1,0 +1,14 @@
+<h2> Status change <%= @user.to_s.humanize %> </h2>
+ <%= form_with(model: user) do |f| %>
+
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.select :status, User.status.keys.map { |status| [status.humanize, status] } %>
+  </div>
+
+  <% end %>
+
+   <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

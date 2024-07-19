@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   # before_action 
 before_action :authenticate_user!
-before_action :authenticate_admin!, only: [:destroy, :update]
+before_action :authenticate_admin!, only: [:destroy, :update, :wipe]
   # this method is getting all the courses from database
   def index
     # @courses = Course.all
@@ -80,6 +80,11 @@ before_action :authenticate_admin!, only: [:destroy, :update]
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # This will remove all courses from the course catalog
+  def wipe
+    Course.delete_all
   end
 
   # this method deletes course from database

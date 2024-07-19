@@ -1,0 +1,16 @@
+<h2> Pending users </h2>
+<% User.where(status: "pending").each do |user|%>
+  <div>
+    <h3><%= user.email %></h3> 
+    <%end%>
+
+    <h2> Approved users </h2>
+<% User.where(status: "approved").each do |user|%>
+  <div>
+    <h3><%= user.email %></h3>
+    <%end%>
+    <h2> Denied users </h2>
+<% User.where(status: "denied").each do |user|%>
+  <div>
+    <h3><%= user.email %></h3>
+    <%end%>
