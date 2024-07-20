@@ -35,6 +35,6 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 plugin :tmp_restart
 
 # Adding the admin account automatically after the application is initialized
-admin = User.create(:email => "admin@osu.edu", :password => "team3pass", :password_confirmation => "team3pass", role: "admin", status: :allowed)
+admin = User.create(:email => "admin.1@osu.edu", :password => "team3pass", :password_confirmation => "team3pass", role: "admin", status: :allowed)
 admin.save
 
