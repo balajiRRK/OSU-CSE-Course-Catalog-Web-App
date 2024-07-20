@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_admin!
+
   def user_actions
     @user = User.find(params[:id])
   end
@@ -22,6 +23,16 @@ class UsersController < ApplicationController
     @api_search = ApiSearch.find(params[:id])
   end
 
+  # To avoid conflicts with devise
+  def destroy
+    @user.destroy!
+
+    respond_to do |format|
+      format.json { respond_to_destroy(:ajax) }
+      format.xml  { head :ok }
+      format.html { respond_to_destroy(:html) }
+    end
+  end
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:email, :encrypted_password, :reset_password_token, :role, :status )
