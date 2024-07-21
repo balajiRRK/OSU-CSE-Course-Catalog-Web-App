@@ -13,7 +13,9 @@
  *= require_tree .
  *= require_self
  */
-.navbar ul {
+ 
+
+ .navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -64,3 +66,56 @@
     letter-spacing: 5px;
     font-size: 20px;
 }
+
+.login-form {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .login-form .field {
+    margin-bottom: 15px;
+  }
+  .login-form .field label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  .login-form .field input[type="email"],
+  .login-form .field input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .login-form .actions {
+    text-align: center;
+  }
+  .login-form .actions input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .login-form .actions input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  .login-form .links {
+    text-align: center;
+    margin-top: 15px;
+  }
+  .login-form .links a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 5px;
+  }
+  .login-form .links a:hover {
+    text-decoration: underline;
+  }
+
+  

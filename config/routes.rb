@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :sections
   resources :courses
+  resources :graders, only: [:new, :create, :show] # Add this line for graders
+
   namespace :admin do
     # Admin dashboard route
     get 'dashboard', to: 'dashboard#index', as: 'dashboard'
@@ -22,11 +24,11 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/sign_out' => "devise/sessions#destroy"
   end
+  
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
-   get '*path', to: 'errors#404'
+  # Catch-all route for handling 404 errors
+  get '*path', to: 'errors#404'
 end

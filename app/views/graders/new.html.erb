@@ -1,0 +1,52 @@
+<div class="login-form-wrapper">
+  <div class="login-form">
+    <h2>New Grader Application</h2>
+
+    <%= form_with(model: @grader, local: true) do |form| %>
+      <% if @grader.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@grader.errors.count, "error") %> prohibited this grader from being saved:</h2>
+
+          <ul>
+            <% @grader.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :subject %>
+        <%= form.text_field :subject %>
+      </div>
+
+      <div class="field">
+        <%= form.label :contact_info %>
+        <%= form.text_field :contact_info %>
+      </div>
+
+      <div class="field">
+        <%= form.label :courses_wish_to_grade %>
+        <%= form.text_area :courses_wish_to_grade %>
+      </div>
+
+      <div class="field">
+        <%= form.label :courses_qualified_to_grade %>
+        <%= form.text_area :courses_qualified_to_grade %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Create Grader" %>
+      </div>
+      
+      <div class="links">
+        <%= link_to 'Back', graders_path %>
+      </div>
+    <% end %>
+  </div>
+</div>
