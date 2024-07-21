@@ -1,0 +1,19 @@
+<%= form_for @recommendations, url: course_recommendations_path(@course) do |f| %>
+    <div class="field">
+      <%= f.label :student_id, "Student's Full Name" %>
+      <%= f.text_field :student_id %>
+    </div>
+    <div class="field">
+      <%= f.label :student_id, "Student's OSU Email" %>
+      <%= f.text_field :student_id %>
+    </div>
+    <div class="field">
+      <%= f.label :student_id, "Class to grade" %>
+      <%= f.text_field :student_id %>
+    </div>
+    <div class="field">
+      <%= f.label :message %>
+      <%= f.text_area :message %>
+    </div>
+    <%= f.submit "Submit Recommendation" %>
+  <% end %>
