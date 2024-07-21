@@ -49,8 +49,11 @@
    <div class="actions">
     <%= f.submit "Update" %>
   </div>
+  <%= link_to 'Delete User', user_path(user), method: :delete%>
 <% end %>
 <% end %>
+
+
 <div>
   <h2>Courses</h2>
   <p>Total Courses: <%= Course.all.length %></p>
