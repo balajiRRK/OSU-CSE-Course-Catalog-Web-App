@@ -29,4 +29,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
    get '*path', to: 'errors#404'
+
+  #temprorary route for testing
+  namespace :admin do
+    resources :recommendations, only: [:new, :create]
+  end
+
 end
