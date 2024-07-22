@@ -10,19 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_15_150207) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_22_141934) do
   create_table "api_searches", force: :cascade do |t|
     t.string "search"
     t.string "term"
     t.string "campus"
     t.string "academic_career"
     t.string "catalog_number"
-    t.string "catalog_level"
     t.string "component"
     t.string "subject"
     t.string "instruction_mode"
     t.string "evening"
-    t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
