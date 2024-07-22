@@ -17,22 +17,24 @@ class UsersController < ApplicationController
       end
     end
   end
+  # To avoid conflicts with devise
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to admin_dashboard_path, alert: "user was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @api_search = ApiSearch.find(params[:id])
   end
 
-  # To avoid conflicts with devise
-  def destroy
-    @user.destroy!
-
-    respond_to do |format|
-      format.json { respond_to_destroy(:ajax) }
-      format.xml  { head :ok }
-      format.html { respond_to_destroy(:html) }
-    end
-  end
+  
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:email, :encrypted_password, :reset_password_token, :role, :status )

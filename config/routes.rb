@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   root "home#index"
   devise_for :users, :path_prefix => 'accounts'
-  resources :users, :path_prefix => 'admin'
+  resources :users, :path_prefix => 'admin' do
+    member do
+      get :destroy
+      
+    end
+  end
   resources :courses do
     collection do
     post :wipe
