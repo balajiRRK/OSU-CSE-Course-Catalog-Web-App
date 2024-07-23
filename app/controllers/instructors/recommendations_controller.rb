@@ -11,8 +11,8 @@ module Instructors   #module Instructors
     before_action :authenticate_instructor!    #check user is instructor
 
     def new
-        @course = Course.find(params[:course_id])   #find course by course id
-        @recommendation = @course.recommendations.new   #new recommendation
+        #@course = Course.find(params[:course_id])   #find course by course id
+        @recommendation = Recommendation.new   #new recommendation
     end
 
     def create
@@ -21,7 +21,11 @@ module Instructors   #module Instructors
 
         if @recommendation.save
           send_invite_if_student_not_registered(@recommendation.student_email) #send invite if student not registered
-          redirect_to course_path(@recommendation.course_id), notice: "Recommendation created successfully" #redirect to admin recommendations path
+          if @recommendation.course_id.present? && Course.exists?(@recommendation.course_id)  #if course id present and course exists
+            redirect_to course_path, notice: "Recommendation created successfully" #redirect to admin recommendations path
+          else
+            redirect_to root_path, notice: "Recommendation created successfully"  #redirect to root path
+          end
         else
           Rails.logger.debug @recommendation.errors.full_messages
           flash.now[:alert] = "Please fix errors below: #{@recommendation.errors.full_messages.to_sentence}"  #flash alert
@@ -36,9 +40,10 @@ module Instructors   #module Instructors
     end
 
     def send_invite_if_student_not_registered(student_email)  #send invite if student not registered
-        unless User.exists?(email: student_email)  #unless user find by email
-          UserMailer.invite_student(student_email).deliver_later  #send invite to student
-        end
+      course = Course.find_by(id: params[:recommendation][:course_id])  #find course by id
+      unless User.exists?(email: student_email)  #unless user find by email
+        UserMailer.invite_student(student_email, course).deliver_later  #send invite to student
+      end
     end
 
     def authenticate_instructor!  #authenticate instructor
