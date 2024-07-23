@@ -1,19 +1,19 @@
-<%= form_with model: @course, url: recommendations_path, local: true do |form| %>
+<%= form_with model: @user, url: instructors_recommendations_path, local: true do |form| %>
     <div class="field">
-      <%= f.label :student_id, "Student's Full Name" %>
-      <%= f.text_field :student_id %>
+      <%= form.label :student_id, "Student's Full Name" %>
+      <%= form.text_field :student_id %>
     </div>
     <div class="field">
-      <%= f.label :student_id, "Student's OSU Email" %>
-      <%= f.text_field :student_id %>
+      <%= form.label :student_id, "Student's OSU Email" %>
+      <%= form.text_field :student_id %>
     </div>
     <div class="field">
-      <%= f.label :student_id, "Class to grade" %>
-      <%= f.text_field :student_id %>
+      <%= form.label :student_id, "Class to grade" %>
+      <%= form.text_field :student_id %>
     </div>
     <div class="field">
-      <%= f.label :message %>
-      <%= f.text_area :message %>
+      <%= form.label :message %>
+      <%= form.text_area :message %>
     </div>
-    <%= f.submit "Submit Recommendation" %>
+    <%= form.submit "Submit Recommendation" %>
   <% end %>

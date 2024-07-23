@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :sections
-  resources :courses do
-    resources :recommendations, only: [:new, :create]
-  end
+  resources :courses
   namespace :admin do
     # Admin dashboard route
     get 'dashboard', to: 'dashboard#index', as: 'dashboard'
@@ -19,6 +17,11 @@ Rails.application.routes.draw do
     end
 
     post 'courses/reload', to: 'courses#reload', as: 'reload_courses'
+  end
+
+  #Recommendations by instructors route
+  namespace :instructors do
+    resources :recommendations, only: [:new, :create]
   end
 
   devise_scope :user do

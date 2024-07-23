@@ -32,7 +32,7 @@
         <li> <%= link_to 'Admin Dashboard', admin_dashboard_path %> </li>
           <% end %>
           <% if current_user&.instructor? %> 
-        <li><%= link_to "Create Recommendation", recommendations_path, class: "btn btn-victory" %></li>
+        <li><%= link_to "Create Recommendation", instructors_recommendations_path, class: "btn btn-victory" %></li>
           <% end %>
         <% else %>
           <li> <%= link_to "Login", new_user_session_path, class: "btn btn-victory" %> </li>
