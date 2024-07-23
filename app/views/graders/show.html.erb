@@ -1,0 +1,33 @@
+<h2>Grader Application Details</h2>
+
+<p>
+  <strong>Name:</strong>
+  <%= @grader.name %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @grader.subject %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @grader.email %>
+</p>
+
+<p>
+  <strong>Phone Number:</strong>
+  <%= @grader.phone_number %>
+</p>
+
+<p>
+  <strong>Courses Wish to Grade:</strong>
+  <%= @grader.courses_wish_to_grade %>
+</p>
+
+<p>
+  <strong>Courses Qualified to Grade:</strong>
+  <%= @grader.courses_qualified_to_grade %>
+</p>
+
+<%= link_to 'Back', graders_path %>

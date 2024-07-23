@@ -25,9 +25,14 @@
         <%= form.text_field :subject %>
       </div>
 
+       <div class="field">
+        <%= form.label :email %>
+        <%= form.email_field :email %>
+      </div>
+
       <div class="field">
-        <%= form.label :contact_info %>
-        <%= form.text_field :contact_info %>
+        <%= form.label :phone_number %>
+        <%= form.telephone_field :phone_number %>
       </div>
 
       <div class="field">
@@ -41,7 +46,7 @@
       </div>
 
       <div class="actions">
-        <%= form.submit "Create Grader" %>
+        <%= form.submit "Send Application" %>
       </div>
       
       <div class="links">

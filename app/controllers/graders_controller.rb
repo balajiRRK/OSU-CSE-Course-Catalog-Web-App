@@ -12,9 +12,17 @@ class GradersController < ApplicationController
     end
   end
 
+  def show
+    @grader = Grader.find(params[:id])
+  end
+
+  def index
+    @graders = Grader.all
+  end
+
   private
 
   def grader_params
-    params.require(:grader).permit(:name, :subject, :contact_info, :courses_wish_to_grade, :courses_qualified_to_grade)
+    params.require(:grader).permit(:name, :subject, :email, :phone_number, :courses_wish_to_grade, :courses_qualified_to_grade)
   end
 end
