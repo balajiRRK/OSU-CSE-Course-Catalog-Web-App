@@ -9,6 +9,10 @@
         <%= form.select :recommendation_type, options_for_select([['General', 'general'],['Specific','specific']]) %>
     </div>
 
+    <div class="field">
+        <%= form.label :notes %>
+        <%= form.text_area :notes %>
+
     <div class="actions">
         <%= form.submit 'Submit Recommendation' %>
     </div>

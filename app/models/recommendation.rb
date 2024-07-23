@@ -4,4 +4,5 @@ class Recommendation < ApplicationRecord
 
   validates :student_email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :recommendation_type, presence: true, inclusion: { in: %w(general specific) }
+  validates :notes, presence: true
 end

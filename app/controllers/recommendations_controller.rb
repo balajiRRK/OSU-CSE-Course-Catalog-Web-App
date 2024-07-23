@@ -31,7 +31,7 @@ class RecommendationsController < ApplicationController
   private
 
   def recommendation_params   #recommendation params
-      params.require(:recommendation).permit(:student_email, :recommendation_type)  #permit instructor_id, student_email, course_id, recommendation_type
+      params.require(:recommendation).permit(:student_email, :recommendation_type, :notes)  #permit instructor_id, student_email, course_id, recommendation_type
   end
 
   def send_invite_if_student_not_registered(student_email)  #send invite if student not registered
