@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     end
 
     post 'courses/reload', to: 'courses#reload', as: 'reload_courses'
-    resources :recommendations, only: [:new, :create]
   end
 
   devise_scope :user do
