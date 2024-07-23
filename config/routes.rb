@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     post 'courses/reload', to: 'courses#reload', as: 'reload_courses'
   end
 
+  namespace :instructors do
+    resources :recommendations, only: [:new, :create]
+  end
+
   devise_scope :user do
     get 'users/sign_out' => "devise/sessions#destroy"
   end

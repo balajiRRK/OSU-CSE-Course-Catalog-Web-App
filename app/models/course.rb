@@ -4,7 +4,7 @@ class Course < ApplicationRecord
     has_many :recommendations, dependent: :destroy
 
    # Validations for course
-  validates :courseId, presence: true, uniqueness: { scope: :courseId }
+  validates :courseId, presence: true, uniqueness: { scope: :term }
   validates :catalog_number, presence: true
   validates :title, presence: true
   validates :description, presence: true
@@ -14,6 +14,4 @@ class Course < ApplicationRecord
   validates :campus, presence: true
   validates :subject, presence: true
 
-  # Ensure that the course ID is unique per term
-  validates :courseId, uniqueness: { scope: :term }
 end

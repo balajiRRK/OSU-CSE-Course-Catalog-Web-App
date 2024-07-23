@@ -5,24 +5,22 @@
 # https://www.youtube.com/watch?v=GY7Ps8fqGdc
 # https://chatgpt.com/
 
-
+module Instructors   #module Instructors
 class RecommendationsController < ApplicationController
   before_action :authenticate_user!     #check user is authenticated
   before_action :authenticate_instructor!    #check user is instructor
 
   def new
-      @course = Course.find(params[:course_id])   #find course by id
-      @recommendation = @course.recommendations.new    #make a new recommendation
+      recommendation = Recommendation.new   #new recommendation
   end
 
   def create
-      @course = Course.find(params[:course_id])   #find course by id
       @recommendation = Recommendation.new(recommendation_params) #create a new recommendation with the params
-      @recommendation.instructor_id = current_user.id   #set instructor id to current user id
+      @recommendation.instructor = current_user   #set instructor id to current user id
 
       if @recommendation.save
         send_invite_if_student_not_registered(@recommendation.student_email) #send invite if student not registered
-        redirect_to course_path(@course), notice: "Recommendation created successfully" #redirect to admin recommendations path
+        redirect_to course_path(@recommendation.course_id), notice: "Recommendation created successfully" #redirect to admin recommendations path
       else
         Rails.logger.debug @recommendation.errors.full_messages
         flash.now[:alert] = "Please fix errors below: #{@recommendation.errors.full_messages.to_sentence}"  #flash alert
@@ -49,4 +47,5 @@ class RecommendationsController < ApplicationController
    #   @recommendations = Recommendation.all
     #end
 
+end
 end
