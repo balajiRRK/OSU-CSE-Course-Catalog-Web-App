@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :sections
-  resources :courses
+  resources :courses do
+    resources :recommendations, only: [:new, :create]
+  end
+
   namespace :admin do
     # Admin dashboard route
     get 'dashboard', to: 'dashboard#index', as: 'dashboard'
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
     end
 
     post 'courses/reload', to: 'courses#reload', as: 'reload_courses'
+    resources :recommendations, only: [:new, :create]
   end
 
   devise_scope :user do
@@ -29,10 +33,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
    get '*path', to: 'errors#404'
-
-  #temprorary route for testing
-  namespace :admin do
-    resources :recommendations, only: [:new, :create]
-  end
 
 end
