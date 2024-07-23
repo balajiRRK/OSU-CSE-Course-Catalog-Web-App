@@ -11,7 +11,7 @@ class RecommendationsController < ApplicationController
   before_action :authenticate_instructor!    #check user is instructor
 
   def new
-      @course + Course.find(params[:course_id])   #find course by id
+      @course = Course.find(params[:course_id])   #find course by id
       @recommendation = @course.recommendations.new    #make a new recommendation
   end
 
