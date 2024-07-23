@@ -9,10 +9,8 @@
 
  <!-- show the recommendation link if the user is an instructor -->
 <% if current_user.instructor? %>
-  <div style="margin-bottom: 20px; margin-left: 20px;">
-    <!-- Link to the recommendation form -->
-    <%= link_to 'Submit Recommendation', new_course_recommendation_path(@course), class: 'btn btn-primary' %>
-  </div>
+  <!-- Link to the recommendation form -->
+  <%= link_to 'Submit Recommendation', new_course_recommendation_path(@course)%>
 <% end %>
 
 <div style="margin-bottom: 20px; margin-left: 20px;">
