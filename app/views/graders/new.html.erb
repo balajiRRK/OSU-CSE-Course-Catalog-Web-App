@@ -5,7 +5,7 @@
     <%= form_with(model: @grader, local: true) do |form| %>
       <% if @grader.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@grader.errors.count, "error") %> prohibited this grader from being saved:</h2>
+          <h2><%= pluralize(@grader.errors.count, "error") %> prohibited this grader application from being sent:</h2>
 
           <ul>
             <% @grader.errors.full_messages.each do |message| %>
@@ -21,11 +21,6 @@
       </div>
 
       <div class="field">
-        <%= form.label :subject %>
-        <%= form.text_field :subject %>
-      </div>
-
-       <div class="field">
         <%= form.label :email %>
         <%= form.email_field :email %>
       </div>

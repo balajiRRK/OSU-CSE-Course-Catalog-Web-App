@@ -7,7 +7,7 @@ class GradersController < ApplicationController
   def create
     @grader = Grader.new(grader_params)
     if @grader.save
-      redirect_to @grader, notice: 'Grader was successfully created.'
+      redirect_to @grader, notice: 'Grader application was succesfully submitted.'
     else
       render :new
     end
