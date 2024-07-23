@@ -1,4 +1,5 @@
 class GradersController < ApplicationController
+  before_action :authenticate_user!
   def new
     @grader = Grader.new
   end
