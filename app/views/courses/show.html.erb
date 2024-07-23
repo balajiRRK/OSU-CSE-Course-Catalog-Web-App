@@ -10,7 +10,7 @@
  <!-- show the recommendation link if the user is an instructor -->
 <% if current_user.instructor? %>
   <!-- Link to the recommendation form -->
-  <%= link_to 'Submit Recommendation', new_course_recommendation_path(@course)%>
+  <%= link_to 'Submit Recommendation', new_instructors_recommendation_path(course_id: @course.id)%>
 <% end %>
 
 <div style="margin-bottom: 20px; margin-left: 20px;">

@@ -8,6 +8,6 @@ class UserMailer < ApplicationMailer
   def invite_student(email)
     @email  = email
 
-    mail (to: email, subject: "Invitation to join the class")
+    mail(to: email, subject: "Invitation to join the class")
   end
 end

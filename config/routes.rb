@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :sections
-  resources :courses do
-    resources :recommendations, only: [:new, :create]
-  end
+  resources :courses
 
   namespace :admin do
     # Admin dashboard route
