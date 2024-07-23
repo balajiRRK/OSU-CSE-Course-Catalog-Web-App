@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   enum role: { student: 'student', instructor: 'instructor', admin: 'admin' }
 
+  has_many :recommendations, foreign_key: :instrucrtor_id, dependent: :destroy
 
   validate :email_domain_check
 

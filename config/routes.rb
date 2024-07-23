@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :sections
   resources :courses
+
   namespace :admin do
     # Admin dashboard route
     get 'dashboard', to: 'dashboard#index', as: 'dashboard'
@@ -19,6 +20,10 @@ Rails.application.routes.draw do
     post 'courses/reload', to: 'courses#reload', as: 'reload_courses'
   end
 
+  namespace :instructors do
+    resources :recommendations, only: [:new, :create]
+  end
+
   devise_scope :user do
     get 'users/sign_out' => "devise/sessions#destroy"
   end
@@ -29,4 +34,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
    get '*path', to: 'errors#404'
+
 end
