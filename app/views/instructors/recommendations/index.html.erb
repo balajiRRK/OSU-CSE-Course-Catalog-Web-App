@@ -12,7 +12,7 @@
     <tbody>
         <% @recommendations.each do |recommendation| %> <!-- Loop through each recommendation -->
             <tr>
-                <td><%= recommendation.student.email %></td> <!-- Display the student's email -->
+                <td><%= recommendation.student_email %></td> <!-- Display the student's email -->
                 <td><%= recommendation.course_id %></td> <!-- Display the course's id -->
                 <td><%= recommendation.notes %></td> <!-- Display the notes -->
                 <td><%= recommendation.instructor.email %></td> <!-- Display the instructor's email -->

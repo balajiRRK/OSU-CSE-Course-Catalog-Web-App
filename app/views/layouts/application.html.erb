@@ -24,9 +24,9 @@
   <div class="navbar">
     <ul> 
         <li> <%= link_to "Courses", courses_path, class: "btn btn-victory" %> </li>
-
+        <li> <%= link_to "Recommendatopms", instructors_recommendations_path, class: "btn btn-victory" %> </li> <!-- Link to the recommendations index page -->
         <% if user_signed_in? %>
-          <li> <%= link_to 'Edit account', edit_user_registration_path %> </li>
+          <li> <%= link_to 'Edit account', edit_user_registration_path %> </li>   
           <li> <%= link_to 'Sign out', destroy_user_session_path, method: :delete %> </li>
           <% if current_user&.instructor? %>
             <li> <%= link_to "Create Recommendation", new_instructors_recommendation_path, class: "btn btn-victory" %> </li>
