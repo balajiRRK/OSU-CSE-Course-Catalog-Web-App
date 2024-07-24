@@ -32,7 +32,7 @@ module Instructors   #module Instructors
           if @recommendation.course_id.present? && Course.exists?(@recommendation.course_id)  #if course id present and course exists
             redirect_to course_path, notice: "Recommendation created successfully" #redirect to admin recommendations path
           else
-            redirect_to root_path, notice: "Recommendation created successfully"  #redirect to root path
+            redirect_to root_path, notice: "Recommendation Failed"  #redirect to root path
           end
         else
           Rails.logger.debug @recommendation.errors.full_messages
