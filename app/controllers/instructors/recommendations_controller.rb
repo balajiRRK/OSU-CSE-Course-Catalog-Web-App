@@ -10,6 +10,14 @@ module Instructors   #module Instructors
     before_action :authenticate_user!     #check user is authenticated
     before_action :authenticate_instructor!    #check user is instructor
 
+    def index
+      @recommendations = Recommendation.all  #get all recommendations
+    end
+
+    def show
+      @recommendation = Recommendation.find(params[:id])  #find recommendation by id
+    end
+
     def new
         #@course = Course.find(params[:course_id])   #find course by course id
         @recommendation = Recommendation.new   #new recommendation

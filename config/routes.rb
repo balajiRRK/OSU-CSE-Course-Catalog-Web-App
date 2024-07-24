@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   namespace :instructors do
-    resources :recommendations, only: [:new, :create]
+    resources :recommendations, only: [:new, :create, :index, :show]
   end
 
   devise_scope :user do
