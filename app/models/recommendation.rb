@@ -5,4 +5,5 @@ class Recommendation < ApplicationRecord
 
   validates :notes, presence: true
   validates :student_email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :recommendation_type, presence: true
 end
