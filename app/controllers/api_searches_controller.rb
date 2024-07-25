@@ -1,6 +1,6 @@
 class ApiSearchesController < ApplicationController
   before_action :authenticate_admin!, :authenticate_status!, :set_api_search, only: %i[ show edit update destroy ]
-  
+  #  check for Net::OpenTimeout
   # GET /api_searches or /api_searches.json
   def index
     @api_searches = ApiSearch.all
@@ -62,7 +62,7 @@ def fetch_sections response
 
     puts Rainbow('Adding sections').yellow
        
-    response = '?q=&subject=cse&academiccareer=Undergraduate&campus=col' #&term=1248&campus=col&catalog-number=2xxx&p=2'
+    
     osu = OsuApiService::OsuAPI.new response
     pages = osu.fetch_data_info_From_Query['totalPages']
     sections = osu.fetch_From_Query
@@ -75,11 +75,10 @@ def fetch_sections response
                # This will loop for each section under a course
                     section_data['sections'].each do |subsection_data|
                          subsection_data['meetings'].each do |meeting_data|
-                              meeting_data['instructors'].each do |instructor_data|
-
-                                   # The reason I added the sections this way is because I originally thought I needed to add them at different blocks
-
-                                   #all of an specific section is added here to avoid skipping over sections
+                                  # The reason I added the sections this way is because I originally thought I needed to add them at different blocks
+                                  # Sections will be added at each meeting as instructors/graders will be
+                                  # linked from the instructors or graders table
+                                  
                                    # Adds the sections parts at the subsection level
                                    course_section.course_id = subsection_data['courseId']
 
@@ -104,12 +103,42 @@ def fetch_sections response
                                    course_section.saturday = meeting_data['saturday']
                                    course_section.sunday = meeting_data['sunday']
                                    course_section.instruction_mode = subsection_data['instructionMode']
+                                   course_section.session = subsection_data['sessionDescription']
+                                   
+                                   course_section.save
+                              meeting_data['instructors'].each do |instructor_data|
+
+                                   
 
                                    # Adds the section parts at the instructor level
-                                   course_section.instructor = instructor_data['displayName']
-                                   course_section.instructor_role = instructor_data['role']
-                                   course_section.instructor_email = instructor_data['email']
-                                   course_section.save
+                                   if instructor_data['role'] == 'PI'
+                                    instr = Instructor.new()
+                                    # full name
+                                    instr.fname = instructor_data['displayName']
+                                    # instr.role = instructor_data['role']
+                                    instr.course_id = subsection_data['courseId']
+                                    instr.email = instructor_data['email']
+                                    instr.class_number = subsection_data['classNumber']
+                                    instr.save
+                                   elsif instructor_data['role'] != nil 
+                                    grader = Grader.new()
+                                    # full name
+                                    grader.fname = instructor_data['displayName']
+                                    grader.course_id = subsection_data['courseId']
+                                    # grader.role = instructor_data['role']
+                                    grader.email = instructor_data['email']
+                                    grader.class_number = subsection_data['classNumber']
+                                    grader.save
+                                   end
+
+
+                                   
+                                    # Still here in case something goes wrong
+                                    #  course_section.instructor = instructor_data['displayName']
+                                    #  course_section.instructor_role = instructor_data['role']
+                                    #  course_section.instructor_email = instructor_data['email']
+                                    # course_section.save
+                                   
                               end
                          end
 
@@ -137,7 +166,7 @@ end
     @api_search.term.blank? ? response : response = response + "&term=" + @api_search.term 
     @api_search.campus.blank? ? response : response = response + "&campus=" + @api_search.campus 
     @api_search.academic_career.blank? ? response : response = response + "&academic-career=" + @api_search.academic_career
-    @api_search.catalog_number.blank? ? response : response = response + "&catalogNumber=" + @api_search.catalog_number 
+    @api_search.catalog_number.blank? ? response : response = response + "&catalog-number=" + @api_search.catalog_number 
     # @api_search.catalog_level.blank? ? response : response = response + "&catalogLevel=" + @api_search.catalog_level 
     @api_search.component.blank? ? response : response = response + "&component=" + @api_search.component 
     @api_search.subject.blank? ? response : response = response + "&subject=" + @api_search.subject 
@@ -203,6 +232,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def api_search_params
-      params.require(:api_search).permit(:search, :term, :campus, :academic_career, :catalog_number, :catalog_level, :component, :subject, :instruction_mode, :evening, :course_id)
+      params.require(:api_search).permit(:search, :term, :campus, :academic_career, :catalog_number, :component, :subject, :instruction_mode, :evening)
     end
 end

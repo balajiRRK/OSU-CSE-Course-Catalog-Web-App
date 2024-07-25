@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_22_141934) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_24_212219) do
   create_table "api_searches", force: :cascade do |t|
     t.string "search"
     t.string "term"
@@ -42,19 +42,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_22_141934) do
   end
 
   create_table "graders", force: :cascade do |t|
-    t.string "lname"
     t.string "fname"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "class_number"
+    t.string "course_id"
   end
 
   create_table "instructors", force: :cascade do |t|
-    t.string "lname"
     t.string "fname"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "class_number"
+    t.string "course_id"
   end
 
   create_table "sections", force: :cascade do |t|

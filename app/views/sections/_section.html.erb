@@ -30,6 +30,7 @@
         <tr>
           <th>Class number:</th>
           <th>Instructor:</th>
+          <th>Grader:</th>
           <th>Component:</th>
           <th>Instruction mode:</th>
           <th>Facility description:</th>
@@ -49,7 +50,9 @@
         <!-- Second row for values -->
         <tr>
           <td><%= section.class_number %></td>
-          <td><%= section.instructor %></td>
+          <%# checks if there are any instructos or graders %>
+          <td><%= section.instructors.count == 0 ? not_assigned : render(section.instructors)%> </td>
+          <td><%= section.graders.count == 0 ? not_assigned : render(section.graders)%> </td>
           <td><%= section.component %></td>
           <td><%= section.instruction_mode %></td>
           <td><%= section.facility_description %></td>
