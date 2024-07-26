@@ -53,19 +53,24 @@ class GradersController < ApplicationController
 
   def grader_params
     params.require(:grader).permit(
-      :name, :email, :phone_number, :courses_wish_to_grade, :courses_qualified_to_grade,
-      availability: {}
+      :name, :email, :phone_number, 
+      :courses_wish_to_grade, :courses_qualified_to_grade,
+      :monday_start, :monday_end, 
+      :tuesday_start, :tuesday_end, 
+      :wednesday_start, :wednesday_end, 
+      :thursday_start, :thursday_end, 
+      :friday_start, :friday_end, 
+      :saturday_start, :saturday_end, 
+      :sunday_start, :sunday_end
     )
   end
-
-  def process_availability
-    return unless params[:grader][:availability]
-    
-    # Transform the availability hash to remove blank entries
-    @grader.availability = params[:grader][:availability].to_h.transform_values do |times|
-      times.map(&:presence).compact
-    end
-    # Debug output to check processed availability
-    puts "Processed availability: #{@grader.availability.inspect}"
-  end
 end
+  def process_availability
+    Grader::DAYS_OF_WEEK.each do |day|
+      start_param = params[:grader]["#{day.downcase}_start"]
+      end_param = params[:grader]["#{day.downcase}_end"]
+      
+      @grader.send("#{day.downcase}_start=", start_param.presence)
+      @grader.send("#{day.downcase}_end=", end_param.presence)
+    end
+  end
