@@ -85,6 +85,9 @@ before_action :authenticate_admin!, only: [:destroy, :update, :wipe]
   # This will remove all courses from the course catalog
   def wipe
     Course.delete_all
+    Section.delete_all
+    Grader.delete_all
+    Instructor.delete_all
   end
 
   # this method deletes course from database

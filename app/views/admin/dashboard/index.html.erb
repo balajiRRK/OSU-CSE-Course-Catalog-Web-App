@@ -19,11 +19,6 @@
     <%# <%= f.select :role, User.roles.keys.map { |role| [role.humanize, role] } % >  %>
     <%= f.select :status, User.statuses.keys.map { |status| [status.humanize, status] } %>
   </div>
-
-  
-
-
-
    <div class="actions">
     <%= f.submit "Update" %>
   </div>
@@ -35,22 +30,9 @@
 <% User.all.each do |user|%>
   <div>
     <h3>email: <%= user.email %>, role: <%= user.role %></h3>
-   
     <%# <%= link_to 'review', user_actions_admin_user_path(user) %> 
+  <%= button_to 'Delete User', user_path(user), method: :delete%>
 
-    
- <%= form_with(model:user ) do |f| %>
-<div class="field">
-    <%= f.label :role %><br />
-    <%# the admin is able to change the status of users here %>
-    <%# <%= f.select :role, User.roles.keys.map { |role| [role.humanize, role] } % >  %>
-    <%= f.select :status, User.statuses.keys.map { |status| [status.humanize, status] } %>
-  </div>
-   <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-  <%= link_to 'Delete User', user_path(user), method: :delete%>
-<% end %>
 <% end %>
 
 

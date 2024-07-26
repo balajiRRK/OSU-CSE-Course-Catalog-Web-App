@@ -48,6 +48,8 @@
           <th>Term:</th>
         </tr>
         <!-- Second row for values -->
+        <%# <td><%= section.instructors.count == 0 ? not_assigned : render(section.instructors)% > </td> %>
+          <%# <td><%= section.graders.count == 0 ? not_assigned : render(section.graders)% > </td> %>
         <tr>
           <td><%= section.class_number %></td>
           <%# checks if there are any instructos or graders %>
@@ -70,6 +72,7 @@
           <td><%= section.term %></td>
         </tr>
       </table>
+      
     </div>
   </div>
 </div>
