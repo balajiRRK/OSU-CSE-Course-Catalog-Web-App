@@ -1,5 +1,8 @@
+<!-- show.html.erb -->
+
 <h2>Grader Application Details</h2>
 
+<!-- Display basic information -->
 <p>
   <strong>Name:</strong>
   <%= @grader.name %>
@@ -25,6 +28,7 @@
   <%= @grader.courses_qualified_to_grade %>
 </p>
 
+<!-- Availability Schedule Table -->
 <h3 id="availability">Availability Schedule</h3>
 <table class="availability-table">
   <thead>
@@ -37,15 +41,16 @@
   <tbody>
     <% Grader::DAYS_OF_WEEK.each do |day| %>
       <tr>
-        <td><%= day %></td>
-        <% times = @grader.availability[day] %>
-        <td><%= times && times[0].present? ? Time.parse(times[0]).strftime('%I:%M %p') : 'Not set' %></td>
-        <td><%= times && times[1].present? ? Time.parse(times[1]).strftime('%I:%M %p') : 'Not set' %></td>
+        <td><%= day.capitalize %></td>
+        <!-- Display start time for each day -->
+        <td><%= format_time(@grader.send("#{day.downcase}_start")) %></td>
+        <!-- Display end time for each day -->
+        <td><%= format_time(@grader.send("#{day.downcase}_end")) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<!-- Navigation links -->
 <%= link_to 'Edit', edit_grader_path(@grader) %> |
-<%= link_to 'Back', new_grader_path %> </li>
-
+<%= link_to 'Back', new_grader_path %>
