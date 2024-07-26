@@ -25,4 +25,26 @@
   <%= @grader.courses_qualified_to_grade %>
 </p>
 
+<h3 id="availability">Availability Schedule</h3>
+<table class="availability-table">
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Grader::DAYS_OF_WEEK.each do |day| %>
+      <tr>
+        <td><%= day %></td>
+        <% times = @grader.availability[day] %>
+        <td><%= times && times[0].present? ? Time.parse(times[0]).strftime('%I:%M %p') : 'Not set' %></td>
+        <td><%= times && times[1].present? ? Time.parse(times[1]).strftime('%I:%M %p') : 'Not set' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_grader_path(@grader) %> |
 <%= link_to 'Back', graders_path %>
