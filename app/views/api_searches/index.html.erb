@@ -1,16 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Api searches</h1>
+<h1> Saved Course searches </h1>
 
 <div id="api_searches">
   <% @api_searches.each do |api_search| %>
     <%= render api_search %>
     <p>
-      <%= link_to "Show this api search", api_search %>
-      <%= link_to "Edit this api search", edit_api_search_path(api_search) %> |
-      <%= link_to "download this api search", download_api_search_path(api_search)  %>
+      <%= link_to "Show this course search properties", api_search %>
+      <%= link_to "Edit this course search", edit_api_search_path(api_search) %> |
+      <%= link_to "download this course search", download_api_search_path(api_search)  %>
+      <%= link_to "reload using this course search", reload_api_search_path(api_search)  %>
     </p>
   <% end %>
 </div>
 
 <%= link_to "New api search", new_api_search_path %>
+<%= render('guide')%>

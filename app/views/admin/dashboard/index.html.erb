@@ -2,13 +2,12 @@
 
 <!-- Admin dashboard overview page -->
 <h1>Admin Dashboard</h1>
-<h2> hello, <%= current_user.email%></h2>
+<h2> Hello, <%= current_user.email%></h2>
 <%# Below is ugly but it gets the job done %>
 <h2> Pending users </h2>
 <% User.where(status: "pending").each do |user|%>
   <div>
     <h3>email: <%= user.email %>, role: <%= user.role %></h3>
-   
     <%# <%= link_to 'review', user_actions_admin_user_path(user) %> 
 
     
@@ -23,6 +22,7 @@
     <%= f.submit "Update" %>
   </div>
 <% end %>
+   <%= button_to 'Delete User', user_path(user), method: :delete%>
     <%end%>
     
     <%# See all users here %>
@@ -31,8 +31,9 @@
   <div>
     <h3>email: <%= user.email %>, role: <%= user.role %></h3>
     <%# <%= link_to 'review', user_actions_admin_user_path(user) %> 
+    <%if user!= current_user%>
   <%= button_to 'Delete User', user_path(user), method: :delete%>
-
+  <%end%>
 <% end %>
 
 
@@ -48,15 +49,17 @@
 
 <% @courses.each do |course| %>
   <div>
-    <h3><%= course.title %></h3>
+    <h3><%= course.catalog_number %>,<%= course.title %></h3>
     <p><%= course.description %></p>
     <%# Did not add credits to the table, will add it in later%>
     <%# <p>Credits: <%= course.credits </p> %>
      <% course.sections.each do |section| %>
-    <p>Instructor for section <%=section.section %> at <%=section.start_time %></p>
+    <p>Instructor for section <%=section.class_number %> at <%=section.start_time != nil ? section.start_time : 'time not available' %></p>
     <%#  there must be another key that differs from each section %>
     <%# this will show the section number and the instructor for the section %>
-    <p>  <%=  section.instructor %></p>
+     <% section.instructors.each do |instructor| %>
+    <p> Instructor: <%=  instructor.fname %></p>
+    <%end%>
     <%end%>
     <%= link_to 'Edit',  edit_course_path(course) %>
     <%= link_to 'Delete', admin_dashboard_path(course), method: :delete, data: { confirm: 'Are you sure?' } %>

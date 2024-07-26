@@ -9,8 +9,4 @@
   <div>
     <h3><%= user.email %></h3>
     <%end%>
-    <h2> Denied users </h2>
-<% User.where(status: "denied").each do |user|%>
-  <div>
-    <h3><%= user.email %></h3>
-    <%end%>
+   

@@ -203,6 +203,18 @@ end
       end
     end
   end
+# this will erase previous data and replace it with downloaded data instead
+  def reload
+    wipe
+    download
+  end
+  #erase all table data for courses, sections, graders, and instructors
+  def wipe
+    Course.delete_all
+    Section.delete_all
+    Grader.delete_all
+    Instructor.delete_all
+  end
 # This will download the courses specified from the selected api_search
   def download 
    ApiSearch.find(params[:id])

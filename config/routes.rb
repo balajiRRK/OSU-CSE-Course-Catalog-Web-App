@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       # This is for the method download in the api_searches controller.
       # Will look into just using get instead of match because I think it will not be required for our use.
       get :download
+      get :reload
     
     end
   end
