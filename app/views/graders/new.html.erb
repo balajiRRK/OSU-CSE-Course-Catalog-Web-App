@@ -1,11 +1,11 @@
 <div class="login-form-wrapper">
   <div class="login-form">
-    <h2>New Grader Application</h2>
+    <h2><%= @grader.new_record? ? 'New Grader Application' : 'Edit Grader Application' %></h2>
 
     <%= form_with(model: @grader, local: true) do |form| %>
       <% if @grader.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@grader.errors.count, "error") %> prohibited this grader application from being sent:</h2>
+          <h2><%= pluralize(@grader.errors.count, "error") %> prohibited this grader application from being saved:</h2>
 
           <ul>
             <% @grader.errors.full_messages.each do |message| %>
@@ -15,6 +15,7 @@
         </div>
       <% end %>
 
+      <!-- Basic information fields -->
       <div class="field">
         <%= form.label :name %>
         <%= form.text_field :name %>
@@ -40,8 +41,23 @@
         <%= form.text_area :courses_qualified_to_grade %>
       </div>
 
+    <!-- Availability schedule section -->
+<h3>Availability Schedule</h3>
+<div class="availability-schedule">
+  <% Grader::DAYS_OF_WEEK.each do |day| %>
+    <div class="field">
+      <%= form.label day %>
+      <!-- Time field for start time -->
+      <%= form.time_field "availability[#{day}][]", value: @grader.availability.dig(day, 0) %>
+      to
+      <!-- Time field for end time -->
+      <%= form.time_field "availability[#{day}][]", value: @grader.availability.dig(day, 1) %>
+    </div>
+  <% end %>
+</div>
+
       <div class="actions">
-        <%= form.submit "Send Application" %>
+        <%= form.submit @grader.new_record? ? "Send Application" : "Update Application" %>
       </div>
       
       <div class="links">
