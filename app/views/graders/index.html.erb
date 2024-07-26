@@ -9,6 +9,7 @@
       <th>Phone Number</th>
       <th>Courses Wish to Grade</th>
       <th>Courses Qualified to Grade</th>
+      <th>Availability</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -21,8 +22,22 @@
         <td><%= grader.phone_number %></td>
         <td><%= grader.courses_wish_to_grade %></td>
         <td><%= grader.courses_qualified_to_grade %></td>
-        <td><%= link_to 'Show', grader %></td>
+        <td>
+          <% if grader.availability.present? %>
+            <%# Use the formatted_availability method for a concise display %>
+            <%= link_to 'View Schedule', grader_path(grader, anchor: 'availability'), title: grader.formatted_availability %>
+          <% else %>
+            Not provided
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Show', grader %>
+          <%= link_to 'Edit', edit_grader_path(grader) %>
+          <%= link_to 'Delete', grader, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'New Grader Application', new_grader_path %>
