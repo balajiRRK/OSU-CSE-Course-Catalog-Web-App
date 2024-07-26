@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :sections
   resources :courses
-  resources :graders, only: [:new, :create, :show, :index] # Add this line for graders
+  resources :graders
 
   namespace :admin do
     # Admin dashboard route
