@@ -23,7 +23,7 @@
 
       <div class="field">
         <%= form.label :email %>
-        <%= form.email_field :email %>
+        <%= form.text_field :email %>
       </div>
 
       <div class="field">
@@ -31,15 +31,21 @@
         <%= form.telephone_field :phone_number %>
       </div>
 
+      <% catalog_number_list = [] %>
+      <% Course.all.each do |course| %>
+        <% catalog_number_list << [course.title + " " + course.catalog_number, course.id] %>
+      <% end %>
+
       <div class="field">
         <%= form.label :courses_wish_to_grade %>
-        <%= form.text_area :courses_wish_to_grade %>
+        <%= form.select :courses_wish_to_grade, options_for_select(catalog_number_list), prompt: "Select a course" %>
       </div>
 
       <div class="field">
         <%= form.label :courses_qualified_to_grade %>
-        <%= form.text_area :courses_qualified_to_grade %>
+        <%= form.select :courses_qualified_to_grade, options_for_select(catalog_number_list), prompt: "Select a course" %>
       </div>
+
 
     <!-- Availability schedule section -->
 <h3>Availability Schedule</h3>
