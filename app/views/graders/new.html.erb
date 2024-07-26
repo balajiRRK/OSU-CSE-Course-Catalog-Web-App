@@ -35,7 +35,7 @@
       </div>
 
       <!-- Course selection fields -->
-      <% catalog_number_list = Course.all.map { |course| [course.title + " " + course.catalog_number, course.id] } %>
+      <% catalog_number_list = Course.all.map { |course| [course.title + " " + course.catalog_number, course.catalog_number] } %>
 
       <div class="field">
         <%= form.label :courses_wish_to_grade %>
