@@ -25,6 +25,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_212219) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "assistants", force: :cascade do |t|
+    t.string "fname"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "class_number"
+    t.string "course_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.integer "courseId"
     t.string "catalog_number"
@@ -39,15 +48,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_212219) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "academic_career"
-  end
-
-  create_table "graders", force: :cascade do |t|
-    t.string "fname"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "class_number"
-    t.string "course_id"
   end
 
   create_table "instructors", force: :cascade do |t|

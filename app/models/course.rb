@@ -1,7 +1,7 @@
 class Course < ApplicationRecord
     # a course may have many sectionsS
     has_many :sections, primary_key: :courseId, dependent: :destroy
-    has_many :graders, primary_key: :courseId, foreign_key: "course_id", dependent: :destroy
+    has_many :assistants, primary_key: :courseId, foreign_key: "course_id", dependent: :destroy
     has_many :instructors, primary_key: :courseId, foreign_key: "course_id", dependent: :destroy
    # Validations for course
   validates :courseId, presence: true, uniqueness: { scope: :courseId }

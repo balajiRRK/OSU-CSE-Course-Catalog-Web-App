@@ -2,7 +2,7 @@ require "test_helper"
 
 class GradersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @grader = graders(:one)
+    @assistant = assistants(:one)
   end
 
   test "should get index" do
@@ -16,31 +16,31 @@ class GradersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create grader" do
-    assert_difference("Grader.count") do
-      post graders_url, params: { grader: { email: @grader.email, fname: @grader.fname, lname: @grader.lname } }
+    assert_difference("Assistant.count") do
+      post graders_url, params: { grader: { email: @assistant.email, fname: @assistant.fname, lname: @assistant.lname } }
     end
 
-    assert_redirected_to grader_url(Grader.last)
+    assert_redirected_to grader_url(Assistant.last)
   end
 
   test "should show grader" do
-    get grader_url(@grader)
+    get grader_url(@assistant)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_grader_url(@grader)
+    get edit_grader_url(@assistant)
     assert_response :success
   end
 
   test "should update grader" do
-    patch grader_url(@grader), params: { grader: { email: @grader.email, fname: @grader.fname, lname: @grader.lname } }
-    assert_redirected_to grader_url(@grader)
+    patch grader_url(@assistant), params: { grader: { email: @assistant.email, fname: @assistant.fname, lname: @assistant.lname } }
+    assert_redirected_to grader_url(@assistant)
   end
 
   test "should destroy grader" do
-    assert_difference("Grader.count", -1) do
-      delete grader_url(@grader)
+    assert_difference("Assistant.count", -1) do
+      delete grader_url(@assistant)
     end
 
     assert_redirected_to graders_url

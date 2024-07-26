@@ -9,8 +9,8 @@ class Section < ApplicationRecord
 
 
   has_many :instructors, query_constraints: [:class_number, :course_id], dependent: :destroy
-  has_many :graders, query_constraints: [:class_number, :course_id], dependent: :destroy
-  # has_many :graders,-> { where self.find_by(course_id: :course_id) }, primary_key: :class_number, foreign_key: "class_number", dependent: :destroy
+  has_many :assistants, query_constraints: [:class_number, :course_id], dependent: :destroy
+  # has_many :assistants,-> { where self.find_by(course_id: :course_id) }, primary_key: :class_number, foreign_key: "class_number", dependent: :destroy
   # has_many :instructors, -> { where self.find_by(course_id: :course_id)  },primary_key: :class_number, foreign_key: "class_number",  dependent: :destroy
 
   

@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class GradersTest < ApplicationSystemTestCase
   setup do
-    @grader = graders(:one)
+    @assistant = assistants(:one)
   end
 
   test "visiting the index" do
@@ -14,32 +14,32 @@ class GradersTest < ApplicationSystemTestCase
     visit graders_url
     click_on "New grader"
 
-    fill_in "Email", with: @grader.email
-    fill_in "Fname", with: @grader.fname
-    fill_in "Lname", with: @grader.lname
-    click_on "Create Grader"
+    fill_in "Email", with: @assistant.email
+    fill_in "Fname", with: @assistant.fname
+    fill_in "Lname", with: @assistant.lname
+    click_on "Create Assistant"
 
-    assert_text "Grader was successfully created"
+    assert_text "Assistant was successfully created"
     click_on "Back"
   end
 
-  test "should update Grader" do
-    visit grader_url(@grader)
+  test "should update Assistant" do
+    visit grader_url(@assistant)
     click_on "Edit this grader", match: :first
 
-    fill_in "Email", with: @grader.email
-    fill_in "Fname", with: @grader.fname
-    fill_in "Lname", with: @grader.lname
-    click_on "Update Grader"
+    fill_in "Email", with: @assistant.email
+    fill_in "Fname", with: @assistant.fname
+    fill_in "Lname", with: @assistant.lname
+    click_on "Update Assistant"
 
-    assert_text "Grader was successfully updated"
+    assert_text "Assistant was successfully updated"
     click_on "Back"
   end
 
-  test "should destroy Grader" do
-    visit grader_url(@grader)
+  test "should destroy Assistant" do
+    visit grader_url(@assistant)
     click_on "Destroy this grader", match: :first
 
-    assert_text "Grader was successfully destroyed"
+    assert_text "Assistant was successfully destroyed"
   end
 end

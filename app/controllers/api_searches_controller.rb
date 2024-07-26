@@ -76,8 +76,8 @@ def fetch_sections response
                     section_data['sections'].each do |subsection_data|
                          subsection_data['meetings'].each do |meeting_data|
                                   # The reason I added the sections this way is because I originally thought I needed to add them at different blocks
-                                  # Sections will be added at each meeting as instructors/graders will be
-                                  # linked from the instructors or graders table
+                                  # Sections will be added at each meeting as instructors/assistants will be
+                                  # linked from the instructors or assistants table
                                   
                                    # Adds the sections parts at the subsection level
                                    course_section.course_id = subsection_data['courseId']
@@ -121,7 +121,7 @@ def fetch_sections response
                                     instr.class_number = subsection_data['classNumber']
                                     instr.save
                                    elsif instructor_data['role'] != nil 
-                                    grader = Grader.new()
+                                    grader = Assistant.new()
                                     # full name
                                     grader.fname = instructor_data['displayName']
                                     grader.course_id = subsection_data['courseId']
@@ -208,11 +208,11 @@ end
     wipe
     download
   end
-  #erase all table data for courses, sections, graders, and instructors
+  #erase all table data for courses, sections, assistants, and instructors
   def wipe
     Course.delete_all
     Section.delete_all
-    Grader.delete_all
+    Assistant.delete_all
     Instructor.delete_all
   end
 # This will download the courses specified from the selected api_search

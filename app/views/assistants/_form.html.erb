@@ -1,10 +1,10 @@
-<%= form_with(model: grader) do |form| %>
-  <% if grader.errors.any? %>
+<%= form_with(model: assistant) do |form| %>
+  <% if assistant.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(grader.errors.count, "error") %> prohibited this grader from being saved:</h2>
+      <h2><%= pluralize(assistant.errors.count, "error") %> prohibited this assistant from being saved:</h2>
 
       <ul>
-        <% grader.errors.each do |error| %>
+        <% assistant.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

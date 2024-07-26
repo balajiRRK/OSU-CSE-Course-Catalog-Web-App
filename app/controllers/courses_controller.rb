@@ -86,7 +86,7 @@ before_action :authenticate_admin!, only: [:destroy, :update, :wipe]
   def wipe
     Course.delete_all
     Section.delete_all
-    Grader.delete_all
+    Assistant.delete_all
     Instructor.delete_all
   end
 

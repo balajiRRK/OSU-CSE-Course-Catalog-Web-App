@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
   resources :sections
   resources :instructors
-  resources :graders
+  resources :assistants
   resources :api_searches do
     member do 
       # This is for the method download in the api_searches controller.
