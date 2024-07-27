@@ -4,4 +4,5 @@ class AdminController < ApplicationController
         # @courses = Course.all
         @pagy, @courses = pagy(Course.all)
       end
+      
 end

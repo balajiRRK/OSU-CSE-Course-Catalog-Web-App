@@ -1,0 +1,9 @@
+<h2> All users </h2>
+<% User.all.each do |user|%>
+  <div>
+    <h3>email: <%= user.email %>, role: <%= user.role %></h3>
+    <%# <%= link_to 'review', user_actions_admin_user_path(user) %> 
+    <%if user!= current_user%>
+  <%= button_to 'Delete User', user_path(user), method: :delete%>
+  <%end%>
+<% end %>

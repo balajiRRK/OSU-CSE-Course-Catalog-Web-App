@@ -3,69 +3,14 @@
 <!-- Admin dashboard overview page -->
 <h1>Admin Dashboard</h1>
 <h2> Hello, <%= current_user.email%></h2>
-<%# Below is ugly but it gets the job done %>
-<h2> Pending users </h2>
-<% User.where(status: "pending").each do |user|%>
-  <div>
-    <h3>email: <%= user.email %>, role: <%= user.role %></h3>
-    <%# <%= link_to 'review', user_actions_admin_user_path(user) %> 
-
-    
- <%= form_with(model:user ) do |f| %>
-<div class="field">
-    <%= f.label :role %><br />
-    <%# the admin is able to change the status of users here %>
-    <%# <%= f.select :role, User.roles.keys.map { |role| [role.humanize, role] } % >  %>
-    <%= f.select :status, User.statuses.keys.map { |status| [status.humanize, status] } %>
-  </div>
-   <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-   <%= button_to 'Delete User', user_path(user), method: :delete%>
-    <%end%>
-    
-    <%# See all users here %>
-<h2> all users </h2>
-<% User.all.each do |user|%>
-  <div>
-    <h3>email: <%= user.email %>, role: <%= user.role %></h3>
-    <%# <%= link_to 'review', user_actions_admin_user_path(user) %> 
-    <%if user!= current_user%>
-  <%= button_to 'Delete User', user_path(user), method: :delete%>
-  <%end%>
-<% end %>
+<%# Partials are useed to make it easier to customise the design of the page %>
+<%= render("pending_users")%>
+<%= render("all_users")%>
+<%= render('course_manager')%>
+<%= render('admin_course')%>
 
 
-<div>
-  <h2>Courses</h2>
-  <p>Total Courses: <%= Course.all.length %></p>
-  <%= link_to 'Browse Courses', courses_path %><br>
-  <%= link_to 'Load Courses', new_api_search_path %> <br>
-  <%= link_to 'Add New Course', new_course_path %>
-  <%= button_to 'Delete all courses', wipe_courses_path, data: { confirm: 'Are you sure?', disable_with: "Deleting all records" } %>
-</div>
 
 
-<% @courses.each do |course| %>
-  <div>
-    <h3><%= course.catalog_number %>,<%= course.title %></h3>
-    <p><%= course.description %></p>
-    <%# Did not add credits to the table, will add it in later%>
-    <%# <p>Credits: <%= course.credits </p> %>
-     <% course.sections.each do |section| %>
-    <p>Instructor for section <%=section.class_number %> at <%=section.start_time != nil ? section.start_time : 'time not available' %></p>
-    <%#  there must be another key that differs from each section %>
-    <%# this will show the section number and the instructor for the section %>
-     <% section.instructors.each do |instructor| %>
-    <p> Instructor: <%=  instructor.fname %></p>
-    <%end%>
-    <%end%>
-    <%= link_to 'Edit',  edit_course_path(course) %>
-    <%= link_to 'Delete', admin_dashboard_path(course), method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
 
   
-<% end %>
-<%== pagy_nav(@pagy) %>
-

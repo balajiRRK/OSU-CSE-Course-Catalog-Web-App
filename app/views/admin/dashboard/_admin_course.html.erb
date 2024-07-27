@@ -1,0 +1,44 @@
+<div class="container mt-5">
+    <table class="table table-bordered mt-5">
+      <thead>
+        <tr class="table-dark">
+          <th style="padding: 15px;">Course Number</th>
+          <th style="padding: 15px;">Title</th>
+          <th style="padding: 15px;">Description</th>
+          <th style="padding: 15px;">Component</th>
+          <th style="padding: 15px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <!-- here we are looping through all the courses that we get from the search result to show their data -->
+        <% @courses.each do |course| %>
+          <tr>
+            <!-- this is showing course number -->
+            <td style="padding: 15px;"><%= course.catalog_number %></td>
+            <!-- this is showing course title -->
+            <td style="padding: 15px;"><%= course.title %></td>
+            <!-- this is showing course description -->
+            <td style="padding: 15px;"><%= course.description %></td>
+            <!-- this is showing course component -->
+            <td style="padding: 15px;"><%= course.component %></td>
+            <!-- this is showing actions (edit, show, destroy) -->
+            <td style="padding: 15px;">
+              <!-- this is the link to show course, clicking on this link will show the details of the single course  -->
+              <%= link_to "Show", course, class: "btn btn-info" %> 
+              <!-- this is the link to edit course, clicking on this link will open the edit form  -->
+              <% if current_user&.admin? %>
+                <%= link_to "Edit", edit_course_path(course), class: "btn btn-success" %>
+              <% end %>
+              <!-- this is delete link, click on the this link will send the delete request to controller and delete the course  -->
+              <% if current_user&.admin? %>
+                <%= button_to "Destroy", course, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%== pagy_nav(@pagy) %>
