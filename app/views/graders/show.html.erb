@@ -1,56 +1,62 @@
 <!-- show.html.erb -->
 
-<h2>Grader Application Details</h2>
+<h2 style="padding-left: 20px;">Grader Application Details</h2>
 
 <!-- Display basic information -->
-<p>
-  <strong>Name:</strong>
-  <%= @grader.name %>
-</p>
+<div style="padding-left: 20px;">
+  <p>
+    <strong>Name:</strong>
+    <%= @grader.name %>
+  </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @grader.email %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= @grader.email %>
+  </p>
 
-<p>
-  <strong>Phone Number:</strong>
-  <%= @grader.phone_number %>
-</p>
+  <p>
+    <strong>Phone Number:</strong>
+    <%= @grader.phone_number %>
+  </p>
 
-<p>
-  <strong>Courses Wish to Grade:</strong>
-  <%= @grader.courses_wish_to_grade %>
-</p>
+  <p>
+    <strong>Courses Wish to Grade:</strong>
+    <%= @grader.courses_wish_to_grade %>
+  </p>
 
-<p>
-  <strong>Courses Qualified to Grade:</strong>
-  <%= @grader.courses_qualified_to_grade %>
-</p>
+  <p>
+    <strong>Courses Qualified to Grade:</strong>
+    <%= @grader.courses_qualified_to_grade %>
+  </p>
+</div>
 
 <!-- Availability Schedule Table -->
-<h3 id="availability">Availability Schedule</h3>
-<table class="availability-table">
-  <thead>
-    <tr>
-      <th>Day</th>
-      <th>Start Time</th>
-      <th>End Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% Grader::DAYS_OF_WEEK.each do |day| %>
+<h3 id="availability" style="padding-left: 20px;">Availability Schedule</h3>
+<div style="padding-left: 20px; padding-right: 20px;">
+  <table class="availability-table" style="width: 100%; border-collapse: separate;">
+    <thead>
       <tr>
-        <td><%= day.capitalize %></td>
-        <!-- Display start time for each day -->
-        <td><%= format_time(@grader.send("#{day.downcase}_start")) %></td>
-        <!-- Display end time for each day -->
-        <td><%= format_time(@grader.send("#{day.downcase}_end")) %></td>
+        <th style="padding-right: 20px;">Day</th>
+        <th style="padding-right: 20px;">Start Time</th>
+        <th>End Time</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% Grader::DAYS_OF_WEEK.each do |day| %>
+        <tr>
+          <td style="padding-right: 20px;"><%= day.capitalize %></td>
+          <!-- Display start time for each day -->
+          <td style="padding-right: 20px;"><%= format_time(@grader.send("#{day.downcase}_start")) %></td>
+          <!-- Display end time for each day -->
+          <td><%= format_time(@grader.send("#{day.downcase}_end")) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <!-- Navigation links -->
-<%= link_to 'Edit', edit_grader_path(@grader) %> |
-<%= link_to 'Back', new_grader_path %>
+<div style="margin-bottom: 20px; margin-left: 20px;">
+  <%= link_to 'Edit', edit_grader_path(@grader) %> |
+  <%= link_to 'Back', new_grader_path %>
+</div>
