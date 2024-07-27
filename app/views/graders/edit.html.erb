@@ -41,21 +41,21 @@
         <%= form.text_area :courses_qualified_to_grade %>
       </div>
 
-      <!-- Availability schedule section -->
+    <!-- Availability schedule section -->
       <h3>Availability Schedule</h3>
       <div class="availability-schedule">
         <% Grader::DAYS_OF_WEEK.each do |day| %>
           <div class="field">
             <%= form.label day %>
-            <!-- Time field for start time -->
-            <%= form.time_field "availability[#{day}][]", value: @grader.availability.dig(day, 0) %>
+            <!-- Start time field for each day -->
+            <%= form.time_field "#{day.downcase}_start", value: @grader.send("#{day.downcase}_start") %>
             to
-            <!-- Time field for end time -->
-            <%= form.time_field "availability[#{day}][]", value: @grader.availability.dig(day, 1) %>
+            <!-- End time field for each day -->
+            <%= form.time_field "#{day.downcase}_end", value: @grader.send("#{day.downcase}_end") %>
           </div>
         <% end %>
       </div>
-
+      
       <div class="actions">
         <%= form.submit "Update Application" %>
       </div>
