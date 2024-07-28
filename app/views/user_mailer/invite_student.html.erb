@@ -1,0 +1,12 @@
+<h1>User#invite_student</h1>
+<p>Hello,</p>
+<% if @course.present? %>
+  <p>You have been invited to join the course <%= @course.name %>.</p>
+<% else %>
+  <p>You have been invited to join the course.</p>
+<% end %>
+<p><%= link_to 'Register here', new_user_registration_url %></p>
+<p>
+  Thanks,<br>
+  Invitation team
+</p>

@@ -7,6 +7,12 @@
 <p style="padding-left: 20px;"><%= @course.description %></p>
 <p><%= render(@course.sections) %></p>
 
+ <!-- show the recommendation link if the user is an instructor -->
+<% if current_user.instructor? %>
+  <!-- Link to the recommendation form -->
+  <%= link_to 'Submit Recommendation', new_instructors_recommendation_path(course_id: @course.id)%>
+<% end %>
+
 <div style="margin-bottom: 20px; margin-left: 20px;">
   <!-- this is link to all courses, clicking on this link will take to the courses page  -->
   <%= link_to "Back to courses", courses_path %> 

@@ -1,0 +1,28 @@
+<h1>Create Recommendation</h1>
+
+<%= form_with model: @recommendation, url: instructors_recommendations_path, local: true do |form| %>
+
+  <div class="field">
+    <%= form.label :student_email, "Student's OSU Email" %>
+    <%= form.text_field :student_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :course_id, "Recommended class number (4 digits)" %>
+    <%= form.text_field :course_id %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :recommendation_type, "Type of Recommendation" %>  <!-- This is a dropdown menu -->
+    <%= form.select :recommendation_type, options_for_select([["General Recommendation", "general"],["Specific Recommendation", "specific"]]) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Submit Recommendation" %>
+  </div>
+<% end %>

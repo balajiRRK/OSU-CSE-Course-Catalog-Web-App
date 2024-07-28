@@ -1,0 +1,21 @@
+<h1>Recommendations Details</h1>
+<p>
+    <strong>Student Email:</strong>
+    <%= @recommendation.student_email %>    <!-- Display the student's email -->
+</p>
+<p>
+    <strong>Course:</strong>
+    <%= @recommendation.course_id %> <!-- Display the course's id -->
+</p>
+<p>
+    <strong>Recommendation Type:</strong>
+    <%= @recommendation.recommendation_type %> <!-- Display the recommendation type -->
+<p>
+    <strong>Notes:</strong>
+    <%= @recommendation.notes %> <!-- Display the notes -->
+</p>
+<p>
+    <strong>Instructor:</strong>
+    <%= @recommendation.instructor.email %> <!-- Display the instructor's email -->
+</p>
+<%= link_to 'Back', instructors_recommendations_path %> <!-- Link back to the recommendations index page -->

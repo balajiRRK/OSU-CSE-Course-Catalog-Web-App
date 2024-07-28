@@ -3,11 +3,12 @@ class Course < ApplicationRecord
   has_many :sections, primary_key: :courseId, dependent: :destroy
   has_many :assistants, primary_key: :courseId, foreign_key: "course_id", dependent: :destroy
   has_many :instructors, primary_key: :courseId, foreign_key: "course_id", dependent: :destroy
- # Validations for course
-validates :courseId, presence: true, uniqueness: { scope: :courseId }
-validates :catalog_number, presence: true
-validates :title, presence: true
-validates :description, presence: true
+  has_many :recommendations, dependent: :destroy
+  # Validations for course
+  validates :courseId, presence: true, uniqueness: { scope: :courseId }
+  validates :catalog_number, presence: true
+  validates :title, presence: true
+  validates :description, presence: true
 #   validates :short_Description, presence: true
 validates :component, presence: true
 validates :term, presence: true

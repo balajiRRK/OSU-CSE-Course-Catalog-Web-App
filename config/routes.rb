@@ -47,7 +47,9 @@ Rails.application.routes.draw do
     # post 'courses/load', to: 'courses#load', as: 'load_courses'
   end
 
-
+  namespace :instructors do
+    resources :recommendations, only: [:new, :create, :index, :show]
+  end
 
   devise_scope :user do
     get 'accounts/users/sign_out' => "devise/sessions#destroy"
