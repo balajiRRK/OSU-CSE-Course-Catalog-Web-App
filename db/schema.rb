@@ -59,6 +59,62 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_212219) do
     t.string "course_id"
   end
 
+  create_table "graders", force: :cascade do |t|
+    t.string "name"
+    t.string "subject"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "contact_info"
+    t.text "courses_wish_to_grade"
+    t.text "courses_qualified_to_grade"
+    t.string "email"
+    t.string "phone_number"
+    t.text "availability"
+    t.string "monday_start"
+    t.string "monday_end"
+    t.string "tuesday_start"
+    t.string "tuesday_end"
+    t.string "wednesday_start"
+    t.string "wednesday_end"
+    t.string "thursday_start"
+    t.string "thursday_end"
+    t.string "friday_start"
+    t.string "friday_end"
+    t.string "saturday_start"
+    t.string "saturday_end"
+    t.string "sunday_start"
+    t.string "sunday_end"
+    t.text "courses_wish_and_qualify_to_grade"
+  end
+
+  create_table "graders", force: :cascade do |t|
+    t.string "name"
+    t.string "subject"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "contact_info"
+    t.text "courses_wish_to_grade"
+    t.text "courses_qualified_to_grade"
+    t.string "email"
+    t.string "phone_number"
+    t.text "availability"
+    t.string "monday_start"
+    t.string "monday_end"
+    t.string "tuesday_start"
+    t.string "tuesday_end"
+    t.string "wednesday_start"
+    t.string "wednesday_end"
+    t.string "thursday_start"
+    t.string "thursday_end"
+    t.string "friday_start"
+    t.string "friday_end"
+    t.string "saturday_start"
+    t.string "saturday_end"
+    t.string "sunday_start"
+    t.string "sunday_end"
+    t.text "courses_wish_and_qualify_to_grade"
+  end
+
   create_table "sections", force: :cascade do |t|
     t.integer "course_id"
     t.string "catalog_number"

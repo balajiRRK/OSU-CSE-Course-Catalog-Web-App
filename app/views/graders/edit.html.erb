@@ -1,15 +1,12 @@
-<!-- new.html.erb -->
-
-<div class="grader-form-wrapper">
-  <div class="grader-form">
-    <!-- Dynamic header based on whether it's a new record or edit -->
-    <h2><%= @grader.new_record? ? 'New Grader Application' : 'Edit Grader Application' %></h2>
+<div class="login-form-wrapper">
+  <div class="login-form">
+    <h2>Edit Grader Application</h2>
 
     <%= form_with(model: @grader, local: true) do |form| %>
-      <!-- Error messages display -->
       <% if @grader.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@grader.errors.count, "error") %> prohibited this grader application from being saved:</h2>
+
           <ul>
             <% @grader.errors.full_messages.each do |message| %>
               <li><%= message %></li>
@@ -20,24 +17,26 @@
 
       <!-- Basic information fields -->
       <div class="field">
-        <%= form.text_field :name, :placeholder => "Name" %>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
       </div>
 
       <div class="field">
-        <%= form.text_field :email, :placeholder => "Email" %>
+        <%= form.label :email %>
+        <%= form.email_field :email %>
       </div>
 
       <div class="field">
-        <%= form.telephone_field :phone_number, :placeholder => "Phone Number" %>
+        <%= form.label :phone_number %>
+        <%= form.telephone_field :phone_number %>
       </div>
 
-      <!-- Course selection fields -->
       <div class="field">
-        <%= form.label :courses_wish_and_qualify_to_grade, "Courses you wish to (and are qualified to) grade for" %>
-        <%= form.select :courses_wish_and_qualify_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.id] }), { prompt: "Select courses", multiple: true } %>
+         <%= form.label :courses_wish_and_qualify_to_grade, "Courses you wish to (and are qualified to) grade for" %>
+         <%= form.select :courses_wish_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.id] }), { prompt: "Select courses" }, multiple: true %>
       </div>
 
-      <!-- Availability schedule section -->
+    <!-- Availability schedule section -->
       <h3>Availability Schedule</h3>
       <div class="availability-schedule">
         <% Grader::DAYS_OF_WEEK.each do |day| %>
@@ -51,15 +50,13 @@
           </div>
         <% end %>
       </div>
-
-      <!-- Form submission button -->
+      
       <div class="actions">
-        <%= form.submit @grader.new_record? ? "Send Application" : "Update Application" %>
+        <%= form.submit "Update Application" %>
       </div>
       
-      <!-- Navigation link -->
       <div class="links">
-        <%= link_to 'Back', courses_path, class: "btn btn-victory" %>
+        <%= link_to 'Back', graders_path %>
       </div>
     <% end %>
   </div>
