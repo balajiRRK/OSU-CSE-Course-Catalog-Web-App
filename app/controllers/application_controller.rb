@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     render 'errors/404'
   end
   def database_is_busy
-    render :back
+    render root
     alert "The database is currently busy."
   end
   def configure_permitted_parameters

@@ -3,6 +3,7 @@
   <p>Total Courses: <%= Course.all.length %></p>
   <%= link_to 'Browse Courses', courses_path %><br>
   <%= link_to 'Load Courses', new_api_search_path %> <br>
+   <%= link_to 'View Course searches',  api_searches_path %> <br>
   <%= link_to 'Add New Course', new_course_path %>
   <%= button_to 'Delete all courses', wipe_courses_path, data: { confirm: 'Are you sure?', disable_with: "Deleting all records" }, class: "btn btn-danger" %>
 </div> 
