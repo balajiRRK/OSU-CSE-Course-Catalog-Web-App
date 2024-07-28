@@ -71,6 +71,7 @@ class GradersController < ApplicationController
       :sunday_start, :sunday_end,
       :courses_wish_and_qualify_to_grade => []
     )
+    
   end
 end
   def process_availability

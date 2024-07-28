@@ -8,8 +8,8 @@ class Grader < ApplicationRecord
   # New validation for availability
   validate :availability_present
 
-  # Serialize availability as a Hash using JSON encoding
-  serialize :availability, Hash, coder: JSON
+  # # Serialize availability as a Hash using JSON encoding
+  # serialize :availability, Hash, coder: JSON
 
   # Define days of the week for availability
   DAYS_OF_WEEK = %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday]
@@ -37,12 +37,31 @@ class Grader < ApplicationRecord
 
   # Custom validation method for availability
   def availability_present
-    return if availability.blank?
+    time_present = false;
+   
+    # Make sure each day available day pair must have a time 
+    !monday_start.blank? == true && !monday_end.blank? ==true ?  time_present =true : time_present 
+    !tuesday_start.blank? ==true && !tuesday_end.blank? ==true ?  time_present =true : time_present 
+    !wednesday_start.blank? ==true && !wednesday_end.blank? ==true ?  time_present =true : time_present 
+    !thursday_start.blank? ==true && !thursday_end.blank? ==true ?  time_present =true : time_present 
+    !friday_start.blank? ==true && !friday_end.blank? ==true ?  time_present =true : time_present 
+    !saturday_start.blank? ==true && !saturday_end.blank? ==true ?  time_present =true : time_present 
+    !sunday_start.blank? ==true && !sunday_end.blank? ==true ?  time_present =true : time_present 
+   
+   
+   
+  errors.add(:time_present, "must have at least one day with times set") unless time_present == true
+end
 
-    valid_times = availability.values.any? do |times|
-      times.is_a?(Array) && times.size == 2 && times.any?(&:present?)
-    end
-
-    errors.add(:availability, "must have at least one day with times set") unless valid_times
-  end
+  # def availability_present
+  #   puts 'testing avail'
+  #   puts availability.values
+  #   puts availability.blank?
+  #   return if !availability.blank?
+  #   valid_times = availability.values.any? do |times|
+  #     times.is_a?(Array) && times.size == 2 && times.any?(&:present?)
+  #   end
+     
+  #   errors.add(:availability, "must have at least one day with times set") unless valid_times
+  # end
 end
