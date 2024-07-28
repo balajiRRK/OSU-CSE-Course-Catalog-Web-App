@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
     
       rescue_from ActiveRecord::RecordNotFound, with: :page_not_found 
-      
+      rescue_from Pagy::OverflowError, with: :page_not_found 
         # render 'errors/404'
   protected
 

@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   # before_action 
 before_action :authenticate_user!
-before_action :authenticate_admin!, only: [:destroy, :update, :wipe]
+before_action :authenticate_admin!, :authenticate_status!, only: [:destroy, :update, :wipe]
   # this method is getting all the courses from database
   def index
     # @courses = Course.all
