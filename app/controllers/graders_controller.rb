@@ -1,6 +1,8 @@
 class GradersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_grader, only: [:show, :edit, :update]
+  before_action :set_courses, only: [:new, :edit, :create, :update]
+
 
   def new
     @grader = Grader.new
@@ -18,6 +20,7 @@ class GradersController < ApplicationController
       puts "Availability after save: #{@grader.reload.availability.inspect}"
       redirect_to @grader, notice: 'Grader application was successfully submitted.'
     else
+      set_courses
       render :new
     end
   end
@@ -41,6 +44,7 @@ class GradersController < ApplicationController
       puts "Availability after update: #{@grader.reload.availability.inspect}"
       redirect_to @grader, notice: 'Grader application was successfully updated.'
     else
+      set_courses
       render :edit
     end
   end
@@ -51,10 +55,14 @@ class GradersController < ApplicationController
     @grader = Grader.find(params[:id])
   end
 
+  def set_courses
+    @courses = Course.all
+  end
+
   def grader_params
     params.require(:grader).permit(
       :name, :email, :phone_number, 
-      :courses_wish_to_grade, :courses_qualified_to_grade,
+      :courses_wish_and_qualify_to_grade,
       :monday_start, :monday_end, 
       :tuesday_start, :tuesday_end, 
       :wednesday_start, :wednesday_end, 

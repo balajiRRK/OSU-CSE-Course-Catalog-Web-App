@@ -67,6 +67,12 @@
   font-size: 20px;
 }
 
+.login-form-wrapper {
+  max-width: 600px;
+  margin: 0 auto; 
+  padding: 20px; 
+}
+
 .login-form {
   max-width: 400px;
   width: 100%;
@@ -85,7 +91,10 @@
   margin-bottom: 5px;
 }
 .login-form .field input[type="email"],
-.login-form .field input[type="password"] {
+.login-form .field input[type="password"] 
+.login-form .field input[type="text"],
+.login-form .field textarea,
+.login-form .field select {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
@@ -118,6 +127,9 @@
   text-decoration: underline;
 }
 
+.login-form select[multiple] {
+  height: auto;
+}
 
 /* Styles for availability schedule in new/edit form */
 .availability-schedule {
@@ -159,3 +171,32 @@
   background-color: #f2f2f2;
 }
   
+/* Styles for the signup page */
+
+body {
+  padding: 20px; /* Add padding to the entire page */
+  box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+}
+
+.form-container {
+  max-width: 600px; /* Limit the width of the form container */
+  margin: 0 auto; /* Center the form container */
+  padding: 20px; /* Add padding inside the form container */
+  background-color: #fff; /* Set a background color */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 10px; /* Round the corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.form-heading {
+  padding: 20px 0; /* Add 20px padding to the top and bottom of the heading */
+  text-align: center; /* Center the heading text */
+}
+
+.field {
+  margin-bottom: 15px;
+}
+
+.actions {
+  text-align: center;
+}

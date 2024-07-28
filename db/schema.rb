@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_26_194832) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_28_063305) do
   create_table "courses", force: :cascade do |t|
     t.integer "courseId"
     t.string "catalog_number"
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_26_194832) do
     t.string "saturday_end"
     t.string "sunday_start"
     t.string "sunday_end"
+    t.text "courses_wish_and_qualify_to_grade"
   end
 
   create_table "sections", force: :cascade do |t|

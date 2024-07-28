@@ -3,8 +3,7 @@ class Grader < ApplicationRecord
   validate :name_check
   validate :email_check
   validate :phone_number_check
-  validates :courses_wish_to_grade, presence: true
-  validates :courses_qualified_to_grade, presence: true
+  validates :courses_wish_and_qualify_to_grade, presence: true
   
   # New validation for availability
   validate :availability_present
