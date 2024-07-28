@@ -1,32 +1,60 @@
 <%# This is a rewrite of the admin dashboard code from lab2%>
-
 <!-- Admin dashboard overview page -->
-
 <h1 id ="title">Admin Dashboard</h1>
-
-
 <h2 id="greeting"> Hello, <%= current_user.email%></h2>
 <%# Partials are useed to make it easier to customise the design of the page %>
-<ul class="nav">
-  <li class="nav-item">
-    
-    <%= render("pending_users")%>
-  </li>
-  <li class="nav-item">
-   <%= render("all_users")%>
-  </li>
-  <li class="nav-item">
-<%= render('course_manager')%>
-    \
-  </li>
-  <li class="nav-item">
-<%= render('admin_course')%>
-  </li>
-</ul>
+<div class="accordion accordion-flush" id="accordionAdmin">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        Pending users <%=User.all.where(status: :pending).count%>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render("pending_users")%>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Manage Users Allowed: <%=User.all.where(status: :allowed).count%> Total: <%=User.all.count%>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render("all_users")%>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Course Manager
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('course_manager') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        Course Catalog <%= Course.all.count%>
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('admin_course')%>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-
-
-
-
-  

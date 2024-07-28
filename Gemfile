@@ -90,3 +90,5 @@ gem "dartsass-sprockets", "~> 3.1"
 
 gem "jquery", "~> 0.0.1"
 gem "popper", "~> 0.5.3"
+
+gem "htmlbeautifier", "~> 1.4"

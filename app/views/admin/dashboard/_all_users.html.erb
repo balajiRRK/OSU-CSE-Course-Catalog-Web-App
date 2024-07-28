@@ -1,9 +1,10 @@
 <h2> All users </h2>
-<% User.all.each do |user|%>
-  <div>
-    <h3>email: <%= user.email %>, role: <%= user.role %></h3>
+<% @users.each do |user|%>
+  
+    <h3>Email: <%= user.email %>, Role: <%= user.role %></h3>
     <%# <%= link_to 'review', user_actions_admin_user_path(user) %> 
     <%if user!= current_user%>
-  <%= button_to 'Delete User', user_path(user), method: :delete%>
+  <%= button_to 'Delete User', user_path(user), method: :delete,class: "btn btn-danger"%>
   <%end%>
 <% end %>
+<%== pagy_nav(@pagy) %>

@@ -14,44 +14,40 @@
  *= require_self
  */
 
-
- 
-
- @font-face {
-    font-family: "HarewataruSansShavian";
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-    src: font-url("HarewataruSansShavian.ttf") format("truetype");
- }
- body  {
-    margin: 0px;
+@font-face {
+  font-family: "HarewataruSansShavian";
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+  src: font-url("HarewataruSansShavian.ttf") format("truetype");
+}
+body {
+  margin: 0px;
 }
 
-
 .img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;  
-    max-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-height: 100vh;
 
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-width: 0;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-width: 0;
 }
 
 .center-home-text {
-    color: #ffffff;
-    line-height: 2.5;
-    font-family: "Lato", sans-serif;
-    text-align: center;
-    opacity: 0.8;
+  color: #ffffff;
+  line-height: 2.5;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  opacity: 0.8;
 
-    background-color: #000000;
-    padding: 20px;
-    letter-spacing: 5px;
-    font-size: 20px;
+  background-color: #000000;
+  padding: 20px;
+  letter-spacing: 5px;
+  font-size: 20px;
 }

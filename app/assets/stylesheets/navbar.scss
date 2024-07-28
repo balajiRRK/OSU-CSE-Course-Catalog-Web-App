@@ -1,38 +1,31 @@
 .container {
-    
-    min-width: 100%;
-    background-size: cover;
-   height: 4.6em;
-    
-    
-    background-color: #ba0c2f;
+  min-width: 100%;
+  background-size: cover;
+  height: 4.6em;
+
+  background-color: #ba0c2f;
 }
 .navbar ul {
-  
-    list-style-type: none;
-    
-    padding: 0;
-    overflow: hidden;
-    background-color: #ba0c2f;
+  list-style-type: none;
 
+  padding: 0;
+  overflow: hidden;
+  background-color: #ba0c2f;
 }
-  
+
 .navbar li {
-   
-    float: left;
-    
+  float: left;
 }
-  
+
 .navbar li a {
-    
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 18px 30px;
-    text-decoration: none;
-    font-size: 20px;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 18px 30px;
+  text-decoration: none;
+  font-size: 20px;
 }
-  
+
 .navbar li a:hover {
-    background-color: #111;
+  background-color: #111;
 }
