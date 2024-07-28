@@ -9,9 +9,13 @@ Rails.application.routes.draw do
   end
   resources :courses do
     collection do
-    post :wipe
+      post :wipe
     end
   end
+  
+    namespace :instructors do
+      resources :recommendations, only: [:new, :create, :index, :show]
+    end
   resources :sections
   resources :instructors
   resources :assistants
@@ -35,20 +39,16 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#index', as: 'dashboard'
 
     # Routes for user approvals
-    resources :users, only: [:index] do
-      member do
-        get 'user_actions'
-        get 'user_review'
-      end
-    end
+    # resources :users, only: [:index] do
+    #   member do
+    #     get 'user_actions'
+    #     get 'user_review'
+    #   end
+    # end
 
     # get 'courses/reload', to: 'courses#reload', as: 'reload_courses'
     #new for loading the courses
     # post 'courses/load', to: 'courses#load', as: 'load_courses'
-  end
-
-  namespace :instructors do
-    resources :recommendations, only: [:new, :create, :index, :show]
   end
 
   devise_scope :user do
