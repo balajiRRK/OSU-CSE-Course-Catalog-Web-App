@@ -67,6 +67,8 @@
   font-size: 20px;
 }
 
+/* login styling */
+
 .login-form-wrapper {
   max-width: 600px;
   margin: 0 auto; 
@@ -82,26 +84,27 @@
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 80px;
 }
-.login-form .field {
-  margin-bottom: 15px;
-}
-.login-form .field label {
-  display: block;
-  margin-bottom: 5px;
-}
-.login-form .field input[type="email"],
-.login-form .field input[type="password"] 
-.login-form .field input[type="text"],
-.login-form .field textarea,
-.login-form .field select {
-  width: 100%;
-  padding: 10px;
+
+.login-form .email {
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 20px;
+  max-width: 500px; 
   box-sizing: border-box;
 }
-.login-form .actions {
+
+.login-form .password {
   text-align: center;
+  padding: 10px 20px;
 }
+
+.login-form .field {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .login-form .actions input[type="submit"] {
   padding: 10px 20px;
   background-color: #007bff;
@@ -110,19 +113,27 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
 .login-form .actions input[type="submit"]:hover {
   background-color: #0056b3;
 }
+
+.login-form .actions {
+  text-align: center;
+}
+
 .login-form .links {
   text-align: center;
   margin-top: 15px;
 }
+
 .login-form .links a {
   display: block;
   color: #007bff;
   text-decoration: none;
   margin-top: 5px;
 }
+
 .login-form .links a:hover {
   text-decoration: underline;
 }
@@ -131,15 +142,71 @@
   height: auto;
 }
 
+/* Styles for grader form */
+
+.grader-form {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 80px;
+}
+
+.grader-form .field {
+    margin-top: 20px;
+}
+
+.grader-form .actions input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.grader-form .actions input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.grader-form .actions {
+  text-align: center;
+}
+
+.grader-form .links {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.grader-form .links a {
+  display: block;
+  color: #007bff;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.grader-form .links a:hover {
+  text-decoration: underline;
+}
+
+.grader-form select[multiple] {
+  height: auto;
+}
+
 /* Styles for availability schedule in new/edit form */
 .availability-schedule {
   margin-top: 20px;
+  align-items: left;
 }
 
 .availability-schedule .field {
   margin-bottom: 10px;
   display: flex;
-  align-items: center;
+  align-items: left;
 }
 
 .availability-schedule label {
@@ -174,18 +241,19 @@
 /* Styles for the signup page */
 
 body {
-  padding: 20px; /* Add padding to the entire page */
   box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
 }
 
 .form-container {
-  max-width: 600px; /* Limit the width of the form container */
-  margin: 0 auto; /* Center the form container */
-  padding: 20px; /* Add padding inside the form container */
-  background-color: #fff; /* Set a background color */
-  border: 1px solid #ccc; /* Add a border */
-  border-radius: 10px; /* Round the corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  margin-top: 80px;
 }
 
 .form-heading {
@@ -193,10 +261,25 @@ body {
   text-align: center; /* Center the heading text */
 }
 
-.field {
+.signup-form .field{
   margin-bottom: 15px;
 }
 
-.actions {
+.signup-form {
   text-align: center;
 }
+
+.signup-form .actions input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signup-form .actions input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+

@@ -61,15 +61,15 @@ class GradersController < ApplicationController
 
   def grader_params
     params.require(:grader).permit(
-      :name, :email, :phone_number, 
-      :courses_wish_and_qualify_to_grade,
+      :name, :email, :phone_number,
       :monday_start, :monday_end, 
       :tuesday_start, :tuesday_end, 
       :wednesday_start, :wednesday_end, 
       :thursday_start, :thursday_end, 
       :friday_start, :friday_end, 
       :saturday_start, :saturday_end, 
-      :sunday_start, :sunday_end
+      :sunday_start, :sunday_end,
+      :courses_wish_and_qualify_to_grade => []
     )
   end
 end

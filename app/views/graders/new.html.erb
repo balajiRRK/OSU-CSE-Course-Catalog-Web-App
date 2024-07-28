@@ -1,7 +1,7 @@
 <!-- new.html.erb -->
 
-<div class="login-form-wrapper">
-  <div class="login-form">
+<div class="grader-form-wrapper">
+  <div class="grader-form">
     <!-- Dynamic header based on whether it's a new record or edit -->
     <h2><%= @grader.new_record? ? 'New Grader Application' : 'Edit Grader Application' %></h2>
 
@@ -20,18 +20,15 @@
 
       <!-- Basic information fields -->
       <div class="field">
-        <%= form.label :name %>
-        <%= form.text_field :name %>
+        <%= form.text_field :name, :placeholder => "Name" %>
       </div>
 
       <div class="field">
-        <%= form.label :email %>
-        <%= form.text_field :email %>
+        <%= form.text_field :email, :placeholder => "Email" %>
       </div>
 
       <div class="field">
-        <%= form.label :phone_number %>
-        <%= form.telephone_field :phone_number %>
+        <%= form.telephone_field :phone_number, :placeholder => "Phone Number" %>
       </div>
 
       <!-- Course selection fields -->
