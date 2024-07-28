@@ -194,6 +194,7 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
+    nkf (0.2.0)
     nokogiri (1.16.6-aarch64-linux)
       racc (~> 1.4)
     nokogiri (1.16.6-arm-linux)
@@ -370,6 +371,7 @@ DEPENDENCIES
   jbuilder
   jquery (~> 0.0.1)
   logger (~> 1.6)
+  nkf (~> 0.2.0)
   ostruct (~> 0.6.0)
   pagy
   popper (~> 0.5.3)
