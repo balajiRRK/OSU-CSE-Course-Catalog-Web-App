@@ -109,6 +109,6 @@ before_action :authenticate_admin!, :authenticate_status!, only: [:destroy, :upd
 
     # this method filters out the params that are related to the course object
     def course_params
-      params.require(:course).permit(:title, :catalog_number, :description, :short_description, :component, :term, :campus, :subject)
+      params.require(:course).permit(:title, :catalog_number, :description, :short_description, :component, :term, :campus, :subject, :courseId)
     end
 end

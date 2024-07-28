@@ -4,13 +4,17 @@ class ApplicationController < ActionController::Base
     
       rescue_from ActiveRecord::RecordNotFound, with: :page_not_found 
       rescue_from Pagy::OverflowError, with: :page_not_found 
+      rescue_from SQLite3::BusyException, with: :database_is_busy
         # render 'errors/404'
   protected
 
   def page_not_found 
     render 'errors/404'
   end
-
+  def database_is_busy
+    render :back
+    alert "The database is currently busy."
+  end
   def configure_permitted_parameters
     #adding status
     devise_parameter_sanitizer.permit(:sign_up, keys: [:status] )
