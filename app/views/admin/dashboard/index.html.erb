@@ -1,13 +1,29 @@
 <%# This is a rewrite of the admin dashboard code from lab2%>
 
 <!-- Admin dashboard overview page -->
-<h1>Admin Dashboard</h1>
-<h2> Hello, <%= current_user.email%></h2>
+
+<h1 id ="title">Admin Dashboard</h1>
+
+
+<h2 id="greeting"> Hello, <%= current_user.email%></h2>
 <%# Partials are useed to make it easier to customise the design of the page %>
-<%= render("pending_users")%>
-<%= render("all_users")%>
+<ul class="nav">
+  <li class="nav-item">
+    
+    <%= render("pending_users")%>
+  </li>
+  <li class="nav-item">
+   <%= render("all_users")%>
+  </li>
+  <li class="nav-item">
 <%= render('course_manager')%>
+    \
+  </li>
+  <li class="nav-item">
 <%= render('admin_course')%>
+  </li>
+</ul>
+
 
 
 

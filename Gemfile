@@ -84,6 +84,9 @@ gem "rainbow", "~> 3.1"
 
 gem "devise", "~> 4.9"
 
-gem "bootstrap", "~> 5.3"
+gem 'bootstrap', '~> 5.3.3'
 
 gem "dartsass-sprockets", "~> 3.1"
+
+gem "jquery", "~> 0.0.1"
+gem "popper", "~> 0.5.3"
