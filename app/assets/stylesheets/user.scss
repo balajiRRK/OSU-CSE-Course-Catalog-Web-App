@@ -1,0 +1,120 @@
+/* login styling */
+
+.login-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto; 
+    padding: 20px; 
+  }
+  
+  .login-form {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 80px;
+  }
+  
+  .login-form .email {
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 20px;
+    max-width: 500px; 
+    box-sizing: border-box;
+  }
+  
+  .login-form .password {
+    text-align: center;
+    padding: 10px 20px;
+  }
+  
+  .login-form .field {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .login-form .actions input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-form .actions input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .login-form .actions {
+    text-align: center;
+  }
+  
+  .login-form .links {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .login-form .links a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 5px;
+  }
+  
+  .login-form .links a:hover {
+    text-decoration: underline;
+  }
+  
+  .login-form select[multiple] {
+    height: auto;
+  }
+  
+  
+    
+  /* Styles for the signup page */
+  
+  body {
+    box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+  }
+  
+  .form-container {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    margin-top: 80px;
+  }
+  
+  .form-heading {
+    padding: 20px 0; /* Add 20px padding to the top and bottom of the heading */
+    text-align: center; /* Center the heading text */
+  }
+  
+  .signup-form .field{
+    margin-bottom: 15px;
+  }
+  
+  .signup-form {
+    text-align: center;
+  }
+  
+  .signup-form .actions input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .signup-form .actions input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
