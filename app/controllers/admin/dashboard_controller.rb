@@ -3,8 +3,8 @@ class Admin::DashboardController < ApplicationController
   include Devise
   def index
       # @courses = Course.all
-      @pagy, @courses = pagy(Course.all)
-      @pagy, @users = pagy(User.all)
-      @pagy, @pending_users = pagy( User.where(status: "pending").all)
+      @pagy_course, @courses = pagy(Course.all,page_param: :course_page)
+      @pagy_user, @users = pagy(User.all,page_param: :user_page)
+      @pagy_pending, @pending_users = pagy( User.where(status: "pending").all,page_param: :pending_page)
     end
 end
