@@ -2,7 +2,7 @@
 
 ## Features/Capabilities of the App
 
-This app provides an overview of all the CSE classes offered at OSU in a specific semester after a user logins with the account the made. **Accounts can only be made with an @osu.edu email**. There are 3 different account types: student, instructor, and admin. Account types can be selected upon registering, and student accounts will not need admin approval; *however, instructor and admin accounts will be approved by a current admin*. 
+This app provides an overview of all the CSE classes offered at OSU in a specific semester after a user logins with the account the made. **Accounts can only be made with an [name].[number]@osu.edu email**. There are 3 different account types: student, instructor, and admin. Account types can be selected upon registering, and student accounts will not need admin approval; *however, instructor and admin accounts will be approved by a current admin*. 
 
 With a student account, the user can view courses and their sections in a given semester. 
 
@@ -70,19 +70,34 @@ This app requires Ruby 3.2.0 or newer versions.
 
 3. You found the course you're looking for! If you want to view sections for a specific course, click on "view" on the right side of the page in the same line of the course.
 
+*Send an application to become a grader or edit a previously sent grader application*
+
+1. Register or log into a student account.
+
+2. Press "New Grader Application" or "Grader Application" to either fill out the form or view/edit a previously submitted form.
+
+*Create recommendation*
+
+1. Register or log into an instructor account and await approval from an admin user.
+
+2. Press "Create Recommendation" or "Recommendations" to either fill out the form or view/edit a previously submitted form.
+
 ***FOR ADMINS***
 
 *Login for Admin user:*
-   - username: admin@osu.edu
+   - username: admin.1@osu.edu
    - password: team3pass
 
 *Approve instructor and admin account requests*
 
-*Create new course*
+*Remove student, instructor and admin accounts even after they have been approved*
 
-*Edit course*
+*Load multiple new courses using API request*
 
-*Delete course*
+*Edit courses individually*
+
+*Delete courses individually and also delete ALL courses*
+
 
 ***
 
@@ -126,26 +141,40 @@ Solution: run `bin/rails destroy model table_name`
 
 ***
 
+*Problem: When running `rails server`, receiving error message, "Could not find bootstrap-5.3.3, dartsass-sprockets-3.1.0..."*
+
+Solution: run `bundle install --gemfile /[insert full dir path to the project]/Gemfile` to install missing gems.
+
+**
+
+*Problem: When running `rails server`, receiving error message, "Exiting /dir/...: Could not find table 'users' (ActiveRecord::StatementInvalid)"*
+
+Solution: run `rails db:migrate`.
+
 ## Contributions
 
-Shristi --  worked on all files related to user management 
+Shristi --  Worked on the application to become a grader feature with Bikash and improved CSS of log-in page
 
-Ryan -- worked on all files related to admin dashboard
+Ryan -- Worked on the recommendation submission feature with Ivy
 
-Balaji -- worked on all files related to user database, handled all the CSS for the website, created the homepage and navigation bar
+Balaji -- Summarized project 3 instructions to remove any redudancies/generalities to make it clear what team's tasks were and assessed bugs from Project 2 that needed to be fixed to GitHub issues, handled clear and constant communication within teammates and also with grader to clarify any doubts on deadlines, specific feature requirements, implementation help, and debugging
 
-Javan -- worked on database, all files related to API integration, configuration of 'devise' gem for user, gemfile, fetch_courses.rake, and routes
+Javan -- Worked on the new Admin Dashboard along with fixing previous issues of the Admin Dashboard from project 2, improved CSS by implementing Bootstrap, handled database migrations and all merge conflicts when merging all features to main, helped fix teammates implementation issues
 
-Bikash -- worked on all files related to course catalog; implemented search by title, course number, course level, and subject on the course catalog
+Bikash -- Worked on the application to become a grader feature with Shristi 
 
-Ivy -- designed architecture of app, created issues, assigned issues, supervised meetings, worked on README file
+Ivy -- Worked on the recommendation submission feature with Ryan
 
 ***
 
 ## Citations/Sources
 
-Sources to help learn Ruby on Rails 
+Sources to help learn Ruby on Rails:
 https://guides.rubyonrails.org/getting_started.html
 
-Sources to help learn how to use ruby gems
+Sources to help learn how to use ruby gems:
 https://www.youtube.com/watch?v=9K5YvsrKBRk
+
+Sources to help create CSS:
+https://www.w3schools.com/css/
+https://getbootstrap.com/docs/5.3/examples/
