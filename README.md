@@ -2,7 +2,7 @@
 
 ## Features/Capabilities of the App
 
-This app provides an overview of all the CSE classes offered at OSU in a specific semester after a user logins with the account the made. **Accounts can only be made with an [name].[number]@osu.edu email**. There are 3 different account types: student, instructor, and admin. Account types can be selected upon registering, and student accounts will not need admin approval; *however, instructor and admin accounts will be approved by a current admin*. 
+This app provides an overview of all the CSE classes offered at OSU in a specific semester after a user logins with the account the made. **Accounts can only be made with an [name].[number]@osu.edu email**. There are 3 different account types: student, instructor, and admin. Account types can be selected upon registering, and student accounts will not need admin approval; *however, instructor and admin accounts will need to be approved by an admin in the admin dashboard*. 
 
 With a student account, the user can view courses and their sections in a given semester. 
 
