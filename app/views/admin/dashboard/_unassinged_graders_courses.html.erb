@@ -12,10 +12,10 @@
       <tbody>
         
         <!-- here we are looping through all the courses that we get from the search result to show their data -->
-        <% @courses.sections.where(grader: nil).each do |course| %>
+        <% @no_grader.each do |course| %>
           <tr>
             <!-- this is showing course number -->
-            <td style="padding: 15px;"><%= course.catalog_number %></td>
+            <td style="padding: 15px;"><%= course.sections %></td>
             <!-- this is showing course title -->
             <td style="padding: 15px;"><%= course.title %></td>
             <!-- this is showing course description -->
@@ -41,4 +41,4 @@
     </table>
   </div>
 </div>
-<%== pagy_nav(@pagy) %>
+<%== pagy_nav(@pagy_unassigned) %>

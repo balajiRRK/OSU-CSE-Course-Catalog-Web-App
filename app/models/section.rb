@@ -3,7 +3,7 @@ class Section < ApplicationRecord
   # Query constraints are being used because different courses may have the same class number so course_id is also used to filter out 
   # that when it happens
   query_constraints :class_number, :course_id
-  belongs_to :course, primary_key: :courseId, class_name: "Course", foreign_key: "course_id", dependent: :destroy
+  belongs_to :course, primary_key: :courseId, foreign_key: "course_id", dependent: :destroy
   # The where part is to separate instructors where the class_number is the same, 
   # so the course_id check is added to make sure it's the instructor for the course.
 
