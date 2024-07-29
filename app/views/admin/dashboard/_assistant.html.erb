@@ -1,3 +1,5 @@
+
+
 <% @assistants.each do |assistant|%>
   <div class = 'assistant_container'>
     <p>
@@ -31,4 +33,4 @@
   <%= link_to "Show this assistant", assistant, class: 'btn btn-primary' %>
   <%= link_to "Look up this assistant", 'https://www.osu.edu/search/?query=' +assistant.email, class: 'btn btn-success'%>
 <%end%>
-<%@pagy_assistants%>
+<%== pagy_nav(@pagy_assistant) %>

@@ -7,7 +7,7 @@ class Admin::DashboardController < ApplicationController
       @pagy_course, @courses = pagy(Course.all,page_param: :course_page)
       @pagy_user, @users = pagy(User.all,page_param: :user_page)
       @pagy_pending, @pending_users = pagy( User.where(status: "pending").all,page_param: :pending_page)
-      @pagy_assistants , @assistants = pagy(Assistant.all)
+      @pagy_assistant, @assistants = pagy(Assistant.all,page_param: :assistants)
       
       @assistant = Assistant.new
     end
