@@ -28,18 +28,21 @@ module Instructors   #module Instructors
         @recommendation = Recommendation.new(recommendation_params) #create a new recommendation with the params
         @recommendation.instructor = current_user   #set instructor id to current user id
 
-        if @recommendation.save
-          send_invite_if_student_not_registered(@recommendation.student_email) #send invite if student not registered
-          if @recommendation.course_id.present? && Course.exists?(@recommendation.course_id)  #if course id present and course exists
-            redirect_to course_path, notice: "Recommendation created successfully" #redirect to admin recommendations path
+        
+          # They meant catalog_number instead
+          if @recommendation.course_id.present? && Course.exists?(:catalog_number => @recommendation.course_id)  #if course id present and course exists
+            send_invite_if_student_not_registered(@recommendation.student_email) #send invite if student not registered
+            redirect_to courses_url, notice: "Recommendation created successfully" #redirect to admin recommendations path
+            @recommendation.save
           else
-            redirect_to root_path, notice: "Recommendation Failed"  #redirect to root path
+            Rails.logger.debug @recommendation.errors.full_messages
+            flash.now[:alert] = "Please fix errors below: #{@recommendation.errors.full_messages.to_sentence}"  #flash alert
+            render :new     #render new
+            flash.now[:alert] = "Recommendation Failed"  #redirect to root path
           end
-        else
-          Rails.logger.debug @recommendation.errors.full_messages
-          flash.now[:alert] = "Please fix errors below: #{@recommendation.errors.full_messages.to_sentence}"  #flash alert
-          render :new     #render new
-        end
+        
+         
+        
     end
 
     private
