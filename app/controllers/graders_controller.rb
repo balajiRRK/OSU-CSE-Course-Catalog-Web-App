@@ -26,7 +26,7 @@ class GradersController < ApplicationController
   end
 
   def show
-    @grader = Grader.find_by(params[:id])
+    @grader = Grader.find(params[:id])
   end
 
   def index
@@ -34,7 +34,7 @@ class GradersController < ApplicationController
   end
 
   def edit
-    @grader = Grader.find_by(params[:id])
+    @grader = Grader.find(params[:id])
   end
 
   def update
