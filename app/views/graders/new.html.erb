@@ -34,7 +34,7 @@
       <!-- Course selection fields -->
       <div class="field">
         <%= form.label :courses_wish_and_qualify_to_grade, "Courses you wish to (and are qualified to) grade for" %>
-        <%= form.select :courses_wish_and_qualify_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.id] }), { prompt: "Select courses" } %>
+        <%= form.select :courses_wish_and_qualify_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.id] }), { prompt: "Select courses", multiple: true } %>
       </div>
 
       <!-- Availability schedule section -->
@@ -59,7 +59,7 @@
       
       <!-- Navigation link -->
       <div class="links">
-        <%= link_to 'Back', courses_path, class: "btn btn-victory" %>
+        <%= link_to 'Back', 'javascript:history.back()' %>
       </div>
     <% end %>
   </div>
