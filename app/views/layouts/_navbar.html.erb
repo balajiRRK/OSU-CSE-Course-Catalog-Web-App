@@ -13,7 +13,7 @@
           <% end %>
            <% if current_user&.student? %>
           <li> <%= link_to 'New Grader Application', new_grader_path %> </li>
-          <li> <%= link_to 'Your Grader Applications',  user_applications_path(current_user.email) %> </li>
+          <li> <%= link_to 'Your Grader Applications',  user_applications_path(current_user) %> </li>
           
         <% end %>
           <% if current_user&.admin? %>

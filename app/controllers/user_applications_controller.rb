@@ -1,7 +1,8 @@
 class UserApplicationsController < ApplicationController
   
-  def show
-    @user= User.find(:id)
-    
+  def index
+    @user= current_user
+
   end
+ 
 end

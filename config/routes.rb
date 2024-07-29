@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       get :destroy
     end
   end
-  resource :user_applications 
+  resources :user_applications
   resources :courses do
     collection do
       post :wipe
