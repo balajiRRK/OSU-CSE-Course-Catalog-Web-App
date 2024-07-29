@@ -1,5 +1,5 @@
-<div class="grader-form-wrapper">
-  <div class="grader-form">
+<div class="login-form-wrapper">
+  <div class="login-form">
     <h2>Edit Grader Application</h2>
 
     <%= form_with(model: @grader, local: true) do |form| %>
@@ -56,7 +56,7 @@
       </div>
       
       <div class="links">
-        <%= link_to 'Back', graders_path %>
+        <%= link_to 'Back', 'javascript:history.back()' %>
       </div>
     <% end %>
   </div>
