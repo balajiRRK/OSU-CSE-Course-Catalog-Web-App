@@ -22,16 +22,12 @@ When viewing the course catalog, the user is able to search a course by title, c
 
 This app requires Ruby 3.2.0 or newer versions. 
 1. Clone the repo either through HTTPS or SSH
-   - Through HTTPS: https://github.com/cse-3901-sharkey/2024-su-Team-3-Lab-2.git
-   - Through SSH: git@github.com:cse-3901-sharkey/2024-su-Team-3-Lab-2.git
+   - Through HTTPS: https://github.com/cse-3901-sharkey/2024-su-Team-3-Lab-3.git
+   - Through SSH: git@github.com:cse-3901-sharkey/2024-su-Team-3-Lab-3.git
 2. Run the following commands:
    ```
    bundle install
    bin/rails db:migrate
-   bin/rails fetch_courses
-   bin/rails fetch_sections
-   bin/rails add_admin
-   bin/rails server
    ```
 3. Open `localhost:3000` in your browser.
      
@@ -44,7 +40,7 @@ This app requires Ruby 3.2.0 or newer versions.
 
 2. Fill in the boxes with your relevent information.
 
-2. Your account is now registered! You're already logged in and can view classes. 
+2. Your account is now registered! You're already logged in and can view classes. But if you chose a role such as "instructor" or "admin", you will not have permissions of that role UNTIL an admin account approves your account.
 
 *Log into your account*
 
