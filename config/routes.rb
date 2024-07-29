@@ -30,7 +30,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :graders, only: [:new, :create, :show, :index, :edit, :update]
+  resources :graders, only: [:new, :create, :show, :index, :edit, :update, :destroy]
+  
 
   namespace :admin do
     # Admin dashboard route

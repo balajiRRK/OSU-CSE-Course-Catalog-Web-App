@@ -37,6 +37,15 @@ class GradersController < ApplicationController
     @grader = Grader.find(params[:id])
   end
 
+  def destroy
+    set_grader
+    @grader.destroy! # this line deletes course from database
+
+    respond_to do |format|
+      format.html { redirect_to grader_url, notice: "Application was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
   def update
     process_availability
     # Debug output to check availability after processing
@@ -54,7 +63,7 @@ class GradersController < ApplicationController
   private
 
   def set_grader
-    @grader = Grader.find_by_email(params[:id])
+    @grader = Grader.find(params[:id])
   end
 
   def set_courses
