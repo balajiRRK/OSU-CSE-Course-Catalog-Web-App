@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+<%= render @api_search %>
+<ul class="list-group list-group-horizontal">
+  <li class="list-group-item"><%= button_to "Edit this course search", edit_api_search_path(@api_search), method: :get , class: "btn btn-secondary"%> </li>
+  <li class="list-group-item"><%= button_to "download this course search", download_api_search_path(@api_search) , class: "btn btn-secondary" %></li>
+  <li class="list-group-item"><%= button_to "reload using this course search", reload_api_search_path(@api_search),method: :get , class: "btn btn-primary" %></li>
+  <li class="list-group-item"><%= button_to "Destroy this api search", @api_search, method: :delete, class: "btn btn-danger" %></li>
+</ul>
+<%= link_to "Back to api searches", api_searches_path,class: "btn btn-secondary" %>

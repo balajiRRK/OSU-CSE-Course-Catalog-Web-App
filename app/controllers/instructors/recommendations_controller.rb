@@ -8,25 +8,41 @@
 module Instructors   #module Instructors
   class RecommendationsController < ApplicationController
     before_action :authenticate_user!     #check user is authenticated
+    before_action :authenticate_status!     #check user is authenticated
     before_action :authenticate_instructor!    #check user is instructor
 
+    def index
+      @recommendations = Recommendation.all  #get all recommendations
+    end
+
+    def show
+      @recommendation = Recommendation.find(params[:id])  #find recommendation by id
+    end
+
     def new
-        @course = Course.find(params[:course_id])   #find course by course id
-        @recommendation = @course.recommendations.new   #new recommendation
+        #@course = Course.find(params[:course_id])   #find course by course id
+        @recommendation = Recommendation.new   #new recommendation
     end
 
     def create
         @recommendation = Recommendation.new(recommendation_params) #create a new recommendation with the params
         @recommendation.instructor = current_user   #set instructor id to current user id
 
-        if @recommendation.save
-          send_invite_if_student_not_registered(@recommendation.student_email) #send invite if student not registered
-          redirect_to course_path(@recommendation.course_id), notice: "Recommendation created successfully" #redirect to admin recommendations path
-        else
-          Rails.logger.debug @recommendation.errors.full_messages
-          flash.now[:alert] = "Please fix errors below: #{@recommendation.errors.full_messages.to_sentence}"  #flash alert
-          render :new     #render new
-        end
+        
+          # They meant catalog_number instead
+          if @recommendation.course_id.present? && Course.exists?(:catalog_number => @recommendation.course_id)  #if course id present and course exists
+            send_invite_if_student_not_registered(@recommendation.student_email) #send invite if student not registered
+            redirect_to courses_url, notice: "Recommendation created successfully" #redirect to admin recommendations path
+            @recommendation.save
+          else
+            Rails.logger.debug @recommendation.errors.full_messages
+            flash.now[:alert] = "Please fix errors below: #{@recommendation.errors.full_messages.to_sentence}"  #flash alert
+            render :new     #render new
+            flash.now[:alert] = "Recommendation Failed"  #redirect to root path
+          end
+        
+         
+        
     end
 
     private
@@ -36,9 +52,10 @@ module Instructors   #module Instructors
     end
 
     def send_invite_if_student_not_registered(student_email)  #send invite if student not registered
-        unless User.exists?(email: student_email)  #unless user find by email
-          UserMailer.invite_student(student_email).deliver_later  #send invite to student
-        end
+      course = Course.find_by(id: params[:recommendation][:course_id])  #find course by id
+      unless User.exists?(email: student_email)  #unless user find by email
+        UserMailer.invite_student(student_email, course).deliver_later  #send invite to student
+      end
     end
 
     def authenticate_instructor!  #authenticate instructor

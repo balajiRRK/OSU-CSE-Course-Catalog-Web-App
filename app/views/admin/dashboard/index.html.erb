@@ -1,86 +1,75 @@
-<!--
-# The sources used for this file vary, including ChatGPT and Carmen resources:
-# https://www.youtube.com/playlist?list=PLlxmoA0rQ-Lx45j3D6da7-Iqvo5wtjKBm
-# https://www.youtube.com/playlist?list=PLS1QulWo1RIbNBXZAeVbkkHEj9zsEbXQK
-# https://www.railstutorial.org/book
-# https://www.youtube.com/watch?v=GY7Ps8fqGdc
-# https://chatgpt.com/
--->
-
+<%# This is a rewrite of the admin dashboard code from lab2%>
 <!-- Admin dashboard overview page -->
-<h1>Admin Dashboard</h1>
-
-<div>
-  <h2>Courses</h2>
-  <p>Total Courses: <%= Course.all.length %></p>
-  <%= link_to 'Browse Courses', admin_dashboard_path %><br>
-  <%# <%= link_to 'Reload Catalog', admin_reload_courses <br> %>
-  <%= link_to 'Add New Course', '#', id: 'add-course-link' %>
-</div>
-
-<div id="add-course-form" style="display: none;">
-  <h2>Add New Course</h2>
-  <%= form_with model: @course, url: admin_dashboard_path, local: true do |form| %>
-    <div>
-      <%= form.label :name, 'Course Name' %>
-      <%= form.text_field :name %>
+<h1 id ="title">Admin Dashboard</h1>
+<h2 id="greeting"> Hello, <%= current_user.email%></h2>
+<%# Partials are useed to make it easier to customise the design of the page %>
+<div class="accordion accordion-flush" id="accordionAdmin">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        Pending users <%=User.all.where(status: :pending).count%>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render("pending_users")%>
+      </div>
     </div>
-
-    <div>
-      <%= form.label :description, 'Course Description' %>
-      <%= form.text_area :description %>
-    </div>
-
-    <div>
-      <%= form.label :credits, 'Credits' %>
-      <%= form.number_field :credits %>
-    </div>
-
-    <div>
-      <%= form.label :instructor, 'Instructor' %>
-      <%= form.text_field :instructor %>
-    </div>
-
-    <div>
-      <%= form.submit 'Add Course' %>
-    </div>
-  <% end %>
-</div>
-
-<div>
-  <h2>Users Pending Approval</h2>
-  <p>Total Pending Users: <%= User.count %></p>
-  <%#  commented out for now %>
-  <%# <%= link_to 'Approve Users', admin_users_approval_path  %>
-</div>
-
-<% @courses.each do |course| %>
-  <div>
-    <h3><%= course.title %></h3>
-    <p><%= course.description %></p>
-    <%# Did not add credits to the table, will add it in later%>
-    <%# <p>Credits: <%= course.credits </p> %>
-     <% course.sections.each do |section| %>
-    <p>Instructor for section <%=section.section %> at <%=section.start_time %></p>
-    <%#  there must be another key that differs from each section %>
-    <%# this will show the section number and the instructor for the section %>
-    <p>  <%=  section.instructor %></p>
-    <%end%>
-    <%= link_to 'Edit',  edit_course_path(course) %>
-    <%= link_to 'Delete', admin_dashboard_path(course), method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 
-  
-<% end %>
-<%== pagy_nav(@pagy) %>
-<script>
-  document.getElementById('add-course-link').addEventListener('click', function() {
-    document.getElementById('add-course-form').style.display = 'block';
-  });
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Manage Users Allowed: <%=User.all.where(status: :allowed).count%> Total: <%=User.all.count%>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render("all_users")%>
+      </div>
+    </div>
+  </div>
 
-  document.querySelectorAll('.edit-course-link').forEach(function(link) {
-    link.addEventListener('click', function() {
-      document.getElementById('edit-course-form-' + this.dataset.id).style.display = 'block';
-    });
-  });
-</script>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Course Manager
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('course_manager') %>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        Course Catalog <%= Course.all.count%>
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('admin_course') %>
+      </div>
+    </div>
+  </div>
+
+<div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+        Unassigned graders for class sections 
+      </button>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('unassinged_graders_courses') %>
+      </div>
+    </div>
+  </div>
+  <%# ending the accordion %>
+</div>
+
+

@@ -1,0 +1,62 @@
+<%= form_with(model: api_search) do |form| %>
+  <% if api_search.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(api_search.errors.count, "error") %> prohibited this api_search from being saved:</h2>
+
+      <ul>
+        <% api_search.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :search, style: "display: block" %>
+    <%= form.text_field :search %>
+  </div>
+
+  <div>
+    <%= form.label :term, style: "display: block" %>
+    <%= form.text_field :term %>
+  </div>
+
+  <div>
+    <%= form.label :campus, style: "display: block" %>
+    <%= form.text_field :campus %>
+  </div>
+
+  <div>
+    <%= form.label :academic_career, style: "display: block" %>
+    <%= form.text_field :academic_career %>
+  </div>
+
+  <div>
+    <%= form.label :catalog_number, style: "display: block" %>
+    <%= form.text_field :catalog_number %>
+  </div>
+
+  <div>
+    <%= form.label :component, style: "display: block" %>
+    <%= form.text_field :component %>
+  </div>
+
+  <div>
+    <%= form.label :subject, style: "display: block" %>
+    <%= form.text_field :subject %>
+  </div>
+
+  <div>
+    <%= form.label :instruction_mode, style: "display: block" %>
+    <%= form.text_field :instruction_mode %>
+  </div>
+
+  <div>
+    <%= form.label 'Time of day', style: "display: block" %>
+    <%= form.text_field :evening %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

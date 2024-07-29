@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+task :add_allowed_users => [ :environment ] do
+(1..10).each do |i|
+User.create!(:email => "student."+i.to_s+"@osu.edu", :password => "team3pass", :password_confirmation => "team3pass", role: "student", status: :allowed).save
+User.create!(:email => "instructor."+i.to_s+"@osu.edu", :password => "team3pass", :password_confirmation => "team3pass", role: "instructor", status: :allowed).save
+end
+end

@@ -1,0 +1,53 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@font-face {
+  font-family: "HarewataruSansShavian";
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+  src: font-url("HarewataruSansShavian.ttf") format("truetype");
+}
+body {
+  margin: 0px;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-height: 100vh;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-width: 0;
+}
+
+.center-home-text {
+  color: #ffffff;
+  line-height: 2.5;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  opacity: 0.8;
+
+  background-color: #000000;
+  padding: 20px;
+  letter-spacing: 5px;
+  font-size: 20px;
+}

@@ -1,0 +1,63 @@
+<div class="grader-form-wrapper">
+  <div class="grader-form">
+    <h2>Edit Grader Application</h2>
+
+    <%= form_with(model: @grader, local: true) do |form| %>
+      <% if @grader.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@grader.errors.count, "error") %> prohibited this grader application from being saved:</h2>
+
+          <ul>
+            <% @grader.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <!-- Basic information fields -->
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :email %>
+        <%= form.email_field :email %>
+      </div>
+
+      <div class="field">
+        <%= form.label :phone_number %>
+        <%= form.telephone_field :phone_number %>
+      </div>
+
+      <div class="field">
+         <%= form.label :courses_wish_and_qualify_to_grade, "Courses you wish to (and are qualified to) grade for" %>
+         <%= form.select :courses_wish_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.id] }), { prompt: "Select courses" }, multiple: true %>
+      </div>
+
+    <!-- Availability schedule section -->
+      <h3>Availability Schedule</h3>
+      <div class="availability-schedule">
+        <% Grader::DAYS_OF_WEEK.each do |day| %>
+          <div class="field">
+            <%= form.label day %>
+            <!-- Start time field for each day -->
+            <%= form.time_field "#{day.downcase}_start", value: @grader.send("#{day.downcase}_start") %>
+            to
+            <!-- End time field for each day -->
+            <%= form.time_field "#{day.downcase}_end", value: @grader.send("#{day.downcase}_end") %>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="actions">
+        <%= form.submit "Update Application" %>
+      </div>
+      
+      <div class="links">
+        <%= link_to 'Back', graders_path %>
+      </div>
+    <% end %>
+  </div>
+</div>

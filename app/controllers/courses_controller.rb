@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   # before_action 
 before_action :authenticate_user!
-before_action :authenticate_admin!, only: [:destroy, :update]
+before_action :authenticate_admin!, :authenticate_status!, only: [:destroy, :update, :wipe]
   # this method is getting all the courses from database
   def index
     # @courses = Course.all
@@ -82,6 +82,14 @@ before_action :authenticate_admin!, only: [:destroy, :update]
     end
   end
 
+  # This will remove all courses from the course catalog
+  def wipe
+    Course.delete_all
+    Section.delete_all
+    Assistant.delete_all
+    Instructor.delete_all
+  end
+
   # this method deletes course from database
   def destroy
     set_course
@@ -101,6 +109,6 @@ before_action :authenticate_admin!, only: [:destroy, :update]
 
     # this method filters out the params that are related to the course object
     def course_params
-      params.require(:course).permit(:title, :catalog_number, :description, :short_description, :component, :term, :campus, :subject)
+      params.require(:course).permit(:title, :catalog_number, :description, :short_description, :component, :term, :campus, :subject, :courseId)
     end
 end

@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_21_233214) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_28_063305) do
+  create_table "api_searches", force: :cascade do |t|
+    t.string "search"
+    t.string "term"
+    t.string "campus"
+    t.string "academic_career"
+    t.string "catalog_number"
+    t.string "component"
+    t.string "subject"
+    t.string "instruction_mode"
+    t.string "evening"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "assistants", force: :cascade do |t|
+    t.string "fname"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "class_number"
+    t.string "course_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.integer "courseId"
     t.string "catalog_number"
@@ -24,6 +47,44 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_21_233214) do
     t.string "catalog_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "academic_career"
+  end
+
+  create_table "graders", force: :cascade do |t|
+    t.string "name"
+    t.string "subject"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "contact_info"
+    t.text "courses_wish_to_grade"
+    t.text "courses_qualified_to_grade"
+    t.string "email"
+    t.string "phone_number"
+    t.text "availability"
+    t.string "monday_start"
+    t.string "monday_end"
+    t.string "tuesday_start"
+    t.string "tuesday_end"
+    t.string "wednesday_start"
+    t.string "wednesday_end"
+    t.string "thursday_start"
+    t.string "thursday_end"
+    t.string "friday_start"
+    t.string "friday_end"
+    t.string "saturday_start"
+    t.string "saturday_end"
+    t.string "sunday_start"
+    t.string "sunday_end"
+    t.text "courses_wish_and_qualify_to_grade"
+  end
+
+  create_table "instructors", force: :cascade do |t|
+    t.string "fname"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "class_number"
+    t.string "course_id"
   end
 
   create_table "recommendations", force: :cascade do |t|
@@ -63,6 +124,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_21_233214) do
     t.string "section"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "session"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,6 +136,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_21_233214) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role"
+    t.string "status", default: "pending"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

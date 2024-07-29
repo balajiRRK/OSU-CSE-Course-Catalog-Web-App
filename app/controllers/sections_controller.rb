@@ -1,6 +1,6 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_admin!, :authenticate_status!, only: %i[ edit update destroy ]
   # this method is getting all the sections from database
   def index
     @sections = Section.all
@@ -19,6 +19,7 @@ class SectionsController < ApplicationController
   # GET /sections/1/edit
   def edit
     # set_section is already called before this action due to the before_action callback
+    # @section = Section.find_by(params[:id])
   end
 
   # this method is creating a new section in the database

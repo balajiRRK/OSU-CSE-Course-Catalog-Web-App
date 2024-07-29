@@ -1,0 +1,95 @@
+/* Styles for grader form */
+  
+.grader-form {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 80px;
+  }
+  
+  .grader-form .field {
+      margin-top: 20px;
+  }
+  
+  .grader-form .actions input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .grader-form .actions input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .grader-form .actions {
+    text-align: center;
+  }
+  
+  .grader-form .links {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .grader-form .links a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 5px;
+  }
+  
+  .grader-form .links a:hover {
+    text-decoration: underline;
+  }
+  
+  .grader-form select[multiple] {
+    height: auto;
+  }
+  
+  /* Styles for availability schedule in new/edit form */
+  .availability-schedule {
+    margin-top: 20px;
+    align-items: left;
+  }
+  
+  .availability-schedule .field {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: left;
+  }
+  
+  .availability-schedule label {
+    display: inline-block;
+    width: 100px;
+    margin-right: 10px;
+  }
+  
+  .availability-schedule input[type="time"] {
+    width: 120px;
+    padding: 5px;
+    margin-right: 5px;
+  }
+  
+  /* Styles for availability table in show view */
+  .availability-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .availability-table th, .availability-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .availability-table th {
+    background-color: #f2f2f2;
+  }

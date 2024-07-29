@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  search: MyString
+  term: MyString
+  campus: MyString
+  academic_career: MyString
+  catalog_number: MyString
+  catalog_level: MyString
+  component: MyString
+  subject: MyString
+  instruction_mode: MyString
+  evening: MyString
+  course_id: 1
+
+two:
+  search: MyString
+  term: MyString
+  campus: MyString
+  academic_career: MyString
+  catalog_number: MyString
+  catalog_level: MyString
+  component: MyString
+  subject: MyString
+  instruction_mode: MyString
+  evening: MyString
+  course_id: 1

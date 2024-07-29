@@ -1,0 +1,14 @@
+<h1> Saved Course searches </h1>
+<div id="api_searches">
+  <% @api_searches.each do |api_search| %>
+    <%= render api_search %>
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item"><%= link_to "Show this course search properties", api_search %> </li>
+      <li class="list-group-item"><%= link_to "Edit this course search", edit_api_search_path(api_search) %></li>
+      <li class="list-group-item"> <%= link_to "download this course search",download_api_search_path(api_search)  %></li>
+      <li class="list-group-item"> <%= link_to "reload using this course search", reload_api_search_path(api_search)  %></li>
+    </ul>
+  <% end %>
+</div>
+<%= link_to "New api search", new_api_search_path, class: "btn btn-primary" %>
+<%= render('guide')%>

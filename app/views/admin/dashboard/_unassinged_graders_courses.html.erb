@@ -1,0 +1,63 @@
+
+
+      
+  <div class="course mt-5">
+     <table class="table table-bordered mt-5">
+        <!-- First row for labels -->
+           <thead>
+        <tr>
+          <th>Class number:</th>
+          <th>Instructor:</th>
+          <th>Assistant:</th>
+          <th>Component:</th>
+          <th>Instruction mode:</th>
+          <th>Facility description:</th>
+          <th>Room:</th>
+          <th>Start time:</th>
+          <th>End time:</th>
+          <th>Start date:</th>
+          <th>End date:</th>
+          <th>M:</th>
+          <th>T:</th>
+          <th>W:</th>
+          <th>Th:</th>
+          <th>F:</th>
+          <th>CourseID:</th>
+          <th>Term:</th>
+        </tr>
+           </thead>
+            <tbody>
+       <% @no_grader.each do |section| %>
+       <% @course = section.course %>
+       <% @section = section%>
+        <tr>
+          <td><%= section.class_number %></td>
+          <%# checks if there are any instructos or assistants %>
+          <td><%= section.instructors.count == 0 ? not_assigned : render(section.instructors)%> </td>
+          <td> <%= link_to "Add Grader", render(partial: 'assistant_form'), class: "btn btn-primary" %> </td>
+          <td><%= section.component %></td>
+          <td><%= section.instruction_mode %></td>
+          <td><%= section.facility_description %></td>
+          <td><%= section.room %></td>
+          <td><%= section.start_time %></td>
+          <td><%= section.end_time %></td>
+          <td><%= section.start_date %></td>
+          <td><%= section.end_date %></td>
+          <td><%= section.monday %></td>
+          <td><%= section.tuesday %></td>
+          <td><%= section.wednesday %></td>
+          <td><%= section.thursday %></td>
+          <td><%= section.friday %></td>
+          <td><%= section.course_id %></td>
+          <td><%= section.term %></td>
+        </tr>
+        <%end%>
+         </tbody>
+      </table>
+      
+    </div>
+ 
+      
+        
+         
+<%== pagy_nav(@pagy_unassigned) %>

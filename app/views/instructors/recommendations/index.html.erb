@@ -1,0 +1,25 @@
+<h1>Recommendations</h1>      
+<table>    
+    <thead>
+        <tr>
+            <th>Student Email</th>
+            <th>Course</th>
+            <th>Recommendation Type</th>
+            <th>Notes</th>
+            <th>Instructor</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @recommendations.each do |recommendation| %> <!-- Loop through each recommendation -->
+            <tr>
+                <td><%= recommendation.student_email %></td> <!-- Display the student's email -->
+                <td><%= recommendation.course_id %></td> <!-- Display the course's id -->
+                <td><%= recommendation.recommendation_type %></td> <!-- Display the recommendation type -->
+                <td><%= recommendation.notes %></td> <!-- Display the notes -->
+                <td><%= recommendation.instructor.email %></td> <!-- Display the instructor's email -->
+                <td><%= link_to 'View', instructors_recommendation_path(recommendation) %></td> <!-- Link to the recommendation -->
+            </tr>
+        <% end %>
+    </tbody>
+</table>

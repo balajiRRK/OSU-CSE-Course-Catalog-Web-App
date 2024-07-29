@@ -1,0 +1,21 @@
+<h2> Pending users </h2>
+<% @pending_users.each do |user|%>
+  
+    <h3>email: <%= user.email %>, role: <%= user.role %></h3>
+    <%# <%= link_to 'review', user_actions_admin_user_path(user) %> 
+
+    
+ <%= form_with(model:user ) do |f| %>
+<div class="field">
+    <%= f.label :role %><br />
+    <%# the admin is able to change the status of users here %>
+    <%# <%= f.select :role, User.roles.keys.map { |role| [role.humanize, role] } % >  %>
+    <%= f.select :status, User.statuses.keys.map { |status| [status.humanize, status] } %>
+  </div>
+   <div class="actions">
+    <%= f.submit "Update",class: "btn btn-success" %>
+  </div>
+<% end %>
+   <%= button_to 'Delete User', user_path(user), method: :delete,class: "btn btn-danger"%>
+    <%end%>
+    <%== pagy_nav(@pagy_pending) %>

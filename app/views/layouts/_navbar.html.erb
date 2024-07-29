@@ -1,0 +1,30 @@
+   <div class="container">
+<nav class="navbar ">
+    <ul> 
+      <li> <%= link_to "Home", root_path %> </li>
+        <li> <%= link_to "Courses", courses_path %> </li>
+        <% if user_signed_in? %>
+          <li> <%= link_to 'Edit account', edit_user_registration_path %> </li>
+          <li> <%= link_to 'Sign out', destroy_user_session_path, method: :delete %> </li>
+          <% if current_user&.instructor? %>
+            <li> <%= link_to "Create Recommendation", new_instructors_recommendation_path, class: "btn btn-victory" %> </li>
+            <li> <%= link_to "Recommendations", instructors_recommendations_path, class: "btn btn-victory" %> </li> <!-- Link to the recommendations index page -->
+            <li> <%= link_to 'Grader Applications', graders_path %> </li>
+          <% end %>
+           <% if current_user&.student? %>
+          <li> <%= link_to 'New Grader Application', new_grader_path %> </li>
+          <li> <%= link_to 'Your Grader Applications',  user_applications_path(current_user) %> </li>
+          
+        <% end %>
+          <% if current_user&.admin? %>
+        <li> <%= link_to 'Admin Dashboard', admin_dashboard_path %> </li>
+        <li> <%= link_to 'Grader Applications', graders_path %> </li>
+          <% end %>
+        <% else %>
+          <li> <%= link_to "Login", new_user_session_path %> </li>
+          <li> <%= link_to "Register", new_user_registration_path %> </li>
+        <% end %>        
+    </ul>
+  </nav>
+  </div>
+  
