@@ -1,5 +1,5 @@
-<div class="login-form-wrapper">
-  <div class="login-form">
+<div class="grader-form-wrapper">
+  <div class="grader-form">
     <h2>Edit Grader Application</h2>
 
     <%= form_with(model: @grader, local: true) do |form| %>
@@ -33,7 +33,7 @@
 
       <div class="field">
          <%= form.label :courses_wish_and_qualify_to_grade, "Courses you wish to (and are qualified to) grade for" %>
-         <%= form.select :courses_wish_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.id] }), { prompt: "Select courses" }, multiple: true %>
+         <%= form.select :courses_wish_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.id] }), { prompt: "Select courses" } %>
       </div>
 
     <!-- Availability schedule section -->
