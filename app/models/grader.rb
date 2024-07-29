@@ -1,4 +1,5 @@
 class Grader < ApplicationRecord
+  belongs_to :user,  primary_key: :email,foreign_key: :email, dependent: :destroy
   # Existing validations
   validate :name_check
   validate :email_check
@@ -14,6 +15,11 @@ class Grader < ApplicationRecord
   # Define days of the week for availability
   DAYS_OF_WEEK = %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday]
 
+  def Grader
+    def to_param
+      email
+    end
+  end
   # Existing custom validations
   def name_check
     unless name =~ /^[a-z ,.'-]+$/i
@@ -53,15 +59,5 @@ class Grader < ApplicationRecord
   errors.add(:time_present, "must have at least one day with times set") unless time_present == true
 end
 
-  # def availability_present
-  #   puts 'testing avail'
-  #   puts availability.values
-  #   puts availability.blank?
-  #   return if !availability.blank?
-  #   valid_times = availability.values.any? do |times|
-  #     times.is_a?(Array) && times.size == 2 && times.any?(&:present?)
-  #   end
-     
-  #   errors.add(:availability, "must have at least one day with times set") unless valid_times
-  # end
+  
 end

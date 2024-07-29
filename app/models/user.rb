@@ -8,6 +8,7 @@ class User < ApplicationRecord
   enum status: {pending: 'pending', allowed: 'allowed'}
 
   has_many :recommendations, foreign_key: :instrucrtor_id, dependent: :destroy
+  has_many :grader, primary_key: :email, foreign_key: :email, dependent: :destroy
 
   validate :email_domain_check
 
