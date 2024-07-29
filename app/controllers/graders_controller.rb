@@ -71,7 +71,7 @@ class GradersController < ApplicationController
       :friday_start, :friday_end,
       :saturday_start, :saturday_end,
       :sunday_start, :sunday_end,
-      :courses_wish_and_qualify_to_grade => [],
+      :courses_wish_and_qualify_to_grade,
     )
   end
 end

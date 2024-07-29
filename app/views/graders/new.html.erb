@@ -34,7 +34,7 @@
       <!-- Course selection fields -->
       <div class="field">
         <%= form.label :courses_wish_and_qualify_to_grade, "Courses you wish to (and are qualified to) grade for" %>
-        <%= form.select :courses_wish_and_qualify_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.id] }), { prompt: "Select courses", multiple: true } %>
+        <%= form.select :courses_wish_and_qualify_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.id] }), { prompt: "Select courses" } %>
       </div>
 
       <!-- Availability schedule section -->
