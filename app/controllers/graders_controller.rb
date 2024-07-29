@@ -34,6 +34,7 @@ class GradersController < ApplicationController
   end
 
   def edit
+    @grader = Grader.find_by(params[:id])
   end
 
   def update
