@@ -10,7 +10,7 @@ With an instructor account, the user can view courses and their sections in a gi
 
 With an admin account, the user can view courses and their sections in a given semester. Additionally, they can add/edit/remove courses and sections as well as approve instructor and admin accounts. 
 
-![image](https://github.com/cse-3901-sharkey/2024-su-Team-3-Lab-2/assets/93829096/048e1135-2e2b-4ee8-bed0-27d649bc6ae9)
+![image](app/assets/images/courses.png)
 
 ### Extra Functionalities
 
