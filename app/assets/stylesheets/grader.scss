@@ -54,6 +54,10 @@
   }
   
   /* Styles for availability schedule in new/edit form */
+  .availability-title {
+    margin-top: 20px;
+  } 
+
   .availability-schedule {
     margin-top: 20px;
     align-items: left;
@@ -74,7 +78,8 @@
   .availability-schedule input[type="time"] {
     width: 120px;
     padding: 5px;
-    margin-right: 5px;
+    margin-left: 15px; 
+    margin-right: 15px;
   }
   
   /* Styles for availability table in show view */
