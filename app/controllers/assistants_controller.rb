@@ -1,5 +1,5 @@
 class AssistantsController < ApplicationController
-  before_action :set_grader, only: %i[ show edit update destroy ]
+  before_action :set_assistant, only: %i[ show edit update destroy ]
 
   # GET /assistants or /assistants.json
   def index
@@ -21,7 +21,7 @@ class AssistantsController < ApplicationController
 
   # POST /assistants or /assistants.json
   def create
-    @assistant = Assistant.new(grader_params)
+    @assistant = Assistant.new(assistant_params)
 
     respond_to do |format|
       if @assistant.save
@@ -59,12 +59,12 @@ class AssistantsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_grader
+    def set_assistant
       @assistant = Assistant.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def grader_params
-      params.require(:grader).permit(:lname, :fname, :email)
+    def assistant_params
+      params.require(:assistant).permit(:fname, :email)
     end
 end

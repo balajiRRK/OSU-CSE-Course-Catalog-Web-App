@@ -1,44 +1,63 @@
-<div class="container mt-5">
-  <table class="table table-bordered mt-5">
-    <thead>
-      <tr class="table-dark">
-        <th style="padding: 15px;">Course Number</th>
-        <th style="padding: 15px;">Title</th>
-        <th style="padding: 15px;">Description</th>
-        <th style="padding: 15px;">Component</th>
-        <th style="padding: 15px;">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- here we are looping through all the courses that we get from the search result to show their data -->
-      <% @no_grader.each do |course| %>
+
+
+      
+  <div class="course mt-5">
+     <table class="table table-bordered mt-5">
+        <!-- First row for labels -->
+           <thead>
+        <tr>
+          <th>Class number:</th>
+          <th>Instructor:</th>
+          <th>Assistant:</th>
+          <th>Component:</th>
+          <th>Instruction mode:</th>
+          <th>Facility description:</th>
+          <th>Room:</th>
+          <th>Start time:</th>
+          <th>End time:</th>
+          <th>Start date:</th>
+          <th>End date:</th>
+          <th>M:</th>
+          <th>T:</th>
+          <th>W:</th>
+          <th>Th:</th>
+          <th>F:</th>
+          <th>CourseID:</th>
+          <th>Term:</th>
+        </tr>
+           </thead>
+            <tbody>
+       <% @no_grader.each do |section| %>
+       <% @course = section.course %>
+       <% @section = section%>
+        <tr>
+          <td><%= section.class_number %></td>
+          <%# checks if there are any instructos or assistants %>
+          <td><%= section.instructors.count == 0 ? not_assigned : render(section.instructors)%> </td>
+          <td> <%= link_to "Add Grader", render(partial: 'assistant_form'), class: "btn btn-primary" %> </td>
+          <td><%= section.component %></td>
+          <td><%= section.instruction_mode %></td>
+          <td><%= section.facility_description %></td>
+          <td><%= section.room %></td>
+          <td><%= section.start_time %></td>
+          <td><%= section.end_time %></td>
+          <td><%= section.start_date %></td>
+          <td><%= section.end_date %></td>
+          <td><%= section.monday %></td>
+          <td><%= section.tuesday %></td>
+          <td><%= section.wednesday %></td>
+          <td><%= section.thursday %></td>
+          <td><%= section.friday %></td>
+          <td><%= section.course_id %></td>
+          <td><%= section.term %></td>
+        </tr>
+        <%end%>
+         </tbody>
+      </table>
+      
+    </div>
+ 
+      
         
-          <tr>
-            <!-- this is showing course number -->
-            <td style="padding: 15px;"><%= course.catalog_number %></td>
-            <!-- this is showing course title -->
-            <td style="padding: 15px;"><%= course.title %></td>
-            <!-- this is showing course description -->
-            <td style="padding: 15px;"><%= course.description %></td>
-            <!-- this is showing course component -->
-            <td style="padding: 15px;"><%= course.component %></td>
-            <!-- this is showing actions (edit, show, destroy) -->
-            <td style="padding: 15px;">
-              <!-- this is the link to show course, clicking on this link will show the details of the single course  -->
-              <%= link_to "Show", course, class: "btn btn-info" %>
-              <!-- this is the link to edit course, clicking on this link will open the edit form  -->
-              <% if current_user&.admin? %>
-                <%= link_to "Edit", edit_course_path(course), class: "btn btn-success" %>
-              <% end %>
-              <!-- this is delete link, click on the this link will send the delete request to controller and delete the course  -->
-              <% if current_user&.admin? %>
-                <%= button_to "Destroy", course, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+         
 <%== pagy_nav(@pagy_unassigned) %>

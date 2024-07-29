@@ -4,6 +4,7 @@ class Course < ApplicationRecord
   has_many :assistants, primary_key: :courseId, foreign_key: "course_id", dependent: :destroy
   has_many :instructors, primary_key: :courseId, foreign_key: "course_id", dependent: :destroy
   has_many :recommendations, dependent: :destroy
+  accepts_nested_attributes_for :assistants
   # Validations for course
   validates :courseId, presence: true, uniqueness: { scope: :courseId }
   validates :catalog_number, presence: true
