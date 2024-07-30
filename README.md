@@ -4,11 +4,13 @@
 
 This app provides an overview of all the CSE classes offered at OSU in a specific semester after a user logins with the account the made. **Accounts can only be made with an [name].[number]@osu.edu email**. There are 3 different account types: student, instructor, and admin. Account types can be selected upon registering, and student accounts will not need admin approval; *however, instructor and admin accounts will need to be approved by an admin in the admin dashboard*. 
 
-With a student account, the user can view courses and their sections in a given semester. 
+With a student account, the user can press "Courses" on the navigation bar to view courses and their sections and you can also search through the courses using the searchbar via the course title, course number, course level, and/or subject. Additionally, as a student you can press "New Grader Application" on the navigation bar to create a new grader application or you can press "Your Grader Applications" to view previously submitted grader applications to view, edit or delete them.
 
-With an instructor account, the user can view courses and their sections in a given semester (in a future update, instructors will be able to post openings for TA positions in their section and view applicants in order to hire a TA). 
+With an instructor account, you can press "Create Recommendation" on the navigation bar to fill out a new recommendation form as an instructor for a student or you can press "Recommendations" to view recommendations that you have already submitted. 
 
-With an admin account, the user can view courses and their sections in a given semester. Additionally, they can add/edit/remove courses and sections as well as approve instructor and admin accounts. 
+With an admin account, you can press "Admin Dashboard" on the navigation bar to use the Admin Dashboard where you can approve/deny/view pending users that are awaiting approval, view or delete approved users in manage users, view/edit/delete courses in course catalog, load new courses, view previously loaded courses, add a single new course, delete all courses, view class sections without an assistant (grader) assigned, add an assistant to a section that's missing one, view all courses that have an assistant assigned, view/edit/delete/lookup the assistant's information for each class section that has an assistant. 
+
+To load courses, on the Admin Dashboard, open the "Course Manager" drop down button and press "Load Courses". The "Load Courses" page has a guide on the bottom of the page to guide the user on how to properly utilize the feature to fetch courses from the API. Once you have created the API search using your specific parameters, you can press "Download this course search" to add all these courses to the database or press "reload using this course search" to override any existing courses in the database and to replace them with your latest api search.
 
 ![image](app/assets/images/courses.png)
 
@@ -16,14 +18,16 @@ With an admin account, the user can view courses and their sections in a given s
 
 When viewing the course catalog, the user is able to search a course by title, course number, course level, and subject. This feature is an optional feature listed in the assignment that we chose to implement to make it easier for users to find their desired course.
 
+After submitting a recommendation as an instructor, you are also able to view previously submitted recommendations.
+
 ***
 
 ## How to Install and Run the App
 
 This app requires Ruby 3.2.0 or newer versions. 
 1. Clone the repo either through HTTPS or SSH
-   - Through HTTPS: https://github.com/cse-3901-sharkey/2024-su-Team-3-Lab-2.git
-   - Through SSH: git@github.com:cse-3901-sharkey/2024-su-Team-3-Lab-2.git
+   - Through HTTPS: https://github.com/cse-3901-sharkey/2024-su-Team-3-Lab-3.git
+   - Through SSH: git@github.com:cse-3901-sharkey/2024-su-Team-3-Lab-3.git
 
 2. Run the following commands:
    ```
@@ -64,7 +68,9 @@ This app requires Ruby 3.2.0 or newer versions.
 
 4. If you have been approved, if you are an instructor: you can press "Create Recommendation" on the navigation bar to fill out a new recommendation form as an instructor for a student or you can press "Recommendations" to view recommendations that you have already submitted. 
 
-Or, if you are an admin: you can press "Admin Dashboard" on the navigation bar to use the Admin Dashboard where you can approve/deny/view pending users that are awaiting approval, view or delete approved users in manage users, view/edit/delete courses in course catalog, load new courses, view previously loaded courses, add a single new course, delete all courses, view class sections without an assistant (grader) assigned, add an assistant to a section that's missing one, view all courses that have an assistant assigned, view/edit/delete/lookup the assistant's information for each class section that has an assistant. When using the "load course" button in Admin Dashboard, it has a guide on the bottom of the page to guide the user on how to properly utilize the feature to fetch courses from the API. 
+Or, if you are an admin: you can press "Admin Dashboard" on the navigation bar to use the Admin Dashboard where you can approve/deny/view pending users that are awaiting approval, view or delete approved users in manage users, view/edit/delete courses in course catalog, load new courses, view previously loaded courses, add a single new course, delete all courses, view class sections without an assistant (grader) assigned, add an assistant to a section that's missing one, view all courses that have an assistant assigned, view/edit/delete/lookup the assistant's information for each class section that has an assistant. 
+
+To load courses, on the Admin Dashboard, open the "Course Manager" drop down button and press "Load Courses". The "Load Courses" page has a guide on the bottom of the page to guide the user on how to properly utilize the feature to fetch courses from the API. Once you have created the API search using your specific parameters, you can press "Download this course search" to add all these courses to the database or press "reload using this course search" to override any existing courses in the database and to replace them with your latest api search.
 
 ## Troubleshooting the App
 
