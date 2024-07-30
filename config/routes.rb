@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get :destroy
     end
   end
+  resources :graders, only: [:new, :create, :show, :index, :edit, :update, :destroy]
   resources :user_applications
   resources :courses do
     collection do
@@ -30,7 +31,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :graders, only: [:new, :create, :show, :index, :edit, :update, :destroy]
   
 
   namespace :admin do

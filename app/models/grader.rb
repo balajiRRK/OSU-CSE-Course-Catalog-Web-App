@@ -1,5 +1,5 @@
 class Grader < ApplicationRecord
-  belongs_to :user,  primary_key: :email,foreign_key: :email, dependent: :destroy
+  belongs_to :user,  primary_key: :email,foreign_key: :email
   # Existing validations
   validate :name_check
   validate :email_check

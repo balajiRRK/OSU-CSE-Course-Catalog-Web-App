@@ -42,7 +42,7 @@ class GradersController < ApplicationController
     @grader.destroy! # this line deletes course from database
 
     respond_to do |format|
-      format.html { redirect_to grader_url, notice: "Application was successfully destroyed." }
+      format.html { redirect_to user_applications_path(current_user), notice: "Application was successfully destroyed." }
       format.json { head :no_content }
     end
   end
