@@ -24,7 +24,7 @@ After submitting a recommendation as an instructor, you are also able to view pr
 
 ## How to Install and Run the App
 
-This app requires Ruby 3.2.0 or newer versions. 
+This app requires Ruby 3.2.0 or newer versions and Rails 7.1.3.4 or newer versions. 
 1. Clone the repo either through HTTPS or SSH
    - Through HTTPS: https://github.com/cse-3901-sharkey/2024-su-Team-3-Lab-3.git
    - Through SSH: git@github.com:cse-3901-sharkey/2024-su-Team-3-Lab-3.git
@@ -107,6 +107,12 @@ Solution: run `bundle install --gemfile /[insert full dir path to the project]/G
 *Problem: When running `rails server`, receiving error message, "Exiting /dir/...: Could not find table 'users' (ActiveRecord::StatementInvalid)"*
 
 Solution: run `rails db:migrate`.
+
+**
+
+*Problem: When running `bundle install`, receiving error message saying bundle install failed"*
+
+Solution: go to `Gemfile` in Project and delete all lines that contain `%i`.
 
 ## Contributions
 
