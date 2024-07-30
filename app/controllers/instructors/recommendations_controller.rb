@@ -28,7 +28,7 @@ module Instructors   #module Instructors
         @recommendation = Recommendation.new(recommendation_params) #create a new recommendation with the params
         @recommendation.instructor = current_user   #set instructor id to current user id
 
-        
+
           # They meant catalog_number instead
           if @recommendation.course_id.present? && Course.exists?(:catalog_number => @recommendation.course_id)  #if course id present and course exists
             send_invite_if_student_not_registered(@recommendation.student_email) #send invite if student not registered
@@ -40,9 +40,9 @@ module Instructors   #module Instructors
             render :new     #render new
             flash.now[:alert] = "Recommendation Failed"  #redirect to root path
           end
-        
-         
-        
+
+
+
     end
 
     private
