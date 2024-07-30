@@ -56,11 +56,7 @@ This app requires Ruby 3.2.0 or newer versions.
    
 3. If you have not been approved yet, you can press "Courses" on the navigation bar to view courses and their sections and you can also search through the courses using the searchbar via the course title, course number, course level, and/or subject. Additionally, as a student you can press "New Grader Application" on the navigation bar to create a new grader application or you can press "Your Grader Applications" to view previously submitted grader applications to view, edit or delete them.
 
-4. If you have been approved, if you are an instructor: you can press "Create Recommendation" on the navigation bar to fill out a new recommendation form as an instructor for a student or you can press "Recommendations" to view recommendations that you have already submitted. 
-
-Or, if you are an admin: you can press "Admin Dashboard" on the navigation bar to use the Admin Dashboard where you can approve/deny/view pending users that are awaiting approval, view or delete approved users in manage users, view/edit/delete courses in course catalog, load new courses, view previously loaded courses, add a single new course, delete all courses, view class sections without an assistant (grader) assigned, add an assistant to a section that's missing one, view all courses that have an assistant assigned, view/edit/delete/lookup the assistant's information for each class section that has an assistant. 
-
-To load courses, on the Admin Dashboard, open the "Course Manager" drop down button and press "Load Courses". The "Load Courses" page has a guide on the bottom of the page to guide the user on how to properly utilize the feature to fetch courses from the API. Once you have created the API search using your specific parameters, you can press "Download this course search" to add all these courses to the database or press "reload using this course search" to override any existing courses in the database and to replace them with your latest api search.
+4. If you have been approved, if you are an instructor: you can press "Create Recommendation" on the navigation bar to fill out a new recommendation form as an instructor for a student or you can press "Recommendations" to view recommendations that you have already submitted. Or, if you are an admin: you can press "Admin Dashboard" on the navigation bar to use the Admin Dashboard.
 
 ## Troubleshooting the App
 
