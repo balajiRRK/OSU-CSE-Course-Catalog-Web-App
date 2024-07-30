@@ -46,16 +46,6 @@ This app requires Ruby 3.2.0 or newer versions.
    - username: admin.1@osu.edu
    - password: team3pass
 
-*Approve instructor and admin account requests*
-
-*Remove student, instructor and admin accounts even after they have been approved*
-
-*Load multiple new courses using API request*
-
-*Edit courses individually*
-
-*Delete courses individually and also delete ALL courses*
-
 ***
 
 ## How to Use the App Once It's Been Installed and Running
