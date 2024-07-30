@@ -5,12 +5,30 @@
 # https://www.youtube.com/watch?v=GY7Ps8fqGdc
 # https://chatgpt.com/
 
-class Recommendation < ApplicationRecord
-  belongs_to :instructor, class_name: 'User'
-  belongs_to :student, class_name: 'User', optional: true
-  belongs_to :course, optional: true
+class Recommendation < ApplicationRecord  #recommendation model
+  belongs_to :instructor, class_name: 'User'  #recommendation belongs to instructor
+  belongs_to :student, class_name: 'User', optional: true #recommendation belongs to student
+  belongs_to :course, optional: true    #recommendation belongs to course
 
-  validates :notes, presence: true
-  validates :student_email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :recommendation_type, presence: true
+  validates :notes, presence: true  #validate notes
+  validates :student_email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }   #validate student email
+  validates :recommendation_type, presence: true  #validate recommendation type
+  validates :email_check, :course_id_check  #validate email and course id
+
+  private
+
+  enum status: { pending: 0, approved: 1, rejected: 2 }  #enum status
+
+  def email_check   #email check
+    unless student_email =~ /\A[a-zA-Z]+\.[0-9]+@osu.edu\z/i   #unless student email matches
+      errors.add(:student_email, "Must be lastname.#@osu.edu")  #add error
+    end
+  end
+
+  def course_id_check   #course id check
+    unless course_id =~ /[0-9]{4}/i  #unless course id matches
+      errors.add(:course_id, "should be a 4 digit course id")   #add error
+    end
+  end
+
 end
