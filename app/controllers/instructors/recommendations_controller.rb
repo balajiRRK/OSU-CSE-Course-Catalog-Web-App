@@ -9,7 +9,7 @@ module Instructors   #module Instructors
   class RecommendationsController < ApplicationController
     before_action :authenticate_user!     #check user is authenticated
     before_action :authenticate_status!     #check user is authenticated
-    before_action :authenticate_instructor!    #check user is instructor
+    # before_action :authenticate_instructor!    #check user is instructor
 
     def index
       @recommendations = Recommendation.all  #get all recommendations
