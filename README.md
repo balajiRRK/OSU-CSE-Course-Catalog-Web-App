@@ -18,69 +18,23 @@ When viewing the course catalog, the user is able to search a course by title, c
 
 ***
 
-## How to Install the App
+## How to Install and Run the App
 
 This app requires Ruby 3.2.0 or newer versions. 
 1. Clone the repo either through HTTPS or SSH
    - Through HTTPS: https://github.com/cse-3901-sharkey/2024-su-Team-3-Lab-2.git
    - Through SSH: git@github.com:cse-3901-sharkey/2024-su-Team-3-Lab-2.git
+
 2. Run the following commands:
    ```
    bundle install
-   bin/rails db:migrate
-   bin/rails fetch_courses
-   bin/rails fetch_sections
-   bin/rails add_admin
-   bin/rails server
+   rails db:migrate
+   rails server
    ```
+
 3. Open `localhost:3000` in your browser.
      
 ***
-## How to Use the App
-
-*Register an account*
-
-1. Click on "Register" on the navigation bar.
-
-2. Fill in the boxes with your relevent information.
-
-2. Your account is now registered! You're already logged in and can view classes. 
-
-*Log into your account*
-
-1. Click on "Login" on the navigation bar.
- 
-2. Fill in the boxes with your account information.
-
-3. You are now logged in and can view classes!
-   
-*View courses*
-
-1. Click on "Courses" on the top left of the navigation bar.
- 
-2. You are now able to view all CSE classes offered at OSU!
-
-3. If you want to view sections for a specific course, click on "view" on the right side of the page in the same line of the course. 
-
-*Search courses*
-
-1. Click on "Courses" on the top left of the navigation bar.
- 
-2. Type in what class you are searching for via the course title, course number, course level, and/or subject.
-
-3. You found the course you're looking for! If you want to view sections for a specific course, click on "view" on the right side of the page in the same line of the course.
-
-*Send an application to become a grader or edit a previously sent grader application*
-
-1. Register or log into a student account.
-
-2. Press "New Grader Application" or "Grader Application" to either fill out the form or view/edit a previously submitted form.
-
-*Create recommendation*
-
-1. Register or log into an instructor account and await approval from an admin user.
-
-2. Press "Create Recommendation" or "Recommendations" to either fill out the form or view/edit a previously submitted form.
 
 ***FOR ADMINS***
 
@@ -98,8 +52,19 @@ This app requires Ruby 3.2.0 or newer versions.
 
 *Delete courses individually and also delete ALL courses*
 
-
 ***
+
+## How to Use the App Once It's Been Installed and Running
+
+1. Sign in as an Admin user using the account details mentioned above and then load courses using the guide in Admin Dashboard and then sign out.
+
+2. Register as a new user using the "Register" button on the navigation bar and if you are selecting an instructor or admin role, you must await admin approval of your account, until then you will have student permissions only.
+   
+3. If you have not been approved yet, you can press "Courses" on the navigation bar to view courses and their sections and you can also search through the courses using the searchbar via the course title, course number, course level, and/or subject. Additionally, as a student you can press "New Grader Application" on the navigation bar to create a new grader application or you can press "Your Grader Applications" to view previously submitted grader applications to view, edit or delete them.
+
+4. If you have been approved, if you are an instructor: you can press "Create Recommendation" on the navigation bar to fill out a new recommendation form as an instructor for a student or you can press "Recommendations" to view recommendations that you have already submitted. 
+
+Or, if you are an admin: you can press "Admin Dashboard" on the navigation bar to use the Admin Dashboard where you can approve/deny/view pending users that are awaiting approval, view or delete approved users in manage users, view/edit/delete courses in course catalog, load new courses, view previously loaded courses, add a single new course, delete all courses, view class sections without an assistant (grader) assigned, add an assistant to a section that's missing one, view all courses that have an assistant assigned, view/edit/delete/lookup the assistant's information for each class section that has an assistant. When using the "load course" button in Admin Dashboard, it has a guide on the bottom of the page to guide the user on how to properly utilize the feature to fetch courses from the API. 
 
 ## Troubleshooting the App
 
