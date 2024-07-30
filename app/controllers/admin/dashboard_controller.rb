@@ -10,7 +10,8 @@ class Admin::DashboardController < ApplicationController
     @pagy_user, @users = pagy(User.all, page_param: :user_page)
     @pagy_pending, @pending_users = pagy(User.where(status: "pending").where.not(role: "student").all, page_param: :pending_page)
     @pagy_assistant, @assistants = pagy(Assistant.all, page_param: :assistants)
-    @pagy_application, @grader = pagy(Grader.all)
+    @pagy_application, @grader = pagy(Grader.where(verdict: :pending).all, page_param: :grader_page)
+    @pagy_grader_approved, @grader_approved = pagy(Grader.where(verdict: :allowed).all, page_param: :grader_approved_page)
 
     @assistant = Assistant.new
   end

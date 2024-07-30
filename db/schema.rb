@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_28_063305) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_30_023710) do
   create_table "api_searches", force: :cascade do |t|
     t.string "search"
     t.string "term"
@@ -76,6 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_28_063305) do
     t.string "sunday_start"
     t.string "sunday_end"
     t.text "courses_wish_and_qualify_to_grade"
+    t.string "verdict", default: "pending"
   end
 
   create_table "instructors", force: :cascade do |t|

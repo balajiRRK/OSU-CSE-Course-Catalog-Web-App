@@ -16,7 +16,6 @@
       </div>
     </div>
   </div>
-
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -29,7 +28,6 @@
       </div>
     </div>
   </div>
-
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -42,8 +40,6 @@
       </div>
     </div>
   </div>
-  
-
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -56,8 +52,7 @@
       </div>
     </div>
   </div>
-
-<div class="accordion-item">
+  <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
         Unassigned graders for class sections: <%=Section.where.missing(:assistants).count%>
@@ -69,11 +64,10 @@
       </div>
     </div>
   </div>
-
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-      Current graders: <%=Assistant.count%> 
+        Current graders: <%=Assistant.count%>
       </button>
     </h2>
     <div id="collapseSix" class="accordion-collapse collapse" >
@@ -82,7 +76,6 @@
       </div>
     </div>
   </div>
-
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
@@ -95,11 +88,10 @@
       </div>
     </div>
   </div>
-
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
-        Grader Application: <%=Grader.count%>
+        Grader Application: <%=Grader.where(verdict: :pending).count%>
       </button>
     </h2>
     <div id="collapse8" class="accordion-collapse collapse" >
@@ -108,8 +100,17 @@
       </div>
     </div>
   </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+        Grader Applications approved: <%=Grader.where(verdict: :allowed).count%>
+      </button>
+    </h2>
+    <div id="collapse9" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('graders_application_approved') %>
+      </div>
+    </div>
+  </div>
   <%# ending the accordion %>
 </div>
-        
-
-

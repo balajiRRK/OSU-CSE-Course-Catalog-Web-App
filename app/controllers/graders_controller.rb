@@ -9,7 +9,7 @@ class GradersController < ApplicationController
     # Initialize empty availability for all days
     @grader.availability = Grader::DAYS_OF_WEEK.each_with_object({}) { |day, hash| hash[day] = ["", ""] }
   end
-
+  
   def create
     @grader = Grader.new(grader_params)
     process_availability
@@ -80,7 +80,7 @@ class GradersController < ApplicationController
       :friday_start, :friday_end,
       :saturday_start, :saturday_end,
       :sunday_start, :sunday_end,
-      :courses_wish_and_qualify_to_grade,
+      :courses_wish_and_qualify_to_grade,:verdict
     )
   end
 end
