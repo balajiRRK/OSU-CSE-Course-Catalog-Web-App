@@ -82,6 +82,19 @@
       </div>
     </div>
   </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+        Assigned graders for class sections: <%=Section.where.associated(:assistants).count%>
+      </button>
+    </h2>
+    <div id="collapseSeven" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('assinged_graders_courses') %>
+      </div>
+    </div>
+  </div>
   <%# ending the accordion %>
 </div>
         

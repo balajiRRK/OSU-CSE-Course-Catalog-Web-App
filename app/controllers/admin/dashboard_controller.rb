@@ -4,6 +4,7 @@ class Admin::DashboardController < ApplicationController
 
   def index
     # @courses = Course.all
+    @pagy_assigned, @has_grader = pagy(Section.where.associated(:assistants).all, page_param: :has_grader)
     @pagy_unassigned, @no_grader = pagy(Section.where.missing(:assistants).all, page_param: :no_grader)
     @pagy_course, @courses = pagy(Course.all, page_param: :course_page)
     @pagy_user, @users = pagy(User.all, page_param: :user_page)
