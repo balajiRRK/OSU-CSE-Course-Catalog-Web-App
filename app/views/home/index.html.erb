@@ -1,9 +1,31 @@
 <% content_for :title, "OSU CSE Course Catalog" %>
 
-<div class="img" style="background-image: url(<%= asset_path 'oval.jpg' %>)">
-    <div class="center-home-text">  
-        OSU CSE Course Catalog
-    </div>
-</div>
+<style>
+.img {
+  background-image: url(<%= asset_path 'oval.jpg' %>);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+}
 
+.center-home-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background-color: rgba(204, 0, 0, 0.85); /* Slightly more intense red */
+  padding: 10px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+</style>
+
+<div class="img">
+  <div class="center-home-text">
+    OSU CSE Course Catalog
+  </div>
+</div>
 </body>

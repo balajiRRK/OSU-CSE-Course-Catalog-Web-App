@@ -1,0 +1,27 @@
+ <%= form_with(model: @grader, local: true) do |f| %>
+ <% if @grader.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@grader.errors.count, "error") %> prohibited this grader application from being saved:</h2>
+
+          <ul>
+            <% @grader.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <% Grader::DAYS_OF_WEEK.each do |day| %>
+            
+            <%= f.hidden_field "#{day.downcase}_start", value: @grader.send("#{day.downcase}_start") %>
+            <!-- End time field for each day -->
+            <%= f.hidden_field "#{day.downcase}_end", value: @grader.send("#{day.downcase}_end") %>
+          </div>
+        <% end %>
+  <div class="field">
+    <%= f.label 'Status:' %><br />
+    <%= f.select :verdict, Grader.verdicts.keys.map { |verdict| [verdict.humanize, verdict] } %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Decide",class: "btn btn-primary" %>
+  </div>
+<%end%>

@@ -1,0 +1,46 @@
+<!-- app/views/graders/index.html.erb -->
+
+<div class="course mt-5">
+<table  class="table table-bordered mt-5">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Courses Wish to Grade</th>
+      <th>Availability</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grader.each do |grader| %>
+      <tr>
+        <td><%= grader.name %></td>
+        <td><%= grader.email %>
+        <%= link_to "Look up this applicant", 'https://www.osu.edu/search/?query=' +grader.email, class: 'btn btn-success'%></td>
+        <td><%= grader.phone_number %></td>
+        <td><%= grader.courses_wish_to_grade %></td>
+        <td><%= grader.courses_qualified_to_grade %></td>
+        <td>
+          <% if grader.availability.present? %>
+            <%# Use the formatted_availability method for a concise display %>
+            <%= link_to 'View Schedule', grader_path(grader, anchor: 'availability'), title: grader.formatted_availability %>
+          <% else %>
+            Not provided
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Show', grader %>
+          <%= link_to 'Edit', edit_grader_path(grader) %>
+          <%= button_to 'Delete', grader_path(grader), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+      <%end%>
+    
+  </tbody>
+</table>
+</div >
+<%== pagy_nav(@pagy_application) %>
+
+

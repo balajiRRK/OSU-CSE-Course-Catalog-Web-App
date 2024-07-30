@@ -1,86 +1,50 @@
-![image](https://github.com/cse-3901-sharkey/2024-su-Team-3-Lab-2/assets/93829096/0d78de88-14fa-47c9-8047-e347f2846bd4)
+![image](app/assets/images/home-page.png)
 
 ## Features/Capabilities of the App
 
-This app provides an overview of all the CSE classes offered at OSU in a specific semester after a user logins with the account the made. **Accounts can only be made with an [name].[number]@osu.edu email**. There are 3 different account types: student, instructor, and admin. Account types can be selected upon registering, and student accounts will not need admin approval; *however, instructor and admin accounts will be approved by a current admin*. 
+This app provides an overview of all the CSE classes offered at OSU and a variety of other features such as grader applications, recommendations, and an admin dashboard to manage the entirety of the website which are described in much more depth below. **Accounts can only be made with an [name].[number]@osu.edu email**. There are 3 different account types: student, instructor, and admin. Account types can be selected upon registering, and student accounts will not need admin approval; *however, instructor and admin accounts will need to be approved by an admin in the admin dashboard*. 
 
-With a student account, the user can view courses and their sections in a given semester. 
-
-With an instructor account, the user can view courses and their sections in a given semester (in a future update, instructors will be able to post openings for TA positions in their section and view applicants in order to hire a TA). 
-
-With an admin account, the user can view courses and their sections in a given semester. Additionally, they can add/edit/remove courses and sections as well as approve instructor and admin accounts. 
+With a student account, the user can press "Courses" on the navigation bar to view courses and their sections and you can also search through the courses using the searchbar via the course title, course number, course level, and/or subject. Additionally, as a student you can press "New Grader Application" on the navigation bar to create a new grader application or you can press "Your Grader Applications" to view previously submitted grader applications to view, edit or delete them. The admin users will be in charge of approving or declining grader applications and which sections to assign the graders to.
 
 ![image](app/assets/images/courses.png)
+
+![image](app/assets/images/grader_application.png)
+
+With an instructor account, you can press "Create Recommendation" on the navigation bar to fill out a new recommendation form as an instructor for a student or you can press "Recommendations" to view recommendations that you have already submitted. 
+
+![image](app/assets/images/create_recommendation.png)
+
+With an admin account, you can press "Admin Dashboard" on the navigation bar to use the Admin Dashboard where you can approve/deny/view pending users that are awaiting approval, view or delete approved users in manage users, view/edit/delete courses in course catalog, load new courses, view previously loaded courses, add a single new course, delete all courses, view class sections without an assistant (grader) assigned, add an assistant to a section that's missing one, view all courses that have an assistant assigned, view/edit/delete/lookup the assistant's information for each class section that has an assistant. Admins are also in charge of handling approving/denying grader applications and choosing which section to assign the specific grader to based off their application. 
+
+To load courses, on the Admin Dashboard, open the "Course Manager" drop down button and press "Load Courses". The "Load Courses" page has a guide on the bottom of the page to guide the user on how to properly utilize the feature to fetch courses from the API. Once you have created the API search using your specific parameters, you can press "Download this course search" to add all these courses to the database or press "reload using this course search" to override any existing courses in the database and to replace them with your latest api search. 
+
+![image](app/assets/images/admin_dashboard.png)
 
 ### Extra Functionalities
 
 When viewing the course catalog, the user is able to search a course by title, course number, course level, and subject. This feature is an optional feature listed in the assignment that we chose to implement to make it easier for users to find their desired course.
 
+After submitting a recommendation as an instructor, you are also able to view previously submitted recommendations.
+
 ***
 
-## How to Install the App
+## How to Install and Run the App
 
-This app requires Ruby 3.2.0 or newer versions. 
+This app requires Ruby 3.2.0 or newer versions and Rails 7.1.3.4 or newer versions. 
 1. Clone the repo either through HTTPS or SSH
-   - Through HTTPS: https://github.com/cse-3901-sharkey/2024-su-Team-3-Lab-2.git
-   - Through SSH: git@github.com:cse-3901-sharkey/2024-su-Team-3-Lab-2.git
+   - Through HTTPS: https://github.com/cse-3901-sharkey/2024-su-Team-3-Lab-3.git
+   - Through SSH: git@github.com:cse-3901-sharkey/2024-su-Team-3-Lab-3.git
+
 2. Run the following commands:
    ```
    bundle install
-   bin/rails db:migrate
-   bin/rails fetch_courses
-   bin/rails fetch_sections
-   bin/rails add_admin
-   bin/rails server
+   rails db:migrate
+   rails server
    ```
+
 3. Open `localhost:3000` in your browser.
      
 ***
-## How to Use the App
-
-*Register an account*
-
-1. Click on "Register" on the navigation bar.
-
-2. Fill in the boxes with your relevent information.
-
-2. Your account is now registered! You're already logged in and can view classes. 
-
-*Log into your account*
-
-1. Click on "Login" on the navigation bar.
- 
-2. Fill in the boxes with your account information.
-
-3. You are now logged in and can view classes!
-   
-*View courses*
-
-1. Click on "Courses" on the top left of the navigation bar.
- 
-2. You are now able to view all CSE classes offered at OSU!
-
-3. If you want to view sections for a specific course, click on "view" on the right side of the page in the same line of the course. 
-
-*Search courses*
-
-1. Click on "Courses" on the top left of the navigation bar.
- 
-2. Type in what class you are searching for via the course title, course number, course level, and/or subject.
-
-3. You found the course you're looking for! If you want to view sections for a specific course, click on "view" on the right side of the page in the same line of the course.
-
-*Send an application to become a grader or edit a previously sent grader application*
-
-1. Register or log into a student account.
-
-2. Press "New Grader Application" or "Grader Application" to either fill out the form or view/edit a previously submitted form.
-
-*Create recommendation*
-
-1. Register or log into an instructor account and await approval from an admin user.
-
-2. Press "Create Recommendation" or "Recommendations" to either fill out the form or view/edit a previously submitted form.
 
 ***FOR ADMINS***
 
@@ -88,18 +52,17 @@ This app requires Ruby 3.2.0 or newer versions.
    - username: admin.1@osu.edu
    - password: team3pass
 
-*Approve instructor and admin account requests*
-
-*Remove student, instructor and admin accounts even after they have been approved*
-
-*Load multiple new courses using API request*
-
-*Edit courses individually*
-
-*Delete courses individually and also delete ALL courses*
-
-
 ***
+
+## How to Use the App Once It's Been Installed and Running
+
+1. Sign in as an Admin user using the account details mentioned above and then load courses using the guide in Admin Dashboard and then sign out.
+
+2. Register as a new user using the "Register" button on the navigation bar and if you are selecting an instructor or admin role, you must await admin approval of your account, until then you will have student permissions only.
+   
+3. If you have not been approved yet, you can press "Courses" on the navigation bar to view courses and their sections and you can also search through the courses using the searchbar via the course title, course number, course level, and/or subject. Additionally, as a student you can press "New Grader Application" on the navigation bar to create a new grader application or you can press "Your Grader Applications" to view previously submitted grader applications to view, edit or delete them.
+
+4. If you have been approved, if you are an instructor: you can press "Create Recommendation" on the navigation bar to fill out a new recommendation form as an instructor for a student or you can press "Recommendations" to view recommendations that you have already submitted. Or, if you are an admin: you can press "Admin Dashboard" on the navigation bar to use the Admin Dashboard.
 
 ## Troubleshooting the App
 
@@ -150,6 +113,12 @@ Solution: run `bundle install --gemfile /[insert full dir path to the project]/G
 *Problem: When running `rails server`, receiving error message, "Exiting /dir/...: Could not find table 'users' (ActiveRecord::StatementInvalid)"*
 
 Solution: run `rails db:migrate`.
+
+**
+
+*Problem: When running `bundle install`, receiving error message saying bundle install failed"*
+
+Solution: go to `Gemfile` in Project and delete all lines that contain `%i`.
 
 ## Contributions
 

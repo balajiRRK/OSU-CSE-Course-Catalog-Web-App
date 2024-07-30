@@ -9,7 +9,7 @@ module Instructors   #module Instructors
   class RecommendationsController < ApplicationController
     before_action :authenticate_user!     #check user is authenticated
     before_action :authenticate_status!     #check user is authenticated
-    before_action :authenticate_instructor!    #check user is instructor
+    # before_action :authenticate_instructor!    #check user is instructor
 
     def index
       @recommendations = Recommendation.all  #get all recommendations
@@ -28,21 +28,18 @@ module Instructors   #module Instructors
         @recommendation = Recommendation.new(recommendation_params) #create a new recommendation with the params
         @recommendation.instructor = current_user   #set instructor id to current user id
 
-        
+
           # They meant catalog_number instead
-          if @recommendation.course_id.present? && Course.exists?(:catalog_number => @recommendation.course_id)  #if course id present and course exists
+          if @recommendation.save  #if course id present and course exists
             send_invite_if_student_not_registered(@recommendation.student_email) #send invite if student not registered
-            redirect_to courses_url, notice: "Recommendation created successfully" #redirect to admin recommendations path
-            @recommendation.save
+            redirect_to instructors_recommendations_path, notice: "Recommendation created successfully" #redirect to admin recommendations path
           else
-            Rails.logger.debug @recommendation.errors.full_messages
             flash.now[:alert] = "Please fix errors below: #{@recommendation.errors.full_messages.to_sentence}"  #flash alert
             render :new     #render new
-            flash.now[:alert] = "Recommendation Failed"  #redirect to root path
           end
-        
-         
-        
+
+
+
     end
 
     private

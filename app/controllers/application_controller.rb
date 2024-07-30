@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
       rescue_from ActiveRecord::RecordNotFound, with: :page_not_found 
       rescue_from Pagy::OverflowError, with: :page_not_found 
       rescue_from SQLite3::BusyException, with: :database_is_busy
+      # protect_from_forgery with: :null_session
+      skip_before_action :verify_authenticity_token
+    
         # render 'errors/404'
   protected
 

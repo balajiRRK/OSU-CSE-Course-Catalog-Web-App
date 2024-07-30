@@ -7,7 +7,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-        Pending users <%=User.all.where(status: :pending).count%>
+        Pending users: <%=User.where(status: "pending").where.not(role: "student").count%>
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse" >
@@ -16,7 +16,6 @@
       </div>
     </div>
   </div>
-
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -29,7 +28,6 @@
       </div>
     </div>
   </div>
-
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -42,12 +40,10 @@
       </div>
     </div>
   </div>
-  
-
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-        Course Catalog <%= Course.all.count%>
+        Course Catalog: <%= Course.all.count%>
       </button>
     </h2>
     <div id="collapseFour" class="accordion-collapse collapse" >
@@ -56,11 +52,10 @@
       </div>
     </div>
   </div>
-
-<div class="accordion-item">
+  <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-        Unassigned graders for class sections 
+        Unassigned graders for class sections: <%=Section.where.missing(:assistants).count%>
       </button>
     </h2>
     <div id="collapseFive" class="accordion-collapse collapse" >
@@ -69,7 +64,53 @@
       </div>
     </div>
   </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+        Current graders: <%=Assistant.count%>
+      </button>
+    </h2>
+    <div id="collapseSix" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('assistant')%>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+        Assigned graders for class sections: <%=Section.where.associated(:assistants).count%>
+      </button>
+    </h2>
+    <div id="collapseSeven" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('assinged_graders_courses') %>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+        Grader Application: <%=Grader.where(verdict: :pending).count%>
+      </button>
+    </h2>
+    <div id="collapse8" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('graders_application') %>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+        Grader Applications approved: <%=Grader.where(verdict: :allowed).count%>
+      </button>
+    </h2>
+    <div id="collapse9" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('graders_application_approved') %>
+      </div>
+    </div>
+  </div>
   <%# ending the accordion %>
 </div>
-
-

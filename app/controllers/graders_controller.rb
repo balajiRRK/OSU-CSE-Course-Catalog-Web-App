@@ -9,7 +9,7 @@ class GradersController < ApplicationController
     # Initialize empty availability for all days
     @grader.availability = Grader::DAYS_OF_WEEK.each_with_object({}) { |day, hash| hash[day] = ["", ""] }
   end
-
+  
   def create
     @grader = Grader.new(grader_params)
     process_availability
@@ -26,7 +26,7 @@ class GradersController < ApplicationController
   end
 
   def show
-    @grader = Grader.find_by(params[:id])
+    @grader = Grader.find(params[:id])
   end
 
   def index
@@ -34,9 +34,18 @@ class GradersController < ApplicationController
   end
 
   def edit
-    @grader = Grader.find_by(params[:id])
+    @grader = Grader.find(params[:id])
   end
 
+  def destroy
+    set_grader
+    @grader.destroy! # this line deletes course from database
+
+    respond_to do |format|
+      format.html { redirect_to user_applications_path(current_user), notice: "Application was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
   def update
     process_availability
     # Debug output to check availability after processing
@@ -54,7 +63,7 @@ class GradersController < ApplicationController
   private
 
   def set_grader
-    @grader = Grader.find_by_email(params[:id])
+    @grader = Grader.find(params[:id])
   end
 
   def set_courses
@@ -71,7 +80,7 @@ class GradersController < ApplicationController
       :friday_start, :friday_end,
       :saturday_start, :saturday_end,
       :sunday_start, :sunday_end,
-      :courses_wish_and_qualify_to_grade,
+      :courses_wish_and_qualify_to_grade,:verdict
     )
   end
 end

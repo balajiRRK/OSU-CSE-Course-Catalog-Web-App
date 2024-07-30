@@ -1,13 +1,29 @@
 <div id="<%= dom_id assistant %>">
-
   <p>
     <strong>Name:</strong>
     <%= assistant.fname %>
   </p>
-
   <p>
     <strong>Email:</strong>
     <%= assistant.email %>
   </p>
-
+  <p>
+    <strong>Course:</strong>
+    <%= assistant.course.catalog_number+":" %>
+    <%= assistant.course.title+"\n" %>
+  </p>
+  <p>
+    <strong>Course ID:</strong>
+    <%= assistant.course_id %>
+  </p>
+  <%if assistant.section != nil%>
+  <p>
+    <strong>Class number:</strong>
+    <%=assistant.section.class_number %>
+  </p>
+  <p>
+    <strong>Section:</strong>
+    <%= assistant.section.section %>
+  </p>
+  <%end%>
 </div>

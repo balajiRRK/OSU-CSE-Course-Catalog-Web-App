@@ -7,7 +7,7 @@
     
  <%= form_with(model:user ) do |f| %>
 <div class="field">
-    <%= f.label :role %><br />
+    <%= f.label 'Status:' %><br />
     <%# the admin is able to change the status of users here %>
     <%# <%= f.select :role, User.roles.keys.map { |role| [role.humanize, role] } % >  %>
     <%= f.select :status, User.statuses.keys.map { |status| [status.humanize, status] } %>

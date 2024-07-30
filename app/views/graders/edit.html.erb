@@ -22,18 +22,13 @@
       </div>
 
       <div class="field">
-        <%= form.label :email %>
-        <%= form.email_field :email %>
-      </div>
-
-      <div class="field">
         <%= form.label :phone_number %>
         <%= form.telephone_field :phone_number %>
       </div>
 
       <div class="field">
          <%= form.label :courses_wish_and_qualify_to_grade, "Courses you wish to (and are qualified to) grade for" %>
-         <%= form.select :courses_wish_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.id] }), { prompt: "Select courses" }, multiple: true %>
+         <%= form.select :courses_wish_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.id] }), { prompt: "Select courses" } %>
       </div>
 
     <!-- Availability schedule section -->
@@ -56,7 +51,7 @@
       </div>
       
       <div class="links">
-        <%= link_to 'Back', graders_path %>
+        <%= link_to 'Back', 'javascript:history.back()' %>
       </div>
     <% end %>
   </div>

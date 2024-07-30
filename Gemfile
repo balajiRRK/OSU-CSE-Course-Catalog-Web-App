@@ -94,3 +94,5 @@ gem "popper", "~> 0.5.3"
 gem "htmlbeautifier", "~> 1.4"
 
 gem "nkf", "~> 0.2.0"
+
+gem "jquery-rails", "~> 4.6"

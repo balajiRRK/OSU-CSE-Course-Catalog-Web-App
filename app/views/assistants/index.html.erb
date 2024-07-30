@@ -6,9 +6,11 @@
   <% @assistants.each do |assistant| %>
     <%= render assistant %>
     <p>
-      <%= link_to "Show this assistant", assistant %>
+      <%= link_to "Show this assistant", assistant, class: 'btn btn-primary' %>
+      <%= link_to "Look up this assistant", 'https://www.osu.edu/search/?query=' +assistant.email, class: 'btn btn-success'%>
     </p>
   <% end %>
+  <%== @pagy%>
 </div>
 
 <%= link_to "New assistant", new_assistant_path %>

@@ -3,7 +3,7 @@ class AssistantsController < ApplicationController
 
   # GET /assistants or /assistants.json
   def index
-    @assistants = Assistant.all
+    @pagy, @assistants = pagy(Assistant.all)
   end
 
   # GET /assistants/1 or /assistants/1.json
@@ -25,7 +25,7 @@ class AssistantsController < ApplicationController
 
     respond_to do |format|
       if @assistant.save
-        format.html { redirect_to grader_url(@assistant), notice: "Assistant was successfully created." }
+        format.html { redirect_to assistant_url(@assistant), notice: "Assistant was successfully created." }
         format.json { render :show, status: :created, location: @assistant }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -37,8 +37,8 @@ class AssistantsController < ApplicationController
   # PATCH/PUT /assistants/1 or /assistants/1.json
   def update
     respond_to do |format|
-      if @assistant.update(grader_params)
-        format.html { redirect_to grader_url(@assistant), notice: "Assistant was successfully updated." }
+      if @assistant.update(assistant_params)
+        format.html { redirect_to assistant_url(@assistant), notice: "Assistant was successfully updated." }
         format.json { render :show, status: :ok, location: @assistant }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class AssistantsController < ApplicationController
     @assistant.destroy!
 
     respond_to do |format|
-      format.html { redirect_to graders_url, notice: "Assistant was successfully destroyed." }
+      format.html { redirect_to assistants_url, notice: "Assistant was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +65,6 @@ class AssistantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def assistant_params
-      params.require(:assistant).permit(:fname, :email)
+      params.require(:assistant).permit(:fname, :email,:course_id,:class_number)
     end
 end

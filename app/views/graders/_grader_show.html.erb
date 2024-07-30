@@ -21,7 +21,7 @@
 
   <p>
     <strong>Courses Wish and Qualify to Grade:</strong>
-    <%= grader.courses_wish_and_qualify_to_grade %>
+   CSE <%= grader.courses_wish_and_qualify_to_grade %>
   </p>
 </div>
 
@@ -52,6 +52,7 @@
 
 <!-- Navigation links -->
 <div style="margin-bottom: 20px; margin-left: 20px;">
+  
   <%= link_to 'Edit', edit_grader_path(grader) %> |
-  <%= link_to 'Back', new_grader_path %>
+  <%= link_to 'Back', 'javascript:history.back()' %>
 </div>

@@ -1,18 +1,38 @@
-<%= form_for(@course) do |f| %>
-    <%= form_for(@section) do |f1| %>
-    <%= fields_for(:assistant) do |f2| %>
-    <div>
-    <%= f2.label :fname, style: "display: block" %>
-    <%= f2.text_field :fname %>
-  </div>
+<%= form_with(model: assistant) do |form| %>
+  <% if assistant.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(assistant.errors.count, "error") %> prohibited this assistant from being saved:</h2>
 
-  <div>
-    <%= f2.label :email, style: "display: block" %>
-    <%= f2.text_field :email %>
-  </div>
-
-  <div>
-    <%= f2.submit %>
-    <% end %>
+      <ul>
+        <% assistant.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
+
+  
+
+  <div>
+    <%= form.label 'full Name', style: "display: block" %>
+    <%= form.text_field :fname %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+<%# These forms are hidden as they are for linking with a section for a course %>
+  <div>
+    <%= form.hidden_field :course_id, :value => course_id %>
+  </div>
+
+  <div>
+    
+    <%= form.hidden_field :class_number, :value => class_number %>
+  </div>
+
+  <div>
+    <%= form.submit 'Add assistant', class: 'btn btn-primary' %>
+  </div>
 <% end %>
