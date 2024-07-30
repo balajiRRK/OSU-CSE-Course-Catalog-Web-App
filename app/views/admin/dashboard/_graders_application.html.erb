@@ -17,7 +17,8 @@
     <% @grader.each do |grader| %>
       <tr>
         <td><%= grader.name %></td>
-        <td><%= grader.email %></td>
+        <td><%= grader.email %>
+        <%= link_to "Look up this applicant", 'https://www.osu.edu/search/?query=' +grader.email, class: 'btn btn-success'%></td>
         <td><%= grader.phone_number %></td>
         <td><%= grader.courses_wish_to_grade %></td>
         <td><%= grader.courses_qualified_to_grade %></td>
