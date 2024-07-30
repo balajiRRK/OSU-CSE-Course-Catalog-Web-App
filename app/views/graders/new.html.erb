@@ -29,7 +29,7 @@
         <%= form.select :courses_wish_and_qualify_to_grade, options_for_select(@courses.map { |course| [course.title + " " + course.catalog_number, course.catalog_number] }), { prompt: "Select courses"} %>
       </div>
       <!-- Availability schedule section -->
-      <h3>Availability Schedule</h3>
+      <h3 class="availability-title">Availability Schedule</h3>
       <div class="availability-schedule">
         <% Grader::DAYS_OF_WEEK.each do |day| %>
           <div class="field">
