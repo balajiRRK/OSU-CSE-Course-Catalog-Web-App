@@ -95,6 +95,19 @@
       </div>
     </div>
   </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+        Grader Application: <%=Grader.count%>
+      </button>
+    </h2>
+    <div id="collapse8" class="accordion-collapse collapse" >
+      <div class="accordion-body">
+        <%= render('graders_application') %>
+      </div>
+    </div>
+  </div>
   <%# ending the accordion %>
 </div>
         
