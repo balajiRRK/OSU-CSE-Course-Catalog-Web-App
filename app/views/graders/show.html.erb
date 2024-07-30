@@ -1,24 +1,30 @@
 <!-- show.html.erb -->
+
 <h2 style="padding-left: 20px;">Grader Application Details</h2>
+
 <!-- Display basic information -->
 <div style="padding-left: 20px;">
   <p>
     <strong>Name:</strong>
     <%= @grader.name %>
   </p>
+
   <p>
     <strong>Email:</strong>
     <%= @grader.email %>
   </p>
+
   <p>
     <strong>Phone Number:</strong>
     <%= @grader.phone_number %>
   </p>
+
   <p>
     <strong>Courses Wish and Qualify to Grade:</strong>
-    CSE <%= @grader.courses_wish_and_qualify_to_grade %>
+   CSE <%= @grader.courses_wish_and_qualify_to_grade %>
   </p>
 </div>
+
 <!-- Availability Schedule Table -->
 <h3 id="availability" style="padding-left: 20px;">Availability Schedule</h3>
 <div style="padding-left: 20px; padding-right: 20px;">
@@ -43,12 +49,9 @@
     </tbody>
   </table>
 </div>
+
 <!-- Navigation links -->
 <div style="margin-bottom: 20px; margin-left: 20px;">
-  <% if  current_user&.admin? && current_user&.allowed? %>
-    <%=render 'decision'%>
-  <% end %>
-  <%= link_to "Look up this applicant", 'https://www.osu.edu/search/?query=' +@grader.email, class: 'btn btn-success'%></td>
-<%= link_to 'Edit', edit_grader_path(@grader) %> |
-<%= link_to 'Back', 'javascript:history.back()' %>
+  <%= link_to 'Edit', edit_grader_path(@grader) %> |
+  <%= link_to 'Back', 'javascript:history.back()' %>
 </div>

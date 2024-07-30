@@ -1,44 +1,58 @@
 <!-- app/views/graders/index.html.erb -->
+<div class="content-wrapper">
+  <style>
+    .content-wrapper {
+      padding: 30px; /* Adjust this value to move content away from the borders */
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    td {
+      padding: 8px;
+      border: 1px solid #dddddd;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      color: white;
+      padding: 8px;
+      border: 1px solid #dddddd;
+      text-align: left;
+      background-color: #ba0c2f;
+    }
 
-<div class="course mt-5">
-<table  class="table table-bordered mt-5">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone Number</th>
-      <th>Courses Wish to Grade</th>
-      <th>Availability</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    
-      <tr>
-        <td><%= grader.name %></td>
-        <td><%= grader.email %></td>
-        <td><%= grader.phone_number %></td>
-        <td><%= grader.courses_wish_to_grade %></td>
-        <td><%= grader.courses_qualified_to_grade %></td>
-        <td>
-          <% if grader.availability.present? %>
-            <%# Use the formatted_availability method for a concise display %>
-            <%= link_to 'View Schedule', grader_path(grader, anchor: 'availability'), title: grader.formatted_availability %>
-          <% else %>
-            Not provided
-          <% end %>
-        </td>
-        <td>
-          
-          <%= link_to 'Show', grader %>
-          <%= link_to 'Edit', edit_grader_path(grader) %>
-          <%= button_to 'Delete', grader_path(grader), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    
-  </tbody>
-</table>
-</div >
-
+    .table-container {
+      overflow-x: auto;
+    }
+  </style>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Course</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <tr>
+            <td><%= grader.name %></td>
+            <td><%= grader.email %></td>
+            <td><%= grader.phone_number %></td>
+            <td><%= grader.courses_wish_and_qualify_to_grade %></td>
+            <td>
+              <%= link_to 'Show', grader %>
+              <%= link_to 'Edit', edit_grader_path(grader) %>
+              <%= button_to 'Delete', grader_path(grader), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+     
+      </tbody>
+    </table>
+  </div>
+</div>
 
