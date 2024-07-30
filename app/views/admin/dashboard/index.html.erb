@@ -7,7 +7,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-        Pending users: <%=User.all.where(status: :pending).count%>
+        Pending users: <%=User.where(status: "pending").where.not(role: "student").count%>
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse" >
