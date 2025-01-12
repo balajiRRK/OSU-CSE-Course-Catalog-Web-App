@@ -1,62 +1,51 @@
-# syntax = docker/dockerfile:1
+# syntax=docker/dockerfile:1
 
-# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.3.1
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+# Use the official Ruby image with version 3.2.0
+FROM ruby:3.2.0
 
-# Rails app lives here
-WORKDIR /rails
+# Install dependencies
+RUN apt-get update -qq && apt-get install -y \
+  nodejs \
+  postgresql-client \
+  libssl-dev \
+  libreadline-dev \
+  zlib1g-dev \
+  build-essential \
+  curl
 
-# Set production environment
-ENV RAILS_ENV="production" \
-    BUNDLE_DEPLOYMENT="1" \
-    BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+# Install rbenv
+RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv && \
+  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc && \
+  echo 'eval "$(rbenv init -)"' >> ~/.bashrc && \
+  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build && \
+  echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
 
+# Install the specified Ruby version using rbenv
+ENV PATH="/root/.rbenv/bin:/root/.rbenv/shims:$PATH"
+RUN rbenv install 3.2.0 && rbenv global 3.2.0
 
-# Throw-away build stage to reduce size of final image
-FROM base as build
+# Set the working directory
+WORKDIR /myapp
 
-# Install packages needed to build gems
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libvips pkg-config
+# Copy the Gemfile and Gemfile.lock
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
 
-# Install application gems
-COPY Gemfile Gemfile.lock ./
-RUN bundle install && \
-    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
-    bundle exec bootsnap precompile --gemfile
+# Install Gems dependencies
+RUN gem install bundler && bundle install
 
-# Copy application code
-COPY . .
+# Copy the application code
+COPY . /myapp
 
-# Precompile bootsnap code for faster boot times
-RUN bundle exec bootsnap precompile app/ lib/
+# Normalize line endings (Windows-style to Unix-style) in the /bin directory to fix application code
+RUN find ./bin -type f -exec sed -i 's/\r$//' {} +
+RUN chmod +x ./bin/*
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+# Precompile assets (optional, if using Rails with assets)
+RUN bundle exec rake assets:precompile
 
-
-# Final stage for app image
-FROM base
-
-# Install packages needed for deployment
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libsqlite3-0 libvips && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
-
-# Copy built artifacts: gems, application
-COPY --from=build /usr/local/bundle /usr/local/bundle
-COPY --from=build /rails /rails
-
-# Run and own only the runtime files as a non-root user for security
-RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails db log storage tmp
-USER rails:rails
-
-# Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
-
-# Start the server by default, this can be overwritten at runtime
+# Expose the port the app runs on
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+
+# Command to run the server
+CMD ["rails", "server", "-b", "0.0.0.0"]

@@ -28,18 +28,20 @@ After submitting a recommendation as an instructor, you are also able to view pr
 
 ***
 
-## How to Install and Run the App
+## How to Install and Run the App using Docker
 
 This app requires Ruby 3.2.0 or newer versions and Rails 7.1.3.4 or newer versions. 
 1. Clone the repo either through HTTPS or SSH
    - Through HTTPS: https://github.com/cse-3901-sharkey/2024-su-Team-3-Lab-3.git
    - Through SSH: git@github.com:cse-3901-sharkey/2024-su-Team-3-Lab-3.git
 
-2. Run the following commands:
+2. Open Docker Desktop and cd inside the directory of the repo
+
+   Then run these commands:
    ```
-   bundle install
-   rails db:migrate
-   rails server
+   docker build --pull --rm -f "Dockerfile" -t course-catalog:1.0.0 .
+   docker run --rm -it -v ${PWD}:/app -w /app course-catalog:1.0.0 bundle exec rails db:migrate
+   docker run --rm -it -p 3000:3000 -v ${PWD}:/app -w /app course-catalog:1.0.0 bundle exec rails server -b "0.0.0.0"
    ```
 
 3. Open `localhost:3000` in your browser.
